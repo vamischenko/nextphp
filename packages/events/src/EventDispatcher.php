@@ -6,15 +6,16 @@ namespace Nextphp\Events;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\EventDispatcher\ListenerProviderInterface;
+use Psr\EventDispatcher\StoppableEventInterface;
 
 final class EventDispatcher implements EventDispatcherInterface, ListenerProviderInterface
 {
-    /** @var array<string, array<int, callable>> */
+    /** @var array<string, array<int, array{priority: int, listener: callable}>> */
     private array $listeners = [];
 
-    public function addListener(string $eventClass, callable $listener): void
+    public function addListener(string $eventClass, callable $listener, int $priority = 0): void
     {
-        $this->listeners[$eventClass][] = $listener;
+        $this->listeners[$eventClass][] = ['priority' => $priority, 'listener' => $listener];
     }
 
     public function addSubscriber(EventSubscriberInterface $subscriber): void
@@ -27,6 +28,10 @@ final class EventDispatcher implements EventDispatcherInterface, ListenerProvide
     public function dispatch(object $event): object
     {
         foreach ($this->getListenersForEvent($event) as $listener) {
+            if ($event instanceof StoppableEventInterface && $event->isPropagationStopped()) {
+                break;
+            }
+
             $listener($event);
         }
 
@@ -35,17 +40,20 @@ final class EventDispatcher implements EventDispatcherInterface, ListenerProvide
 
     public function getListenersForEvent(object $event): iterable
     {
-        $eventClass = $event::class;
         $resolved = [];
 
-        foreach ($this->listeners as $class => $listeners) {
+        foreach ($this->listeners as $class => $entries) {
             if ($event instanceof $class) {
-                foreach ($listeners as $listener) {
-                    $resolved[] = $listener;
+                foreach ($entries as $entry) {
+                    $resolved[] = $entry;
                 }
             }
         }
 
-        return $resolved;
+        usort($resolved, static fn (array $a, array $b) => $b['priority'] <=> $a['priority']);
+
+        foreach ($resolved as $entry) {
+            yield $entry['listener'];
+        }
     }
 }

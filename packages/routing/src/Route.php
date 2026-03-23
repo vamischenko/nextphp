@@ -15,6 +15,8 @@ final class Route
 
     private string $name = '';
 
+    private string $namePrefix = '';
+
     /** @var string[] */
     private array $middleware = [];
 
@@ -71,11 +73,22 @@ final class Route
 
     public function named(string $name): self
     {
-        $this->name = $name;
+        $this->name = $this->namePrefix !== '' ? $this->namePrefix . $name : $name;
 
         if ($this->collection !== null) {
-            $this->collection->registerName($name, $this);
+            $this->collection->registerName($this->name, $this);
         }
+
+        return $this;
+    }
+
+    /**
+     * Set a name prefix to be prepended when named() is called.
+     * @internal Used by RouteGroup.
+     */
+    public function withNamePrefix(string $prefix): self
+    {
+        $this->namePrefix = $prefix;
 
         return $this;
     }

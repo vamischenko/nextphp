@@ -10,6 +10,7 @@ use Nextphp\Http\Message\Response;
 use Nextphp\Http\Middleware\MiddlewareAliasRegistry;
 use Nextphp\Http\Middleware\Pipeline;
 use Nextphp\Routing\Router;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
@@ -27,6 +28,7 @@ final class HttpKernel
 
     public function __construct(
         private readonly Router $router,
+        private readonly ?ContainerInterface $container = null,
         private readonly MiddlewareAliasRegistry $aliases = new MiddlewareAliasRegistry(),
         private readonly ExceptionHandler $exceptions = new ExceptionHandler(),
     ) {
@@ -61,7 +63,10 @@ final class HttpKernel
                 $handler = $match->route->getHandler();
 
                 if (is_array($handler) && count($handler) === 2 && is_string($handler[0])) {
-                    $handler = [new $handler[0](), $handler[1]];
+                    $controller = $this->container !== null
+                        ? $this->container->get($handler[0])
+                        : new $handler[0]();
+                    $handler = [$controller, $handler[1]];
                 }
 
                 if (!is_callable($handler)) {
@@ -130,6 +135,15 @@ final class HttpKernel
                 $arguments[] = $parameter->getDefaultValue();
 
                 continue;
+            }
+
+            if ($type instanceof ReflectionNamedType && !$type->isBuiltin() && $this->container !== null) {
+                $typeName = $type->getName();
+                if ($this->container->has($typeName)) {
+                    $arguments[] = $this->container->get($typeName);
+
+                    continue;
+                }
             }
 
             throw new RuntimeException(sprintf('Cannot resolve route argument "%s".', $paramName));

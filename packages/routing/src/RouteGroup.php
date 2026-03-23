@@ -84,6 +84,10 @@ final class RouteGroup
 
         $route = new Route($methods, $fullPath, $handler, '', $this->middleware);
 
+        if ($this->namePrefix !== '') {
+            $route->withNamePrefix($this->namePrefix);
+        }
+
         $this->router->addRoute($route);
 
         return $route;

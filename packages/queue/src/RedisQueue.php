@@ -4,15 +4,12 @@ declare(strict_types=1);
 
 namespace Nextphp\Queue;
 
+use Redis;
+
 final class RedisQueue implements QueueInterface
 {
-    /**
-     * In-memory fallback when redis extension is unavailable.
-     * @var array<int, array{payload: string, available_at: int}>
-     */
-    private array $fallback = [];
-
     public function __construct(
+        private readonly Redis $redis,
         private readonly string $key = 'nextphp:queue:default',
     ) {
     }
@@ -24,29 +21,43 @@ final class RedisQueue implements QueueInterface
 
     public function pushDelayed(JobInterface $job, int $delaySeconds): void
     {
-        $this->fallback[] = [
-            'payload' => serialize($job),
-            'available_at' => time() + max(0, $delaySeconds),
-        ];
+        $availableAt = time() + max(0, $delaySeconds);
+        $this->redis->zAdd($this->key, $availableAt, serialize($job));
     }
 
     public function pop(): ?QueuedJob
     {
         $now = time();
-        foreach ($this->fallback as $idx => $row) {
-            if ($row['available_at'] <= $now) {
-                unset($this->fallback[$idx]);
-                $this->fallback = array_values($this->fallback);
 
-                return new QueuedJob(unserialize($row['payload']));
-            }
+        // Atomically fetch and remove the first available job via Lua script
+        $script = <<<'LUA'
+            local key = KEYS[1]
+            local now = tonumber(ARGV[1])
+            local items = redis.call('ZRANGEBYSCORE', key, '-inf', now, 'LIMIT', 0, 1)
+            if #items == 0 then
+                return nil
+            end
+            redis.call('ZREM', key, items[1])
+            return items[1]
+        LUA;
+
+        $payload = $this->redis->eval($script, [$this->key, (string) $now], 1);
+
+        if ($payload === null || $payload === false) {
+            return null;
         }
 
-        return null;
+        $job = unserialize((string) $payload);
+
+        if (!$job instanceof JobInterface) {
+            return null;
+        }
+
+        return new QueuedJob($job);
     }
 
     public function size(): int
     {
-        return count($this->fallback);
+        return (int) $this->redis->zCard($this->key);
     }
 }

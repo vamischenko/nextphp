@@ -17,9 +17,21 @@ use ReflectionParameter;
 
 final class ReflectionResolver
 {
+    /** @var array<class-string, ReflectionClass<object>> */
+    private static array $classCache = [];
+
+    /** @var array<string, ReflectionMethod> */
+    private static array $methodCache = [];
+
     public function __construct(
         private readonly ContainerInterface $container,
     ) {
+    }
+
+    public static function clearCache(): void
+    {
+        self::$classCache = [];
+        self::$methodCache = [];
     }
 
     /**
@@ -31,15 +43,7 @@ final class ReflectionResolver
      */
     public function resolve(string $concrete, array $parameters = []): object
     {
-        try {
-            $reflector = new ReflectionClass($concrete);
-        } catch (ReflectionException $e) {
-            throw new ContainerException(
-                sprintf('Cannot reflect class "%s": %s', $concrete, $e->getMessage()),
-                0,
-                $e,
-            );
-        }
+        $reflector = $this->reflectClass($concrete);
 
         if (!$reflector->isInstantiable()) {
             throw new ContainerException(
@@ -82,12 +86,7 @@ final class ReflectionResolver
         if (is_array($callback) && count($callback) === 2) {
             [$object, $method] = $callback;
 
-            try {
-                $reflector = new ReflectionMethod($object, (string) $method);
-            } catch (ReflectionException $e) {
-                throw new ContainerException('Cannot reflect method: ' . $e->getMessage(), 0, $e);
-            }
-
+            $reflector = $this->reflectMethod($object, (string) $method);
             $resolved = $this->resolveParameters($reflector->getParameters(), $parameters);
 
             return $reflector->invoke(is_object($object) ? $object : null, ...$resolved);
@@ -96,12 +95,7 @@ final class ReflectionResolver
         if (is_string($callback) && str_contains($callback, '::')) {
             [$class, $method] = explode('::', $callback, 2);
 
-            try {
-                $reflector = new ReflectionMethod($class, $method);
-            } catch (ReflectionException $e) {
-                throw new ContainerException('Cannot reflect method: ' . $e->getMessage(), 0, $e);
-            }
-
+            $reflector = $this->reflectMethod($class, $method);
             $resolved = $this->resolveParameters($reflector->getParameters(), $parameters);
 
             return $reflector->invoke(null, ...$resolved);
@@ -120,6 +114,50 @@ final class ReflectionResolver
         }
 
         throw new ContainerException('Unsupported callable type.');
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $concrete
+     * @return ReflectionClass<T>
+     * @throws ContainerException
+     */
+    private function reflectClass(string $concrete): ReflectionClass
+    {
+        if (!isset(self::$classCache[$concrete])) {
+            try {
+                self::$classCache[$concrete] = new ReflectionClass($concrete);
+            } catch (ReflectionException $e) {
+                throw new ContainerException(
+                    sprintf('Cannot reflect class "%s": %s', $concrete, $e->getMessage()),
+                    0,
+                    $e,
+                );
+            }
+        }
+
+        /** @var ReflectionClass<T> */
+        return self::$classCache[$concrete];
+    }
+
+    /**
+     * @param object|class-string $objectOrClass
+     * @throws ContainerException
+     */
+    private function reflectMethod(object|string $objectOrClass, string $method): ReflectionMethod
+    {
+        $class = is_object($objectOrClass) ? $objectOrClass::class : $objectOrClass;
+        $cacheKey = $class . '::' . $method;
+
+        if (!isset(self::$methodCache[$cacheKey])) {
+            try {
+                self::$methodCache[$cacheKey] = new ReflectionMethod($objectOrClass, $method);
+            } catch (ReflectionException $e) {
+                throw new ContainerException('Cannot reflect method: ' . $e->getMessage(), 0, $e);
+            }
+        }
+
+        return self::$methodCache[$cacheKey];
     }
 
     /**

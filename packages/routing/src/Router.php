@@ -72,6 +72,25 @@ final class Router
     }
 
     /**
+     * Start a fluent route group with the given URL prefix.
+     *
+     * Example:
+     *   $router->prefix('api/v1')->middleware(['auth'])->name('api.')->group(function (RouteGroup $g) { ... });
+     */
+    public function prefix(string $prefix): RouteGroup
+    {
+        return new RouteGroup($this, $prefix);
+    }
+
+    /**
+     * Start a fluent route group with the given name prefix.
+     */
+    public function name(string $namePrefix): RouteGroup
+    {
+        return new RouteGroup($this, '', [], $namePrefix);
+    }
+
+    /**
      * Register RESTful resource routes.
      *
      * GET    /resource          → index

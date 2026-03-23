@@ -29,13 +29,20 @@ final class Worker
 
         $queued->attempts++;
 
+        $maxTries = $queued->job instanceof RetryableJobInterface
+            ? $queued->job->maxTries()
+            : $this->maxTries;
+
         try {
             $queued->job->handle();
 
             return true;
         } catch (\Throwable $e) {
-            if ($queued->attempts < $this->maxTries) {
-                $delay = $this->backoff->delaySeconds($queued->attempts);
+            if ($queued->attempts < $maxTries) {
+                $baseDelay = $queued->job instanceof RetryableJobInterface
+                    ? $queued->job->retryAfterSeconds()
+                    : 0;
+                $delay = max($baseDelay, $this->backoff->delaySeconds($queued->attempts));
                 $this->queue->pushDelayed($queued->job, $delay);
             } else {
                 $this->failedJobs[] = [

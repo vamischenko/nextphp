@@ -5,10 +5,15 @@ declare(strict_types=1);
 namespace Nextphp\Validation;
 
 use Nextphp\Validation\Contracts\PresenceVerifierInterface;
+use Nextphp\Validation\Rule\ArrayRule;
+use Nextphp\Validation\Rule\BooleanRule;
+use Nextphp\Validation\Rule\ConfirmedRule;
 use Nextphp\Validation\Rule\EmailRule;
 use Nextphp\Validation\Rule\ExistsRule;
+use Nextphp\Validation\Rule\IntegerRule;
 use Nextphp\Validation\Rule\MaxRule;
 use Nextphp\Validation\Rule\MinRule;
+use Nextphp\Validation\Rule\NullableRule;
 use Nextphp\Validation\Rule\RequiredRule;
 use Nextphp\Validation\Rule\UniqueRule;
 
@@ -19,22 +24,49 @@ final class Validator
     ) {
     }
 
+    public static function make(?PresenceVerifierInterface $presence = null): self
+    {
+        return new self($presence);
+    }
+
     /**
      * @param array<string, mixed> $data
-     * @param array<string, array<int, string|ValidationRuleInterface>> $rules
+     * @param array<string, string|array<int, string|ValidationRuleInterface>> $rules
      */
     public function validate(array $data, array $rules): ValidationResult
     {
         $errors = [];
 
         foreach ($rules as $field => $fieldRules) {
+            // Support pipe-string syntax: 'required|email|max:255'
+            if (is_string($fieldRules)) {
+                $fieldRules = explode('|', $fieldRules);
+            }
+
             $value = $data[$field] ?? null;
+            $bail = in_array('bail', $fieldRules, strict: true);
+            $nullable = in_array('nullable', $fieldRules, strict: true);
+
+            // Skip all rules (except required) when value is null and field is nullable
+            if ($nullable && $value === null) {
+                continue;
+            }
 
             foreach ($fieldRules as $rule) {
+                // Skip meta-rules
+                if ($rule === 'bail' || $rule === 'nullable') {
+                    continue;
+                }
+
                 $ruleObject = $this->normalizeRule($rule);
                 $error = $ruleObject->validate($field, $value, $data);
+
                 if ($error !== null) {
                     $errors[$field][] = $error;
+
+                    if ($bail) {
+                        break;
+                    }
                 }
             }
         }
@@ -48,37 +80,36 @@ final class Validator
             return $rule;
         }
 
-        if ($rule === 'required') {
-            return new RequiredRule();
-        }
+        return match (true) {
+            $rule === 'required'             => new RequiredRule(),
+            $rule === 'email'                => new EmailRule(),
+            $rule === 'boolean'              => new BooleanRule(),
+            $rule === 'integer'              => new IntegerRule(),
+            $rule === 'array'                => new ArrayRule(),
+            $rule === 'confirmed'            => new ConfirmedRule(),
+            $rule === 'nullable'             => new NullableRule(),
+            str_starts_with($rule, 'min:')  => new MinRule((int) substr($rule, 4)),
+            str_starts_with($rule, 'max:')  => new MaxRule((int) substr($rule, 4)),
+            str_starts_with($rule, 'unique:') => $this->makeUniqueRule($rule),
+            str_starts_with($rule, 'exists:') => $this->makeExistsRule($rule),
+            default => throw new \InvalidArgumentException(sprintf('Unknown validation rule: "%s".', $rule)),
+        };
+    }
 
-        if ($rule === 'email') {
-            return new EmailRule();
-        }
+    private function makeUniqueRule(string $rule): UniqueRule
+    {
+        $this->assertPresenceVerifier();
+        [$table, $column] = $this->parsePresenceRule($rule, 'unique:');
 
-        if (str_starts_with($rule, 'min:')) {
-            return new MinRule((int) substr($rule, 4));
-        }
+        return new UniqueRule($this->presence, $table, $column);
+    }
 
-        if (str_starts_with($rule, 'max:')) {
-            return new MaxRule((int) substr($rule, 4));
-        }
+    private function makeExistsRule(string $rule): ExistsRule
+    {
+        $this->assertPresenceVerifier();
+        [$table, $column] = $this->parsePresenceRule($rule, 'exists:');
 
-        if (str_starts_with($rule, 'unique:')) {
-            $this->assertPresenceVerifier();
-            [$table, $column] = $this->parsePresenceRule($rule, 'unique:');
-
-            return new UniqueRule($this->presence, $table, $column);
-        }
-
-        if (str_starts_with($rule, 'exists:')) {
-            $this->assertPresenceVerifier();
-            [$table, $column] = $this->parsePresenceRule($rule, 'exists:');
-
-            return new ExistsRule($this->presence, $table, $column);
-        }
-
-        throw new \InvalidArgumentException(sprintf('Unknown validation rule: "%s".', $rule));
+        return new ExistsRule($this->presence, $table, $column);
     }
 
     private function assertPresenceVerifier(): void
