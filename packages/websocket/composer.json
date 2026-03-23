@@ -1,0 +1,34 @@
+{
+    "name": "nextphp/websocket",
+    "description": "Nextphp Framework — WebSocket component with Ratchet/Swoole adapters",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0",
+        "phpstan/phpstan": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nextphp\\WebSocket\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nextphp\\WebSocket\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "analyse": "vendor/bin/phpstan analyse --no-progress",
+        "cs:fix": "vendor/bin/php-cs-fixer fix"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

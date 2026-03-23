@@ -1,0 +1,44 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+$autoload = dirname(__DIR__) . '/vendor/autoload.php';
+if (! is_file($autoload)) {
+    fwrite(STDERR, "Autoload not found. Run 'composer install' in repository root.\n");
+    exit(1);
+}
+require $autoload;
+
+use Nextphp\WebSocket\Adapter\RatchetAdapter;
+use Nextphp\WebSocket\Adapter\SwooleAdapter;
+use Nextphp\WebSocket\ConnectionInterface;
+use Nextphp\WebSocket\WebSocketServer;
+
+$driver = $argv[1] ?? 'swoole';
+$server = new WebSocketServer();
+$adapter = $driver === 'ratchet' ? new RatchetAdapter($server) : new SwooleAdapter($server);
+
+fwrite(STDOUT, sprintf("Nextphp WS server bootstrap (%s)\n", $driver));
+fwrite(STDOUT, "This is a runtime bootstrap example. Plug real socket events here.\n");
+
+// Demo lifecycle event
+$conn = new class () implements ConnectionInterface {
+    public function id(): string
+    {
+        return 'demo-connection';
+    }
+    public function send(string $payload): void
+    {
+        fwrite(STDOUT, "send: {$payload}\n");
+    }
+    public function close(): void
+    {
+    }
+};
+
+$adapter->handleOpen($conn);
+$server->broadcast('server-started');
+$adapter->handleClose($conn);
+
+fwrite(STDOUT, "Done.\n");

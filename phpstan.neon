@@ -1,0 +1,18 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    phpVersion: 80200
+    level: 8
+    paths:
+        - packages/core/src
+        - packages/http/src
+        - packages/routing/src
+    excludePaths:
+        - packages/*/vendor
+        - packages/*/tests
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    reportUnmatchedIgnoredErrors: true
+    treatPhpDocTypesAsCertain: false

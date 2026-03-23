@@ -1,0 +1,23 @@
+{
+    "name": "nextphp/api-skeleton",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "nextphp/core": "*@dev",
+        "nextphp/http": "*@dev",
+        "nextphp/routing": "*@dev",
+        "nextphp/orm": "*@dev",
+        "nextphp/validation": "*@dev",
+        "nextphp/auth": "*@dev"
+    },
+    "repositories": [
+        {"type": "path", "url": "../../packages/core"},
+        {"type": "path", "url": "../../packages/http"},
+        {"type": "path", "url": "../../packages/routing"},
+        {"type": "path", "url": "../../packages/orm"},
+        {"type": "path", "url": "../../packages/validation"},
+        {"type": "path", "url": "../../packages/auth"}
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

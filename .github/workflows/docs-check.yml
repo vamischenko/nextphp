@@ -1,0 +1,30 @@
+name: Docs Checks
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: Install docs tools
+        run: pip install mkdocs-material markdownlint-cli
+
+      - name: Markdown lint
+        run: markdownlint "docs/**/*.md"
+
+      - name: Nav check
+        run: ./scripts/docs-nav-check.sh
+
+      - name: Link check
+        run: ./scripts/docs-link-check.sh
+
+      - name: Build docs
+        run: mkdocs build --config-file docs/mkdocs.yml --site-dir docs/site

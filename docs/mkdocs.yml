@@ -1,0 +1,73 @@
+site_name: Nextphp Framework
+site_description: Modern PHP Framework — elegant, fast, strictly typed
+site_url: https://nextphp.dev
+repo_url: https://github.com/nextphp/nextphp
+repo_name: nextphp/nextphp
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Versions:
+      - v0.x: v0.x/index.md
+      - v1.x: v1.x/index.md
+  - Compatibility Matrix: compatibility-matrix.md
+  - Getting Started:
+      - Installation: getting-started/installation.md
+      - Configuration: getting-started/configuration.md
+  - Architecture: architecture/overview.md
+  - Core:
+      - IoC Container: core/container.md
+      - Service Providers: core/service-providers.md
+      - Attributes: core/attributes.md
+  - HTTP:
+      - Request & Response: http/request-response.md
+      - Middleware: http/middleware.md
+      - Exceptions: http/exceptions.md
+  - Routing:
+      - Basic Routing: routing/basic.md
+      - Attribute Routes: routing/attributes.md
+      - Route Groups: routing/groups.md
+  - Integrations:
+      - GraphQL: integrations/graphql.md
+      - WebSocket: integrations/websocket.md
+      - Octane: integrations/octane.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+
+plugins:
+  - search

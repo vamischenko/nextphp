@@ -1,0 +1,43 @@
+{
+    "name": "nextphp/testing",
+    "description": "Nextphp Framework — Testing helpers component",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "nextphp/http": "*@dev",
+        "nextphp/routing": "*@dev",
+        "nextphp/orm": "*@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0",
+        "phpstan/phpstan": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nextphp\\Testing\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nextphp\\Testing\\Tests\\": "tests/"
+        }
+    },
+    "repositories": [
+        {"type": "path", "url": "../http"},
+        {"type": "path", "url": "../routing"},
+        {"type": "path", "url": "../orm"}
+    ],
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test:coverage": "vendor/bin/phpunit --coverage-clover=coverage.xml",
+        "analyse": "vendor/bin/phpstan analyse --no-progress",
+        "cs:fix": "vendor/bin/php-cs-fixer fix"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}

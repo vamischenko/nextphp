@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+$autoload = dirname(__DIR__) . '/vendor/autoload.php';
+if (! is_file($autoload)) {
+    fwrite(STDERR, "Autoload not found. Run 'composer install' in repository root.\n");
+    exit(1);
+}
+require $autoload;
+
+use Nextphp\Core\Container\Container;
+use Nextphp\Http\Kernel\HttpKernel;
+use Nextphp\Http\Message\ServerRequest;
+use Nextphp\Octane\Adapter\RoadRunnerRuntime;
+use Nextphp\Octane\Adapter\SwooleRuntime;
+use Nextphp\Octane\Octane;
+use Nextphp\Octane\Worker\OctaneHttpKernelBridge;
+use Nextphp\Routing\Router;
+
+$driver = $argv[1] ?? 'swoole';
+$runtime = $driver === 'roadrunner' ? new RoadRunnerRuntime() : new SwooleRuntime();
+
+$container = new Container();
+$router = new Router();
+$router->get('/ping', fn (): array => ['ok' => true, 'runtime' => $driver]);
+
+$kernel = new HttpKernel($router);
+$worker = (new OctaneHttpKernelBridge($container))->worker($kernel);
+$worker->hooks()->onWorkerStart(fn () => fwrite(STDOUT, "octane worker started ({$driver})\n"));
+$worker->hooks()->onWorkerStop(fn () => fwrite(STDOUT, "octane worker stopped\n"));
+
+$octane = new Octane($runtime);
+$octane->run(
+    bootstrap: fn () => $worker->boot(),
+    tick: function () use ($worker): void {
+        $response = $worker->handle(new ServerRequest('GET', '/ping'));
+        fwrite(STDOUT, sprintf("demo response: %s\n", (string) $response->getBody()));
+        $worker->stop();
+    },
+);

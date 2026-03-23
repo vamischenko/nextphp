@@ -1,0 +1,15 @@
+/vendor/
+/packages/*/vendor/
+/coverage/
+/coverage-html/
+*.coverage
+coverage.xml
+.php-cs-fixer.cache
+.phpunit.result.cache
+.phpunit.cache/
+/.idea/
+/.vscode/
+*.DS_Store
+/node_modules/
+/docs/site/
+/.claude

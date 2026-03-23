@@ -1,0 +1,12 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    level: 8
+    paths:
+        - src
+    testPaths:
+        - tests
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true

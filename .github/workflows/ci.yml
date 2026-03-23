@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests — PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, dom, fileinfo, intl, pdo, pdo_sqlite
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v5
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ matrix.php }}-
+            ${{ runner.os }}-composer-
+
+      - name: Install root dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Install core dependencies
+        run: cd packages/core && composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Install http dependencies
+        run: cd packages/http && composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Install routing dependencies
+        run: cd packages/routing && composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Run tests — core
+        run: cd packages/core && vendor/bin/phpunit --coverage-clover=coverage-core.xml
+
+      - name: Run tests — http
+        run: cd packages/http && vendor/bin/phpunit --coverage-clover=coverage-http.xml
+
+      - name: Run tests — routing
+        run: cd packages/routing && vendor/bin/phpunit --coverage-clover=coverage-routing.xml
+
+      - name: Upload coverage to Codecov
+        if: matrix.php == '8.3'
+        uses: codecov/codecov-action@v5
+        with:
+          files: packages/core/coverage-core.xml,packages/http/coverage-http.xml,packages/routing/coverage-routing.xml
+          fail_ci_if_error: false
