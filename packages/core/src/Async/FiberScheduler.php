@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nextphp\Core\Async;
 
+use Fiber;
+
 final class FiberScheduler
 {
     /** @var list<Task> */
@@ -14,7 +16,7 @@ final class FiberScheduler
      */
     public function async(callable $callback): Task
     {
-        $task = new Task(new \Fiber($callback));
+        $task = new Task(new Fiber($callback));
         $this->tasks[] = $task;
         $task->start();
 
@@ -26,7 +28,7 @@ final class FiberScheduler
         do {
             $pending = false;
             foreach ($this->tasks as $task) {
-                if (! $task->isCompleted()) {
+                if (!$task->isCompleted()) {
                     $pending = true;
                     $task->resume();
                 }
@@ -36,6 +38,6 @@ final class FiberScheduler
 
     public static function suspend(mixed $value = null): mixed
     {
-        return \Fiber::suspend($value);
+        return Fiber::suspend($value);
     }
 }

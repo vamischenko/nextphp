@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Nextphp\Core\Async;
 
+use Fiber;
+use RuntimeException;
+use Throwable;
+
 final class Task
 {
     private mixed $result = null;
-    private ?\Throwable $error = null;
+
+    private ?Throwable $error = null;
+
     private bool $completed = false;
 
     public function __construct(
-        private readonly \Fiber $fiber,
+        private readonly Fiber $fiber,
     ) {
     }
 
@@ -25,13 +31,14 @@ final class Task
 
     public function resume(mixed $value = null): void
     {
-        if (! $this->fiber->isSuspended()) {
+        if (!$this->fiber->isSuspended()) {
             return;
         }
+
         try {
             $this->fiber->resume($value);
             $this->captureIfTerminated();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->error = $e;
             $this->completed = true;
         }
@@ -44,8 +51,8 @@ final class Task
 
     public function await(): mixed
     {
-        if (! $this->completed) {
-            throw new \RuntimeException('Task is not completed yet.');
+        if (!$this->completed) {
+            throw new RuntimeException('Task is not completed yet.');
         }
         if ($this->error !== null) {
             throw $this->error;
@@ -59,7 +66,7 @@ final class Task
         try {
             $this->fiber->start();
             $this->captureIfTerminated();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->error = $e;
             $this->completed = true;
         }

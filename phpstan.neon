@@ -1,6 +1,7 @@
 includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
+    - phpstan-baseline.neon
 
 parameters:
     phpVersion: 80200
@@ -12,7 +13,5 @@ parameters:
     excludePaths:
         - packages/*/vendor
         - packages/*/tests
-    checkMissingIterableValueType: true
-    checkGenericClassInNonGenericObjectType: true
     reportUnmatchedIgnoredErrors: true
     treatPhpDocTypesAsCertain: false

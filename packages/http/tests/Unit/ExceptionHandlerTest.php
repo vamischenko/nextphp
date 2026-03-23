@@ -10,6 +10,7 @@ use Nextphp\Http\Message\ServerRequest;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 #[CoversClass(ExceptionHandler::class)]
 final class ExceptionHandlerTest extends TestCase
@@ -32,7 +33,7 @@ final class ExceptionHandlerTest extends TestCase
         $handler = new ExceptionHandler();
         $request = new ServerRequest('GET', '/x');
 
-        $response = $handler->handle(new \RuntimeException('Boom'), $request);
+        $response = $handler->handle(new RuntimeException('Boom'), $request);
 
         self::assertSame(500, $response->getStatusCode());
         self::assertStringContainsString('<html>', (string) $response->getBody());

@@ -9,6 +9,7 @@ use Nextphp\Routing\Route;
 use Nextphp\Routing\Router;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionMethod;
 
 final class AttributeRouteLoader
 {
@@ -39,7 +40,7 @@ final class AttributeRouteLoader
             $classMiddleware = $classRoute->middleware;
         }
 
-        foreach ($reflector->getMethods(\ReflectionMethod::IS_PUBLIC) as $method) {
+        foreach ($reflector->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             $attrs = $method->getAttributes(RouteAttribute::class);
 
             if ($attrs === []) {

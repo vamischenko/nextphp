@@ -27,7 +27,9 @@ final class PipelineTest extends TestCase
         $log = [];
 
         $mw1 = new class ($log, 'first') implements MiddlewareInterface {
-            public function __construct(private array &$log, private string $name) {}
+            public function __construct(private array &$log, private string $name)
+            {
+            }
 
             public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
             {
@@ -40,7 +42,9 @@ final class PipelineTest extends TestCase
         };
 
         $mw2 = new class ($log, 'second') implements MiddlewareInterface {
-            public function __construct(private array &$log, private string $name) {}
+            public function __construct(private array &$log, private string $name)
+            {
+            }
 
             public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
             {
@@ -74,7 +78,7 @@ final class PipelineTest extends TestCase
     #[Test]
     public function middlewareCanShortCircuit(): void
     {
-        $shortCircuit = new class implements MiddlewareInterface {
+        $shortCircuit = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
             {
                 return new Response(401);
@@ -94,7 +98,7 @@ final class PipelineTest extends TestCase
     {
         $received = null;
 
-        $modifier = new class implements MiddlewareInterface {
+        $modifier = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($req->withAttribute('modified', true));
@@ -117,7 +121,7 @@ final class PipelineTest extends TestCase
     public function pipeIsImmutable(): void
     {
         $pipeline = new Pipeline();
-        $mw = new class implements MiddlewareInterface {
+        $mw = new class () implements MiddlewareInterface {
             public function process(ServerRequestInterface $req, RequestHandlerInterface $handler): ResponseInterface
             {
                 return $handler->handle($req);

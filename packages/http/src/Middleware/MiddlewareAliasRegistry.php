@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nextphp\Http\Middleware;
 
+use InvalidArgumentException;
 use Psr\Http\Server\MiddlewareInterface;
 
 final class MiddlewareAliasRegistry
@@ -23,8 +24,8 @@ final class MiddlewareAliasRegistry
 
     public function resolve(string $alias): MiddlewareInterface
     {
-        if (! isset($this->aliases[$alias])) {
-            throw new \InvalidArgumentException(sprintf('Middleware alias "%s" is not registered.', $alias));
+        if (!isset($this->aliases[$alias])) {
+            throw new InvalidArgumentException(sprintf('Middleware alias "%s" is not registered.', $alias));
         }
 
         $resolved = $this->aliases[$alias];

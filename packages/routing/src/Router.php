@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing;
 
+use Closure;
 use Nextphp\Routing\Exception\MethodNotAllowedException;
 use Nextphp\Routing\Exception\RouteNotFoundException;
 use Nextphp\Routing\Tree\MatchResult;
@@ -64,7 +65,7 @@ final class Router
         return $this->add(['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], $path, $handler);
     }
 
-    public function group(string $prefix, \Closure $callback): void
+    public function group(string $prefix, Closure $callback): void
     {
         $group = new RouteGroup($this, $prefix);
         $callback($group);

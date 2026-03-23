@@ -75,7 +75,7 @@ final class ServerRequest extends Request implements ServerRequestInterface
             queryParams: $_GET,
         );
 
-        if (! empty($_POST)) {
+        if (!empty($_POST)) {
             $request = $request->withParsedBody($_POST);
         }
 
@@ -84,7 +84,7 @@ final class ServerRequest extends Request implements ServerRequestInterface
 
     private static function buildUriFromGlobals(): Uri
     {
-        $scheme = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
         $host = $_SERVER['HTTP_HOST'] ?? ($_SERVER['SERVER_NAME'] ?? 'localhost');
         $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 

@@ -174,7 +174,7 @@ final class Uri implements UriInterface
         $path = $this->path;
 
         if ($path !== '') {
-            if ($authority !== '' && ! str_starts_with($path, '/')) {
+            if ($authority !== '' && !str_starts_with($path, '/')) {
                 $path = '/' . $path;
             }
 

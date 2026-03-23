@@ -21,33 +21,33 @@ final class Stream implements StreamInterface
 
     /** @var array<string, bool> */
     private static array $readWriteHash = [
-        'r'   => true,
-        'w+'  => true,
-        'r+'  => true,
-        'x+'  => true,
-        'c+'  => true,
-        'rb'  => true,
+        'r' => true,
+        'w+' => true,
+        'r+' => true,
+        'x+' => true,
+        'c+' => true,
+        'rb' => true,
         'w+b' => true,
         'r+b' => true,
         'x+b' => true,
         'c+b' => true,
-        'rt'  => true,
+        'rt' => true,
         'w+t' => true,
         'r+t' => true,
         'x+t' => true,
         'c+t' => true,
-        'a+'  => true,
+        'a+' => true,
     ];
 
     /** @var array<string, bool> */
     private static array $writeHash = [
-        'w'   => true,
-        'w+'  => true,
-        'rw'  => true,
-        'r+'  => true,
-        'x+'  => true,
-        'c+'  => true,
-        'wb'  => true,
+        'w' => true,
+        'w+' => true,
+        'rw' => true,
+        'r+' => true,
+        'x+' => true,
+        'c+' => true,
+        'wb' => true,
         'w+b' => true,
         'r+b' => true,
         'x+b' => true,
@@ -56,8 +56,8 @@ final class Stream implements StreamInterface
         'r+t' => true,
         'x+t' => true,
         'c+t' => true,
-        'a'   => true,
-        'a+'  => true,
+        'a' => true,
+        'a+' => true,
     ];
 
     /**
@@ -65,7 +65,7 @@ final class Stream implements StreamInterface
      */
     public function __construct(mixed $stream)
     {
-        if (! is_resource($stream)) {
+        if (!is_resource($stream)) {
             throw new InvalidArgumentException('Stream must be a resource.');
         }
 
@@ -160,7 +160,7 @@ final class Stream implements StreamInterface
     {
         $this->assertOpen();
 
-        if (! $this->seekable) {
+        if (!$this->seekable) {
             throw new RuntimeException('Stream is not seekable.');
         }
 
@@ -183,7 +183,7 @@ final class Stream implements StreamInterface
     {
         $this->assertOpen();
 
-        if (! $this->writable) {
+        if (!$this->writable) {
             throw new RuntimeException('Stream is not writable.');
         }
 
@@ -205,7 +205,7 @@ final class Stream implements StreamInterface
     {
         $this->assertOpen();
 
-        if (! $this->readable) {
+        if (!$this->readable) {
             throw new RuntimeException('Stream is not readable.');
         }
 
@@ -222,7 +222,7 @@ final class Stream implements StreamInterface
     {
         $this->assertOpen();
 
-        if (! $this->readable) {
+        if (!$this->readable) {
             throw new RuntimeException('Stream is not readable.');
         }
 

@@ -10,6 +10,8 @@ use Nextphp\Core\Container\ContainerInterface;
 use Nextphp\Core\Exception\ContainerException;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionFunction;
+use ReflectionMethod;
 use ReflectionNamedType;
 use ReflectionParameter;
 
@@ -39,7 +41,7 @@ final class ReflectionResolver
             );
         }
 
-        if (! $reflector->isInstantiable()) {
+        if (!$reflector->isInstantiable()) {
             throw new ContainerException(
                 sprintf('Class "%s" is not instantiable (abstract class or interface).', $concrete),
             );
@@ -67,7 +69,7 @@ final class ReflectionResolver
     {
         if ($callback instanceof Closure) {
             try {
-                $reflector = new \ReflectionFunction($callback);
+                $reflector = new ReflectionFunction($callback);
             } catch (ReflectionException $e) {
                 throw new ContainerException('Cannot reflect closure: ' . $e->getMessage(), 0, $e);
             }
@@ -81,7 +83,7 @@ final class ReflectionResolver
             [$object, $method] = $callback;
 
             try {
-                $reflector = new \ReflectionMethod($object, (string) $method);
+                $reflector = new ReflectionMethod($object, (string) $method);
             } catch (ReflectionException $e) {
                 throw new ContainerException('Cannot reflect method: ' . $e->getMessage(), 0, $e);
             }
@@ -95,7 +97,7 @@ final class ReflectionResolver
             [$class, $method] = explode('::', $callback, 2);
 
             try {
-                $reflector = new \ReflectionMethod($class, $method);
+                $reflector = new ReflectionMethod($class, $method);
             } catch (ReflectionException $e) {
                 throw new ContainerException('Cannot reflect method: ' . $e->getMessage(), 0, $e);
             }
@@ -107,7 +109,7 @@ final class ReflectionResolver
 
         if (is_string($callback) && function_exists($callback)) {
             try {
-                $reflector = new \ReflectionFunction($callback);
+                $reflector = new ReflectionFunction($callback);
             } catch (ReflectionException $e) {
                 throw new ContainerException('Cannot reflect function: ' . $e->getMessage(), 0, $e);
             }
@@ -166,10 +168,10 @@ final class ReflectionResolver
         // 3. Resolve by type hint (class or interface)
         $type = $param->getType();
 
-        if ($type instanceof ReflectionNamedType && ! $type->isBuiltin()) {
+        if ($type instanceof ReflectionNamedType && !$type->isBuiltin()) {
             $typeName = $type->getName();
 
-            if ($type->allowsNull() && ! $this->container->has($typeName)) {
+            if ($type->allowsNull() && !$this->container->has($typeName)) {
                 return null;
             }
 

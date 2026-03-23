@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing;
 
+use Closure;
+
 final class RouteGroup
 {
     private string $prefix;
@@ -42,7 +44,7 @@ final class RouteGroup
         return new self($this->router, $this->prefix, $this->middleware, $this->namePrefix . $prefix);
     }
 
-    public function group(\Closure $callback): void
+    public function group(Closure $callback): void
     {
         $callback($this);
     }

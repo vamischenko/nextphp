@@ -119,7 +119,7 @@ class Container implements ContainerInterface
 
     public function get(string $id): mixed
     {
-        if (! $this->has($id)) {
+        if (!$this->has($id)) {
             // Attempt to autowire before throwing
             try {
                 return $this->make($id);

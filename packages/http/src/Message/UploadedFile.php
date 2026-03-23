@@ -79,7 +79,7 @@ final class UploadedFile implements UploadedFileInterface
 
             $this->file->rewind();
 
-            while (! $this->file->eof()) {
+            while (!$this->file->eof()) {
                 fwrite($destination, $this->file->read(4096));
             }
 

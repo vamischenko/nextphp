@@ -52,7 +52,7 @@ trait MessageTrait
     {
         $lower = strtolower($name);
 
-        if (! isset($this->headerNames[$lower])) {
+        if (!isset($this->headerNames[$lower])) {
             return [];
         }
 

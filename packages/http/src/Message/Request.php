@@ -42,7 +42,7 @@ class Request implements RequestInterface
         }
 
         // Set Host header from URI if not provided
-        if (! $this->hasHeader('Host') && $this->uri->getHost() !== '') {
+        if (!$this->hasHeader('Host') && $this->uri->getHost() !== '') {
             $host = $this->uri->getHost();
 
             if ($this->uri->getPort() !== null) {

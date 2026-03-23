@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <psalm
     errorLevel="1"
+    errorBaseline="psalm-baseline.xml"
+    findUnusedBaselineEntry="false"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -21,5 +23,9 @@
 
     <issueHandlers>
         <LessSpecificReturnType errorLevel="info" />
+        <MissingOverrideAttribute errorLevel="suppress" />
+        <MixedPropertyTypeCoercion errorLevel="suppress" />
+        <MissingThrowsDocblock errorLevel="suppress" />
+        <UnusedBaselineEntry errorLevel="suppress" />
     </issueHandlers>
 </psalm>

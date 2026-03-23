@@ -55,7 +55,7 @@ final class RadixTree
             return null;
         }
 
-        if (! isset($node->routes[$method])) {
+        if (!isset($node->routes[$method])) {
             return null;
         }
 
@@ -144,7 +144,7 @@ final class RadixTree
 
         // Try static children first (higher priority)
         foreach ($node->children as $child) {
-            if (! $child->isParam && ! $child->isWildcard && $child->prefix === $segment) {
+            if (!$child->isParam && !$child->isWildcard && $child->prefix === $segment) {
                 $result = $this->searchNode($child, $segments, $params);
 
                 if ($result !== null) {
@@ -181,7 +181,7 @@ final class RadixTree
     private function findOrCreateStaticChild(RadixNode $node, string $segment): RadixNode
     {
         foreach ($node->children as $child) {
-            if (! $child->isParam && ! $child->isWildcard && $child->prefix === $segment) {
+            if (!$child->isParam && !$child->isWildcard && $child->prefix === $segment) {
                 return $child;
             }
         }

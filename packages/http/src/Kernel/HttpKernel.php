@@ -11,9 +11,14 @@ use Nextphp\Http\Middleware\MiddlewareAliasRegistry;
 use Nextphp\Http\Middleware\Pipeline;
 use Nextphp\Routing\Router;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\ServerRequestInterface as PsrServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
+use ReflectionFunction;
+use ReflectionMethod;
+use ReflectionNamedType;
+use RuntimeException;
+use Throwable;
 
 final class HttpKernel
 {
@@ -59,8 +64,8 @@ final class HttpKernel
                     $handler = [new $handler[0](), $handler[1]];
                 }
 
-                if (! is_callable($handler)) {
-                    throw new \RuntimeException('Route handler is not callable.');
+                if (!is_callable($handler)) {
+                    throw new RuntimeException('Route handler is not callable.');
                 }
 
                 $arguments = $this->resolveHandlerArguments($handler, $request, $match->params);
@@ -82,7 +87,7 @@ final class HttpKernel
             $pipeline = $pipeline->pipeMany($routeMiddleware);
 
             return $pipeline->handle($request);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             return $this->exceptions->handle($e, $request);
         }
     }
@@ -94,21 +99,22 @@ final class HttpKernel
     private function resolveHandlerArguments(callable $handler, ServerRequestInterface $request, array $routeParams): array
     {
         if (is_array($handler)) {
-            $reflection = new \ReflectionMethod($handler[0], $handler[1]);
+            $reflection = new ReflectionMethod($handler[0], $handler[1]);
         } elseif (is_string($handler) && str_contains($handler, '::')) {
             [$class, $method] = explode('::', $handler, 2);
-            $reflection = new \ReflectionMethod($class, $method);
+            $reflection = new ReflectionMethod($class, $method);
         } else {
-            $reflection = new \ReflectionFunction($handler);
+            $reflection = new ReflectionFunction($handler);
         }
         $arguments = [];
 
         foreach ($reflection->getParameters() as $parameter) {
             $type = $parameter->getType();
-            if ($type instanceof \ReflectionNamedType && ! $type->isBuiltin()) {
+            if ($type instanceof ReflectionNamedType && !$type->isBuiltin()) {
                 $name = $type->getName();
                 if ($name === ServerRequestInterface::class || $name === PsrServerRequestInterface::class || is_a($request, $name)) {
                     $arguments[] = $request;
+
                     continue;
                 }
             }
@@ -116,15 +122,17 @@ final class HttpKernel
             $paramName = $parameter->getName();
             if (array_key_exists($paramName, $routeParams)) {
                 $arguments[] = $routeParams[$paramName];
+
                 continue;
             }
 
             if ($parameter->isDefaultValueAvailable()) {
                 $arguments[] = $parameter->getDefaultValue();
+
                 continue;
             }
 
-            throw new \RuntimeException(sprintf('Cannot resolve route argument "%s".', $paramName));
+            throw new RuntimeException(sprintf('Cannot resolve route argument "%s".', $paramName));
         }
 
         return $arguments;

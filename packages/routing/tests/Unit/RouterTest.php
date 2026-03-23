@@ -121,7 +121,7 @@ final class RouterTest extends TestCase
     #[Test]
     public function routeGroupPrefix(): void
     {
-        $this->router->group('/api/v1', function ($group) {
+        $this->router->group('/api/v1', function ($group): void {
             $group->get('/users', fn () => null);
         });
 

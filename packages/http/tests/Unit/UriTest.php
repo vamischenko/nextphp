@@ -7,7 +7,6 @@ namespace Nextphp\Http\Tests\Unit;
 use InvalidArgumentException;
 use Nextphp\Http\Message\Uri;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
