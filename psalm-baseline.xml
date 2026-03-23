@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="packages/core/src/Async/FiberScheduler.php">
+    <UnusedClass>
+      <code><![CDATA[FiberScheduler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/core/src/Async/Task.php">
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw $this->error]]></code>
+      <code><![CDATA[throw new RuntimeException('Task is not completed yet.')]]></code>
+    </MissingThrowsDocblock>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[await]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/core/src/Attributes/Inject.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/core/src/Attributes/Scoped.php">
+    <UnusedClass>
+      <code><![CDATA[Scoped]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/core/src/Attributes/Singleton.php">
+    <UnusedClass>
+      <code><![CDATA[Singleton]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/core/src/Container/AbstractServiceProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function boot(ContainerInterface $container): void]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[AbstractServiceProvider]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/core/src/Container/Container.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Container]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function addServiceProvider(ServiceProviderInterface $provider): void]]></code>
+      <code><![CDATA[public function bind(string $abstract, Closure|string|null $concrete = null): void]]></code>
+      <code><![CDATA[public function boot(): void]]></code>
+      <code><![CDATA[public function bound(string $abstract): bool]]></code>
+      <code><![CDATA[public function call(callable|array|string $callback, array $parameters = []): mixed]]></code>
+      <code><![CDATA[public function flushScoped(): void]]></code>
+      <code><![CDATA[public function get(string $id): mixed]]></code>
+      <code><![CDATA[public function has(string $id): bool]]></code>
+      <code><![CDATA[public function instance(string $abstract, object $instance): void]]></code>
+      <code><![CDATA[public function make(string $abstract, array $parameters = []): mixed]]></code>
+      <code><![CDATA[public function scoped(string $abstract, Closure|string|null $concrete = null): void]]></code>
+      <code><![CDATA[public function singleton(string $abstract, Closure|string|null $concrete = null): void]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[build]]></code>
+      <code><![CDATA[resolveBinding]]></code>
+      <code><![CDATA[resolveCallable]]></code>
+    </MissingThrowsDocblock>
+    <MixedAssignment>
+      <code><![CDATA[$object]]></code>
+    </MixedAssignment>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->make($concrete, $parameters)]]></code>
+    </MixedReturnStatement>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$method]]></code>
+    </PossiblyUndefinedArrayOffset>
+    <UnusedClass>
+      <code><![CDATA[Container]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/core/src/Container/ContainerInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[addServiceProvider]]></code>
+      <code><![CDATA[bind]]></code>
+      <code><![CDATA[boot]]></code>
+      <code><![CDATA[call]]></code>
+      <code><![CDATA[flushScoped]]></code>
+      <code><![CDATA[scoped]]></code>
+      <code><![CDATA[singleton]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/core/src/Container/Resolver/ReflectionResolver.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$class]]></code>
+      <code><![CDATA[$concrete]]></code>
+      <code><![CDATA[$resolved]]></code>
+    </ArgumentTypeCoercion>
+    <InvalidStringClass>
+      <code><![CDATA[new $concrete()]]></code>
+    </InvalidStringClass>
+    <MixedAssignment>
+      <code><![CDATA[$resolved[]]]></code>
+    </MixedAssignment>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$method]]></code>
+    </PossiblyUndefinedArrayOffset>
+    <RedundantCast>
+      <code><![CDATA[(string) $method]]></code>
+    </RedundantCast>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[Inject]]></code>
+    </UnnecessaryVarAnnotation>
+  </file>
+  <file src="packages/core/src/Exception/NotFoundException.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[NotFoundException]]></code>
+    </ClassMustBeFinal>
+  </file>
+  <file src="packages/http/src/Exception/BadRequestException.php">
+    <UnusedClass>
+      <code><![CDATA[BadRequestException]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Exception/MethodNotAllowedException.php">
+    <UnusedClass>
+      <code><![CDATA[MethodNotAllowedException]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Exception/NotFoundException.php">
+    <UnusedClass>
+      <code><![CDATA[NotFoundException]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Factory/RequestFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createRequest(string $method, mixed $uri): RequestInterface]]></code>
+    </MissingOverrideAttribute>
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) $uri]]></code>
+    </RedundantCastGivenDocblockType>
+    <UnusedClass>
+      <code><![CDATA[RequestFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Factory/ResponseFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createResponse(int $code = 200, string $reasonPhrase = ''): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[ResponseFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Factory/ServerRequestFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createServerRequest(string $method, mixed $uri, array $serverParams = []): ServerRequestInterface]]></code>
+    </MissingOverrideAttribute>
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$serverParams]]></code>
+    </MoreSpecificImplementedParamType>
+    <UnusedClass>
+      <code><![CDATA[ServerRequestFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Factory/StreamFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createStream(string $content = ''): StreamInterface]]></code>
+      <code><![CDATA[public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface]]></code>
+      <code><![CDATA[public function createStreamFromResource(mixed $resource): StreamInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[StreamFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Factory/UriFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function createUri(string $uri = ''): UriInterface]]></code>
+    </MissingOverrideAttribute>
+    <UnusedClass>
+      <code><![CDATA[UriFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Handler/CallableHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="packages/http/src/Kernel/HttpKernel.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$class]]></code>
+    </ArgumentTypeCoercion>
+    <InvalidStringClass>
+      <code><![CDATA[new $handler[0]()]]></code>
+    </InvalidStringClass>
+    <MixedAssignment>
+      <code><![CDATA[$arguments[]]]></code>
+      <code><![CDATA[$result]]></code>
+    </MixedAssignment>
+    <PossiblyInvalidArgument>
+      <code><![CDATA[$handler]]></code>
+    </PossiblyInvalidArgument>
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$method]]></code>
+    </PossiblyUndefinedArrayOffset>
+    <UnusedClass>
+      <code><![CDATA[HttpKernel]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Message/MessageTrait.php">
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw new InvalidArgumentException('Header value cannot be an empty array.')]]></code>
+    </MissingThrowsDocblock>
+    <MixedArgument>
+      <code><![CDATA[$value]]></code>
+    </MixedArgument>
+  </file>
+  <file src="packages/http/src/Message/Request.php">
+    <InvalidOperand>
+      <code><![CDATA[$this->uri->getPort()]]></code>
+      <code><![CDATA[$uri->getPort()]]></code>
+    </InvalidOperand>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getMethod(): string]]></code>
+      <code><![CDATA[public function getRequestTarget(): string]]></code>
+      <code><![CDATA[public function getUri(): UriInterface]]></code>
+      <code><![CDATA[public function withMethod(string $method): static]]></code>
+      <code><![CDATA[public function withRequestTarget(string $requestTarget): static]]></code>
+      <code><![CDATA[public function withUri(UriInterface $uri, bool $preserveHost = false): static]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyNullOperand>
+      <code><![CDATA[$this->uri->getPort()]]></code>
+      <code><![CDATA[$uri->getPort()]]></code>
+    </PossiblyNullOperand>
+  </file>
+  <file src="packages/http/src/Message/Response.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Response]]></code>
+    </ClassMustBeFinal>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getReasonPhrase(): string]]></code>
+      <code><![CDATA[public function getStatusCode(): int]]></code>
+      <code><![CDATA[public function withStatus(int $code, string $reasonPhrase = ''): static]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="packages/http/src/Message/ServerRequest.php">
+    <InvalidArgument>
+      <code><![CDATA[$_GET]]></code>
+    </InvalidArgument>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAttribute(string $name, mixed $default = null): mixed]]></code>
+      <code><![CDATA[public function getAttributes(): array]]></code>
+      <code><![CDATA[public function getCookieParams(): array]]></code>
+      <code><![CDATA[public function getParsedBody(): mixed]]></code>
+      <code><![CDATA[public function getQueryParams(): array]]></code>
+      <code><![CDATA[public function getServerParams(): array]]></code>
+      <code><![CDATA[public function getUploadedFiles(): array]]></code>
+      <code><![CDATA[public function withAttribute(string $name, mixed $value): static]]></code>
+      <code><![CDATA[public function withCookieParams(array $cookies): static]]></code>
+      <code><![CDATA[public function withParsedBody(mixed $data): static]]></code>
+      <code><![CDATA[public function withQueryParams(array $query): static]]></code>
+      <code><![CDATA[public function withUploadedFiles(array $uploadedFiles): static]]></code>
+      <code><![CDATA[public function withoutAttribute(string $name): static]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[withParsedBody]]></code>
+    </MissingThrowsDocblock>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$headers]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedPropertyTypeCoercion>
+      <code><![CDATA[$cookies]]></code>
+      <code><![CDATA[$query]]></code>
+      <code><![CDATA[$uploadedFiles]]></code>
+    </MixedPropertyTypeCoercion>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->parsedBody]]></code>
+    </MixedReturnStatement>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[fromGlobals]]></code>
+    </PossiblyUnusedMethod>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[empty($_SERVER['HTTPS'])]]></code>
+      <code><![CDATA[file_get_contents('php://input')]]></code>
+      <code><![CDATA[getallheaders()]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="packages/http/src/Message/Stream.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->stream]]></code>
+    </InvalidPropertyAssignmentValue>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function close(): void]]></code>
+      <code><![CDATA[public function detach(): mixed]]></code>
+      <code><![CDATA[public function eof(): bool]]></code>
+      <code><![CDATA[public function getContents(): string]]></code>
+      <code><![CDATA[public function getMetadata(?string $key = null): mixed]]></code>
+      <code><![CDATA[public function getSize(): ?int]]></code>
+      <code><![CDATA[public function isReadable(): bool]]></code>
+      <code><![CDATA[public function isSeekable(): bool]]></code>
+      <code><![CDATA[public function isWritable(): bool]]></code>
+      <code><![CDATA[public function read(int $length): string]]></code>
+      <code><![CDATA[public function rewind(): void]]></code>
+      <code><![CDATA[public function seek(int $offset, int $whence = SEEK_SET): void]]></code>
+      <code><![CDATA[public function tell(): int]]></code>
+      <code><![CDATA[public function write(string $string): int]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[getContents]]></code>
+      <code><![CDATA[rewind]]></code>
+      <code><![CDATA[rewind]]></code>
+      <code><![CDATA[throw new InvalidArgumentException('Stream must be a resource.')]]></code>
+      <code><![CDATA[throw new RuntimeException('Cannot open php://temp stream.')]]></code>
+      <code><![CDATA[throw new RuntimeException('Stream is detached.')]]></code>
+      <code><![CDATA[write]]></code>
+    </MissingThrowsDocblock>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[int]]></code>
+      <code><![CDATA[mixed]]></code>
+    </PossiblyUnusedReturnValue>
+    <RedundantCast>
+      <code><![CDATA[(bool) $meta['seekable']]]></code>
+    </RedundantCast>
+  </file>
+  <file src="packages/http/src/Message/UploadedFile.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getClientFilename(): ?string]]></code>
+      <code><![CDATA[public function getClientMediaType(): ?string]]></code>
+      <code><![CDATA[public function getError(): int]]></code>
+      <code><![CDATA[public function getSize(): ?int]]></code>
+      <code><![CDATA[public function getStream(): StreamInterface]]></code>
+      <code><![CDATA[public function moveTo(string $targetPath): void]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw new RuntimeException('File has already been moved.')]]></code>
+      <code><![CDATA[throw new RuntimeException(sprintf('Uploaded file has error: %d', $this->error))]]></code>
+    </MissingThrowsDocblock>
+    <UnusedClass>
+      <code><![CDATA[UploadedFile]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Message/Uri.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAuthority(): string]]></code>
+      <code><![CDATA[public function getFragment(): string]]></code>
+      <code><![CDATA[public function getHost(): string]]></code>
+      <code><![CDATA[public function getPath(): string]]></code>
+      <code><![CDATA[public function getPort(): ?int]]></code>
+      <code><![CDATA[public function getQuery(): string]]></code>
+      <code><![CDATA[public function getScheme(): string]]></code>
+      <code><![CDATA[public function getUserInfo(): string]]></code>
+      <code><![CDATA[public function withFragment(string $fragment): static]]></code>
+      <code><![CDATA[public function withHost(string $host): static]]></code>
+      <code><![CDATA[public function withPath(string $path): static]]></code>
+      <code><![CDATA[public function withPort(?int $port): static]]></code>
+      <code><![CDATA[public function withQuery(string $query): static]]></code>
+      <code><![CDATA[public function withScheme(string $scheme): static]]></code>
+      <code><![CDATA[public function withUserInfo(string $user, ?string $password = null): static]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw new InvalidArgumentException(sprintf('Invalid port: %d', $port))]]></code>
+      <code><![CDATA[throw new InvalidArgumentException(sprintf('Unable to parse URI: %s', $uri))]]></code>
+    </MissingThrowsDocblock>
+  </file>
+  <file src="packages/http/src/Middleware/MiddlewareAliasRegistry.php">
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw new InvalidArgumentException(sprintf('Middleware alias "%s" is not registered.', $alias))]]></code>
+    </MissingThrowsDocblock>
+    <MixedPropertyTypeCoercion>
+      <code><![CDATA[$this->aliases]]></code>
+    </MixedPropertyTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[has]]></code>
+      <code><![CDATA[register]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/http/src/Middleware/Pipeline.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
+    </MissingOverrideAttribute>
+    <MissingThrowsDocblock>
+      <code><![CDATA[throw new RuntimeException('Middleware pipeline exhausted with no fallback handler.')]]></code>
+    </MissingThrowsDocblock>
+  </file>
+  <file src="packages/routing/src/Attributes/Route.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/Exception/MethodNotAllowedException.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getAllowedMethods]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/Loader/AttributeRouteLoader.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$class]]></code>
+    </ArgumentTypeCoercion>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[RouteAttribute]]></code>
+      <code><![CDATA[RouteAttribute]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnusedClass>
+      <code><![CDATA[AttributeRouteLoader]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/routing/src/Route.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[middleware]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/RouteCollection.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[all]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/RouteGroup.php">
+    <MixedPropertyTypeCoercion>
+      <code><![CDATA[$middleware]]></code>
+    </MixedPropertyTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[delete]]></code>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[group]]></code>
+      <code><![CDATA[middleware]]></code>
+      <code><![CDATA[name]]></code>
+      <code><![CDATA[patch]]></code>
+      <code><![CDATA[post]]></code>
+      <code><![CDATA[prefix]]></code>
+      <code><![CDATA[put]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/Router.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[any]]></code>
+      <code><![CDATA[getCollection]]></code>
+      <code><![CDATA[getUrlGenerator]]></code>
+      <code><![CDATA[group]]></code>
+      <code><![CDATA[match]]></code>
+      <code><![CDATA[options]]></code>
+      <code><![CDATA[resource]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/routing/src/UrlGenerator.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[generate]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+</files>

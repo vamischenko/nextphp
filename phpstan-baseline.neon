@@ -1,0 +1,169 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Nextphp\\Core\\Async\\Task\:\:__construct\(\) has parameter \$fiber with generic class Fiber but does not specify its types\: TStart, TResume, TReturn, TSuspend$#'
+			identifier: missingType.generics
+			count: 1
+			path: packages/core/src/Async/Task.php
+
+		-
+			message: '#^Method Nextphp\\Core\\Container\\Container\:\:wrapCallable\(\) should return callable\(\)\: mixed but returns array\{mixed, string\}\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/core/src/Container/Container.php
+
+		-
+			message: '#^PHPDoc tag @var with type callable is not subtype of native type array\|string\.$#'
+			identifier: varTag.nativeType
+			count: 1
+			path: packages/core/src/Container/Container.php
+
+		-
+			message: '#^Call to function function_exists\(\) with callable\-string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: packages/http/src/Exception/HttpException.php
+
+		-
+			message: '#^Parameter \#3 \$serverParams \(array\<string, mixed\>\) of method Nextphp\\Http\\Factory\\ServerRequestFactory\:\:createServerRequest\(\) should be contravariant with parameter \$serverParams \(array\) of method Psr\\Http\\Message\\ServerRequestFactoryInterface\:\:createServerRequest\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: packages/http/src/Factory/ServerRequestFactory.php
+
+		-
+			message: '#^Parameter \#1 \$function of class ReflectionFunction constructor expects Closure\|string, callable\(\)\: mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Kernel/HttpKernel.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between mixed~''Psr\\\\Http\\\\Message\\\\ServerRequestInterface'' and ''Psr\\\\Http\\\\Message\\\\ServerRequestInterface'' will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: packages/http/src/Kernel/HttpKernel.php
+
+		-
+			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
+			identifier: empty.notAllowed
+			count: 2
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Message\\ServerRequest\:\:getParsedBody\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Message\\ServerRequest\:\:withCookieParams\(\) has parameter \$cookies with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Message\\ServerRequest\:\:withParsedBody\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Message\\ServerRequest\:\:withQueryParams\(\) has parameter \$query with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Message\\ServerRequest\:\:withUploadedFiles\(\) has parameter \$uploadedFiles with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 2
+			path: packages/http/src/Message/ServerRequest.php
+
+		-
+			message: '#^Casting to bool something that''s already bool\.$#'
+			identifier: cast.useless
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Offset ''mode'' on array\{timed_out\: bool, blocked\: bool, eof\: bool, unread_bytes\: int, stream_type\: string, wrapper_type\: string, wrapper_data\: mixed, mode\: string, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#1 \$stream of function fread expects resource, resource\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#1 \$stream of function fseek expects resource, resource\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#1 \$stream of function ftell expects resource, resource\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#1 \$stream of function fwrite expects resource, resource\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#1 \$stream of function stream_get_contents expects resource, resource\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Parameter \#2 \$length of function fread expects int\<1, max\>, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/http/src/Message/Stream.php
+
+		-
+			message: '#^Method Nextphp\\Routing\\Attributes\\Route\:\:__construct\(\) has parameter \$can with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/routing/src/Attributes/Route.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/routing/src/Loader/AttributeRouteLoader.php
+
+		-
+			message: '#^Method Nextphp\\Routing\\RouteGroup\:\:__construct\(\) has parameter \$middleware with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/routing/src/RouteGroup.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/routing/src/UrlGenerator.php
