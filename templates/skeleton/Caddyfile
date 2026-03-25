@@ -1,0 +1,11 @@
+{
+    # FrankenPHP is enabled via the `frankenphp` global option in recent builds.
+    # This file is a minimal example config for running the skeleton app.
+}
+
+:8080 {
+    root * public
+    php_server
+    file_server
+}
+

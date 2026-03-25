@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/** @var \Composer\Autoload\ClassLoader $loader */
+$loader = require __DIR__ . '/../vendor/autoload.php';
+$loader->addPsr4('Nextphp\\Console\\', __DIR__ . '/../packages/console/src/');
+
+use Nextphp\Console\Application;
+use Nextphp\Console\Installer\InstallProjectCommand;
+use Nextphp\Console\Installer\ProjectInstaller;
+
+$app = new Application();
+
+$templatesRoot = realpath(__DIR__ . '/../templates') ?: (__DIR__ . '/../templates');
+$installer = new ProjectInstaller($templatesRoot);
+$app->add(new InstallProjectCommand($installer));
+
+exit($app->run($_SERVER['argv']));
+
