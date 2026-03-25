@@ -1,0 +1,10 @@
+parameters:
+    level: 8
+    paths:
+        - src
+    scanFiles:
+        - src/Database/DatabaseTransactions.php
+        - src/Database/RefreshDatabase.php
+        - src/Mock/MockTrait.php
+    excludePaths:
+        - vendor

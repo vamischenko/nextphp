@@ -57,7 +57,8 @@ final class RoutingHttpTestClient
             $request = $request->withAttribute($key, $value);
         }
 
-        $fallback = new CallableHandler(function (ServerRequest $request) use ($route, $match): ResponseInterface {
+        $fallback = new CallableHandler(function (ServerRequestInterface $request) use ($route, $match): ResponseInterface {
+            /** @var ServerRequest $request */
             $result = $this->invokeRouteHandler($route->getHandler(), $request, $match->params);
 
             return $this->normalizeResult($result);

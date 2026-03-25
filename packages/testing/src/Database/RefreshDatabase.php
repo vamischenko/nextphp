@@ -8,6 +8,7 @@ use Nextphp\Orm\Connection\Connection;
 
 trait RefreshDatabase
 {
+    /** @param string[] $tables */
     protected function refreshSqliteSchema(Connection $connection, array $tables): void
     {
         foreach ($tables as $table) {

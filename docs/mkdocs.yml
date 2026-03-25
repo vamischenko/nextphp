@@ -32,10 +32,6 @@ theme:
 
 nav:
   - Home: index.md
-  - Versions:
-      - v0.x: v0.x/index.md
-      - v1.x: v1.x/index.md
-  - Compatibility Matrix: compatibility-matrix.md
   - Getting Started:
       - Installation: getting-started/installation.md
       - Configuration: getting-started/configuration.md
@@ -52,10 +48,42 @@ nav:
       - Basic Routing: routing/basic.md
       - Attribute Routes: routing/attributes.md
       - Route Groups: routing/groups.md
+  - ORM:
+      - Overview: orm/index.md
+  - Cache:
+      - Overview: cache/index.md
+  - Events:
+      - Overview: events/index.md
+  - Queue:
+      - Overview: queue/index.md
+  - Validation:
+      - Overview: validation/index.md
+  - Auth:
+      - Overview: auth/index.md
+  - View:
+      - Overview: view/index.md
+  - Console:
+      - Overview: console/index.md
+  - Filesystem:
+      - Overview: filesystem/index.md
+  - Mail:
+      - Overview: mail/index.md
+  - Logger:
+      - Overview: log/index.md
+  - Testing:
+      - Overview: testing/index.md
+  - Debugbar:
+      - Overview: debugbar/index.md
   - Integrations:
       - GraphQL: integrations/graphql.md
       - WebSocket: integrations/websocket.md
       - Octane: integrations/octane.md
+  - Ecosystem:
+      - Skeletons & Installer: ecosystem/skeletons-and-installer.md
+  - Versions:
+      - v0.x: v0.x/index.md
+      - v1.x: v1.x/index.md
+  - Compatibility Matrix: compatibility-matrix.md
 
 markdown_extensions:
   - pymdownx.highlight:

@@ -67,7 +67,7 @@ final class MockBuilder
             $code = "class {$proxyClass} extends \\{$target} { use \\{$traitFqn}; public function __construct() {} {$methodCode} }";
         }
 
-        eval($code); // @phpstan-ignore eval.notAllowed
+        eval($code); // phpcs:ignore
 
         self::$generatedClasses[$target] = $proxyClass;
 
