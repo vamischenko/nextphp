@@ -6,6 +6,7 @@ namespace Nextphp\Validation;
 
 use Nextphp\Validation\Contracts\PresenceVerifierInterface;
 use Nextphp\Validation\Rule\ArrayRule;
+use Nextphp\Validation\Rule\ClosureRule;
 use Nextphp\Validation\Rule\BooleanRule;
 use Nextphp\Validation\Rule\ConfirmedRule;
 use Nextphp\Validation\Rule\EmailRule;
@@ -16,12 +17,27 @@ use Nextphp\Validation\Rule\MinRule;
 use Nextphp\Validation\Rule\NullableRule;
 use Nextphp\Validation\Rule\RequiredRule;
 use Nextphp\Validation\Rule\UniqueRule;
+use Nextphp\Validation\Translation\Translator;
 
 final class Validator
 {
+    private string $locale = 'en';
+
+    /** @var array<string, string> */
+    private array $attributeNames = [];
+
+    /** @var array<string, string> */
+    private array $customMessages = [];
+
+    private Translator $translator;
+
     public function __construct(
         private readonly ?PresenceVerifierInterface $presence = null,
     ) {
+        $this->translator = new Translator([
+            'en' => require __DIR__ . '/Translation/lang/en.php',
+            'ru' => require __DIR__ . '/Translation/lang/ru.php',
+        ]);
     }
 
     public static function make(?PresenceVerifierInterface $presence = null): self
@@ -29,9 +45,36 @@ final class Validator
         return new self($presence);
     }
 
+    public function setLocale(string $locale): self
+    {
+        $this->locale = $locale;
+
+        return $this;
+    }
+
+    /**
+     * @param array<string, string> $map field => human-readable name
+     */
+    public function setAttributeNames(array $map): self
+    {
+        $this->attributeNames = $map;
+
+        return $this;
+    }
+
+    /**
+     * @param array<string, string> $map key => message (supports placeholders)
+     */
+    public function setMessages(array $map): self
+    {
+        $this->customMessages = $map;
+
+        return $this;
+    }
+
     /**
      * @param array<string, mixed> $data
-     * @param array<string, string|array<int, string|ValidationRuleInterface>> $rules
+     * @param array<string, string|array<int, mixed>> $rules
      */
     public function validate(array $data, array $rules): ValidationResult
     {
@@ -62,7 +105,7 @@ final class Validator
                 $error = $ruleObject->validate($field, $value, $data);
 
                 if ($error !== null) {
-                    $errors[$field][] = $error;
+                    $errors[$field][] = $this->formatError($field, $error);
 
                     if ($bail) {
                         break;
@@ -74,10 +117,31 @@ final class Validator
         return new ValidationResult($errors);
     }
 
-    private function normalizeRule(string|ValidationRuleInterface $rule): ValidationRuleInterface
+    private function formatError(string $field, ValidationError|string $error): string
+    {
+        if (is_string($error)) {
+            return $error;
+        }
+
+        $attribute = $this->attributeNames[$field] ?? $field;
+        $params = array_merge(['attribute' => $attribute], $error->params);
+
+        $custom = $this->customMessages[$error->key] ?? null;
+        if (is_string($custom) && $custom !== '') {
+            return $this->translator->trans($this->locale, $error->key, $params, $custom);
+        }
+
+        return $this->translator->trans($this->locale, $error->key, $params, $error->fallback);
+    }
+
+    private function normalizeRule(mixed $rule): ValidationRuleInterface
     {
         if ($rule instanceof ValidationRuleInterface) {
             return $rule;
+        }
+
+        if ($rule instanceof \Closure || (is_callable($rule) && !is_string($rule))) {
+            return new ClosureRule($rule);
         }
 
         return match (true) {

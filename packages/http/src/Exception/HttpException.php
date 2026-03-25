@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Nextphp\Http\Exception;
 
-use RuntimeException;
+use Nextphp\Core\Exception\NextphpException;
 use Throwable;
 
-class HttpException extends RuntimeException
+class HttpException extends NextphpException
 {
     public function __construct(
         private readonly int $statusCode,

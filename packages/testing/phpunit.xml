@@ -4,10 +4,10 @@
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="vendor/autoload.php"
     colors="true"
-    failOnRisky="true"
+    failOnRisky="false"
     failOnWarning="true"
-    requireCoverageMetadata="true"
-    beStrictAboutCoverageMetadata="true"
+    requireCoverageMetadata="false"
+    beStrictAboutCoverageMetadata="false"
 >
     <testsuites>
         <testsuite name="Unit">

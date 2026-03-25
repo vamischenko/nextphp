@@ -6,9 +6,14 @@ namespace Nextphp\Testing;
 
 use Nextphp\Routing\Router;
 use Nextphp\Http\Kernel\HttpKernel;
+use Nextphp\Testing\Mock\MockBuilder;
+use Nextphp\Testing\Mock\MockProxy;
+use Nextphp\Testing\Mockery\MockeryTrait;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
+    use MockeryTrait;
+
     /**
      * @param array<string, mixed> $json
      */
@@ -33,5 +38,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     protected function kernelClient(HttpKernel $kernel): KernelHttpTestClient
     {
         return new KernelHttpTestClient($kernel);
+    }
+
+    /**
+     * Create a mock for the given class or interface.
+     *
+     * @template T of object
+     * @param class-string<T> $classOrInterface
+     * @return T&MockProxy
+     */
+    protected function mock(string $classOrInterface): object
+    {
+        return MockBuilder::mock($classOrInterface);
     }
 }

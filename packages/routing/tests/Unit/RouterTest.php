@@ -131,6 +131,42 @@ final class RouterTest extends TestCase
     }
 
     #[Test]
+    public function apiHelperUsesDefaultVersionPrefix(): void
+    {
+        $this->router->api()->group(function ($group): void {
+            $group->get('/users', fn () => null);
+        });
+
+        $result = $this->router->dispatch('GET', '/api/v1/users');
+
+        self::assertNotNull($result);
+    }
+
+    #[Test]
+    public function apiHelperAcceptsNumericVersion(): void
+    {
+        $this->router->api(2)->group(function ($group): void {
+            $group->get('/users', fn () => null);
+        });
+
+        $result = $this->router->dispatch('GET', '/api/v2/users');
+
+        self::assertNotNull($result);
+    }
+
+    #[Test]
+    public function apiHelperNormalizesStringVersionWithoutVPrefix(): void
+    {
+        $this->router->api('3')->group(function ($group): void {
+            $group->get('/users', fn () => null);
+        });
+
+        $result = $this->router->dispatch('GET', '/api/v3/users');
+
+        self::assertNotNull($result);
+    }
+
+    #[Test]
     public function resourceRoutes(): void
     {
         $this->router->resource('/posts', 'PostController');

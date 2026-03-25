@@ -9,6 +9,7 @@ use Nextphp\Orm\Exception\ModelNotFoundException;
 use Nextphp\Orm\Model\Model;
 use Nextphp\Orm\Model\ModelEvent;
 use Nextphp\Orm\Model\Relations\HasMany;
+use Nextphp\Orm\Model\Relations\MorphTo;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -28,9 +29,17 @@ final class ModelTest extends TestCase
         $this->db->statement(
             'CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, title TEXT NOT NULL, created_at TIMESTAMP, updated_at TIMESTAMP)',
         );
+        $this->db->statement(
+            'CREATE TABLE videos (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, created_at TIMESTAMP, updated_at TIMESTAMP)',
+        );
+        $this->db->statement(
+            'CREATE TABLE comments (id INTEGER PRIMARY KEY AUTOINCREMENT, commentable_type TEXT NOT NULL, commentable_id INTEGER NOT NULL, body TEXT NOT NULL, created_at TIMESTAMP, updated_at TIMESTAMP)',
+        );
 
         UserModel::setDefaultConnection($this->db);
         PostModel::setDefaultConnection($this->db);
+        VideoModel::setDefaultConnection($this->db);
+        CommentModel::setDefaultConnection($this->db);
     }
 
     #[Test]
@@ -210,6 +219,70 @@ final class ModelTest extends TestCase
     }
 
     #[Test]
+    public function lazyLoadingWarningCanBeHandledForNPlusOneDetection(): void
+    {
+        $user = UserModel::create(['name' => 'warned']);
+        $userId = (int) $user->getKey();
+        $this->db->insert('INSERT INTO posts (user_id, title) VALUES (?, ?)', [$userId, 'Warn post']);
+
+        $warnings = [];
+        UserModel::warnOnLazyLoading(true);
+        UserModel::setLazyLoadingWarningHandler(static function (Model $model, string $relation) use (&$warnings): void {
+            $warnings[] = $model::class . ':' . $relation;
+        });
+
+        try {
+            $loaded = UserModel::find($userId);
+            $unused = $loaded->posts;
+        } finally {
+            UserModel::setLazyLoadingWarningHandler(null);
+            UserModel::warnOnLazyLoading(false);
+        }
+
+        self::assertCount(1, $warnings);
+        self::assertSame(UserModel::class . ':posts', $warnings[0]);
+    }
+
+    #[Test]
+    public function observersReceiveModelEvents(): void
+    {
+        $observer = new UserObserver();
+        UserModel::observe($observer);
+
+        UserModel::create(['name' => 'observer']);
+
+        self::assertContains('creating', $observer->log);
+        self::assertContains('created', $observer->log);
+    }
+
+    #[Test]
+    public function morphToResolvesRelatedModelFromTypeAndId(): void
+    {
+        $post = PostModel::create(['title' => 'Morph post']);
+        $video = VideoModel::create(['title' => 'Morph video']);
+
+        $commentOnPost = CommentModel::create([
+            'body' => 'Post comment',
+            'commentable_type' => 'post',
+            'commentable_id' => (int) $post->getKey(),
+        ]);
+
+        $commentOnVideo = CommentModel::create([
+            'body' => 'Video comment',
+            'commentable_type' => 'video',
+            'commentable_id' => (int) $video->getKey(),
+        ]);
+
+        $postOwner = $commentOnPost->commentable;
+        $videoOwner = $commentOnVideo->commentable;
+
+        self::assertInstanceOf(PostModel::class, $postOwner);
+        self::assertInstanceOf(VideoModel::class, $videoOwner);
+        self::assertSame('Morph post', $postOwner->getAttribute('title'));
+        self::assertSame('Morph video', $videoOwner->getAttribute('title'));
+    }
+
+    #[Test]
     public function softDeleteExcludesFromDefaultQueriesAndCanIncludeTrashed(): void
     {
         $user = SoftUserModel::create(['name' => 'soft']);
@@ -243,6 +316,46 @@ final class PostModel extends Model
 
     /** @var string[] */
     protected array $fillable = ['title', 'user_id'];
+}
+
+final class VideoModel extends Model
+{
+    protected string $table = 'videos';
+
+    /** @var string[] */
+    protected array $fillable = ['title'];
+}
+
+final class CommentModel extends Model
+{
+    protected string $table = 'comments';
+
+    /** @var string[] */
+    protected array $fillable = ['body', 'commentable_type', 'commentable_id'];
+
+    public function commentable(): MorphTo
+    {
+        return $this->morphTo('commentable', typeMap: [
+            'post' => PostModel::class,
+            'video' => VideoModel::class,
+        ]);
+    }
+}
+
+final class UserObserver
+{
+    /** @var string[] */
+    public array $log = [];
+
+    public function creating(UserModel $model): void
+    {
+        $this->log[] = 'creating';
+    }
+
+    public function created(UserModel $model): void
+    {
+        $this->log[] = 'created';
+    }
 }
 
 final class AutoDerivedModel extends Model

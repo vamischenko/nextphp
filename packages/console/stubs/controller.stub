@@ -4,10 +4,33 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
 final class {{CLASS}}
 {
-    public function __invoke(): string
+    public function index(ServerRequestInterface $request): ResponseInterface
     {
-        return 'ok';
+        // TODO: implement
+    }
+
+    public function show(ServerRequestInterface $request, int $id): ResponseInterface
+    {
+        // TODO: implement
+    }
+
+    public function store(ServerRequestInterface $request): ResponseInterface
+    {
+        // TODO: implement
+    }
+
+    public function update(ServerRequestInterface $request, int $id): ResponseInterface
+    {
+        // TODO: implement
+    }
+
+    public function destroy(ServerRequestInterface $request, int $id): ResponseInterface
+    {
+        // TODO: implement
     }
 }

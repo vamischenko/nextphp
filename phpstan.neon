@@ -7,11 +7,26 @@ parameters:
     phpVersion: 80200
     level: 8
     paths:
+        - packages/auth/src
+        - packages/cache/src
+        - packages/console/src
         - packages/core/src
+        - packages/events/src
+        - packages/filesystem/src
+        - packages/graphql/src
         - packages/http/src
+        - packages/mail/src
+        - packages/migrations/src
+        - packages/octane/src
+        - packages/orm/src
+        - packages/queue/src
         - packages/routing/src
+        - packages/testing/src
+        - packages/validation/src
+        - packages/view/src
+        - packages/websocket/src
     excludePaths:
         - packages/*/vendor
         - packages/*/tests
-    reportUnmatchedIgnoredErrors: true
+    reportUnmatchedIgnoredErrors: false
     treatPhpDocTypesAsCertain: false

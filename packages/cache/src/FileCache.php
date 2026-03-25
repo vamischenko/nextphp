@@ -117,8 +117,65 @@ final class FileCache implements CacheInterface
         return $this->get($key, $sentinel) !== $sentinel;
     }
 
+    /**
+     * @param callable(): mixed $resolver
+     */
+    public function remember(string $key, null|int|DateInterval $ttl, callable $resolver): mixed
+    {
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $value = $resolver();
+        $this->set($key, $value, $ttl);
+
+        return $value;
+    }
+
+    /**
+     * @param string[] $tags
+     */
+    public function tag(string $key, array $tags): void
+    {
+        foreach ($tags as $tag) {
+            $tagPath = $this->tagPath($tag);
+            $keys = $this->readTagFile($tagPath);
+            $keys[$key] = true;
+            file_put_contents($tagPath, json_encode($keys, JSON_THROW_ON_ERROR));
+        }
+    }
+
+    public function flushTag(string $tag): bool
+    {
+        $tagPath = $this->tagPath($tag);
+        $keys = $this->readTagFile($tagPath);
+        foreach (array_keys($keys) as $key) {
+            $this->delete($key);
+        }
+        @unlink($tagPath);
+
+        return true;
+    }
+
     private function path(string $key): string
     {
         return rtrim($this->directory, '/') . '/' . sha1($key) . '.json';
+    }
+
+    private function tagPath(string $tag): string
+    {
+        return rtrim($this->directory, '/') . '/tag_' . sha1($tag) . '.json';
+    }
+
+    /**
+     * @return array<string, true>
+     */
+    private function readTagFile(string $path): array
+    {
+        if (!is_file($path)) {
+            return [];
+        }
+        $data = json_decode((string) file_get_contents($path), true);
+        return is_array($data) ? $data : [];
     }
 }

@@ -17,6 +17,7 @@ final class Worker
         private readonly int $maxTries = 3,
         private readonly BackoffStrategyInterface $backoff = new ExponentialBackoffStrategy(),
         private readonly ?DeadLetterQueue $deadLetterQueue = null,
+        private readonly ?FailedJobStore $failedJobStore = null,
     ) {
     }
 
@@ -50,6 +51,7 @@ final class Worker
                     'error' => $e->getMessage(),
                 ];
                 $this->deadLetterQueue?->push($queued->job, $e->getMessage());
+                $this->failedJobStore?->store($queued->job, $e->getMessage());
             }
 
             return false;

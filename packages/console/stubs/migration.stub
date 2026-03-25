@@ -2,13 +2,24 @@
 
 declare(strict_types=1);
 
-final class {{CLASS}}
+namespace Database\Migrations;
+
+use Nextphp\Orm\Migration\Migration;
+use Nextphp\Orm\Schema\Blueprint;
+use Nextphp\Orm\Schema\Schema;
+
+final class {{CLASS}} extends Migration
 {
     public function up(): void
     {
+        Schema::create('{{TABLE}}', static function (Blueprint $table): void {
+            $table->id();
+            $table->timestamps();
+        });
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('{{TABLE}}');
     }
 }

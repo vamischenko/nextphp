@@ -135,6 +135,46 @@ final class RedisCache implements CacheInterface
         return (bool) $this->redis->exists($this->prefixed($key));
     }
 
+    /**
+     * @param callable(): mixed $resolver
+     */
+    public function remember(string $key, null|int|DateInterval $ttl, callable $resolver): mixed
+    {
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        $value = $resolver();
+        $this->set($key, $value, $ttl);
+
+        return $value;
+    }
+
+    /**
+     * @param string[] $tags
+     */
+    public function tag(string $key, array $tags): void
+    {
+        $this->assertValidKey($key);
+        foreach ($tags as $tag) {
+            $this->redis->sAdd($this->prefix . 'tag:' . $tag, $key);
+        }
+    }
+
+    public function flushTag(string $tag): bool
+    {
+        $tagKey = $this->prefix . 'tag:' . $tag;
+        $keys   = $this->redis->sMembers($tagKey);
+        if (is_array($keys) && $keys !== []) {
+            foreach ($keys as $key) {
+                $this->delete((string) $key);
+            }
+        }
+        $this->redis->del($tagKey);
+
+        return true;
+    }
+
     private function prefixed(string $key): string
     {
         return $this->prefix . $key;

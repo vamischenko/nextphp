@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Validation\Rule;
 
 use Nextphp\Validation\Contracts\PresenceVerifierInterface;
+use Nextphp\Validation\ValidationError;
 use Nextphp\Validation\ValidationRuleInterface;
 
 final class UniqueRule implements ValidationRuleInterface
@@ -16,10 +17,10 @@ final class UniqueRule implements ValidationRuleInterface
     ) {
     }
 
-    public function validate(string $field, mixed $value, array $data): ?string
+    public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if (! $this->presence->unique($this->table, $this->column, $value)) {
-            return "The {$field} has already been taken.";
+            return new ValidationError('validation.unique', fallback: "The {$field} has already been taken.");
         }
 
         return null;

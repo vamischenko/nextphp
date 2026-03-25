@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Validation\Rule;
 
 use Nextphp\Validation\Contracts\PresenceVerifierInterface;
+use Nextphp\Validation\ValidationError;
 use Nextphp\Validation\ValidationRuleInterface;
 
 final class ExistsRule implements ValidationRuleInterface
@@ -16,10 +17,10 @@ final class ExistsRule implements ValidationRuleInterface
     ) {
     }
 
-    public function validate(string $field, mixed $value, array $data): ?string
+    public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if (! $this->presence->exists($this->table, $this->column, $value)) {
-            return "The selected {$field} is invalid.";
+            return new ValidationError('validation.exists', fallback: "The selected {$field} is invalid.");
         }
 
         return null;

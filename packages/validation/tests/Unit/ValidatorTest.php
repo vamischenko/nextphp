@@ -52,6 +52,23 @@ final class ValidatorTest extends TestCase
         self::assertTrue($result->fails());
         self::assertSame(['Username cannot be admin.'], $result->errorsFor('username'));
     }
+
+    #[Test]
+    public function supportsLocalizedMessages(): void
+    {
+        $validator = (new Validator())
+            ->setLocale('ru')
+            ->setAttributeNames(['email' => 'E-mail', 'name' => 'Имя']);
+
+        $result = $validator->validate(
+            ['email' => 'broken-email', 'name' => 'аб'],
+            ['email' => ['required', 'email'], 'name' => ['required', 'min:3']],
+        );
+
+        self::assertTrue($result->fails());
+        self::assertSame(['Поле E-mail должно быть корректным email адресом.'], $result->errorsFor('email'));
+        self::assertSame(['Поле Имя должно содержать минимум 3 символов.'], $result->errorsFor('name'));
+    }
 }
 
 final class NotAdminRule implements ValidationRuleInterface

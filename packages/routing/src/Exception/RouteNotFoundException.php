@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing\Exception;
 
-use RuntimeException;
+use Nextphp\Core\Exception\NextphpException;
 
-final class RouteNotFoundException extends RuntimeException
+final class RouteNotFoundException extends NextphpException
 {
     public function __construct(string $method, string $path)
     {

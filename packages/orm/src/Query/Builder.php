@@ -7,6 +7,7 @@ namespace Nextphp\Orm\Query;
 use Closure;
 use Nextphp\Orm\Connection\ConnectionInterface;
 use Nextphp\Orm\Connection\SqlConnectionInterface;
+use Nextphp\Orm\Pagination\Paginator;
 
 class Builder
 {
@@ -465,6 +466,24 @@ class Builder
         }
 
         return $bindings;
+    }
+
+    /**
+     * Paginate results.
+     *
+     * @return Paginator<array<string, mixed>>
+     */
+    public function paginate(int $perPage = 15, int $page = 1): Paginator
+    {
+        $page    = max(1, $page);
+        $total   = $this->count();
+
+        $items = (clone $this)
+            ->limit($perPage)
+            ->offset(($page - 1) * $perPage)
+            ->get();
+
+        return new Paginator($items, $total, $perPage, $page);
     }
 
     public static function raw(string $value): Expression

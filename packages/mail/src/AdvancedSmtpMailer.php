@@ -45,10 +45,7 @@ final class AdvancedSmtpMailer implements MailerInterface
             $this->cmd(sprintf('MAIL FROM:<%s>', $this->from));
             $this->cmd(sprintf('RCPT TO:<%s>', $mailable->to()));
             $this->cmd('DATA');
-            $this->cmd('Subject: ' . $mailable->subject());
-            $this->cmd('Content-Type: text/html; charset=UTF-8');
-            $this->cmd('');
-            $this->cmd($mailable->html());
+            $this->sendHeaders($mailable);
             $this->cmd('.');
             $this->cmd('QUIT');
             $this->transport->close();
@@ -59,6 +56,29 @@ final class AdvancedSmtpMailer implements MailerInterface
             }
             throw $e;
         }
+    }
+
+    private function sendHeaders(Mailable $mailable): void
+    {
+        $boundary = '=_nextphp_' . bin2hex(random_bytes(8));
+        $text     = $mailable->text();
+        $html     = $mailable->html();
+
+        $this->cmd('Subject: ' . $mailable->subject());
+        $this->cmd('MIME-Version: 1.0');
+        $this->cmd('Content-Type: multipart/alternative; boundary="' . $boundary . '"');
+        $this->cmd('');
+        $this->cmd('--' . $boundary);
+        $this->cmd('Content-Type: text/plain; charset=UTF-8');
+        $this->cmd('Content-Transfer-Encoding: quoted-printable');
+        $this->cmd('');
+        $this->cmd(quoted_printable_encode($text));
+        $this->cmd('--' . $boundary);
+        $this->cmd('Content-Type: text/html; charset=UTF-8');
+        $this->cmd('Content-Transfer-Encoding: quoted-printable');
+        $this->cmd('');
+        $this->cmd(quoted_printable_encode($html));
+        $this->cmd('--' . $boundary . '--');
     }
 
     private function cmd(string $command): void

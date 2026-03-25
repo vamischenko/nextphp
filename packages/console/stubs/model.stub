@@ -4,6 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-final class {{CLASS}}
+use Nextphp\Orm\Model\Model;
+
+/**
+ * @property int    $id
+ * @property string $created_at
+ * @property string $updated_at
+ */
+final class {{CLASS}} extends Model
 {
+    protected string $table = '{{TABLE}}';
+
+    /** @var list<string> */
+    protected array $fillable = [];
 }

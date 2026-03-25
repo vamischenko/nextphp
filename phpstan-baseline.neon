@@ -1,6 +1,72 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^PHPDoc tag @param for parameter \$argumentsResolver with type callable is not subtype of native type Closure\.$#'
+			identifier: parameter.phpDocType
+			count: 1
+			path: packages/auth/src/AuthorizePsrMiddleware.php
+
+		-
+			message: '#^PHPDoc type for property Nextphp\\Auth\\AuthorizePsrMiddleware\:\:\$argumentsResolver with type callable is not subtype of native type Closure\.$#'
+			identifier: property.phpDocType
+			count: 1
+			path: packages/auth/src/AuthorizePsrMiddleware.php
+
+		-
+			message: '#^Method Nextphp\\Cache\\ArrayCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/cache/src/ArrayCache.php
+
+		-
+			message: '#^Method Nextphp\\Cache\\FileCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/cache/src/FileCache.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: packages/cache/src/FileCache.php
+
+		-
+			message: '#^Method Nextphp\\Cache\\MemcachedCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/cache/src/MemcachedCache.php
+
+		-
+			message: '#^Foreach overwrites \$key with its value variable\.$#'
+			identifier: foreach.valueOverwrite
+			count: 1
+			path: packages/cache/src/RedisCache.php
+
+		-
+			message: '#^Method Nextphp\\Cache\\RedisCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/cache/src/RedisCache.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 2
+			path: packages/console/src/Generator/Generator.php
+
+		-
+			message: '#^Method Nextphp\\Console\\Input\:\:parse\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/console/src/Input.php
+
+		-
+			message: '#^Parameter \#3 \$commandArgs of class Nextphp\\Console\\Schedule\\ScheduledTask constructor expects list\<string\>, array\<int\|string, string\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/console/src/Schedule/Scheduler.php
+
+		-
 			message: '#^Method Nextphp\\Core\\Async\\Task\:\:__construct\(\) has parameter \$fiber with generic class Fiber but does not specify its types\: TStart, TResume, TReturn, TSuspend$#'
 			identifier: missingType.generics
 			count: 1
@@ -25,10 +91,46 @@ parameters:
 			path: packages/core/src/Container/Resolver/ReflectionResolver.php
 
 		-
-			message: '#^Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given\.$#'
+			message: '#^Dead catch \- ReflectionException is never thrown in the try block\.$#'
+			identifier: catch.neverThrown
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Method Nextphp\\Core\\Container\\Resolver\\ReflectionResolver\:\:reflectClass\(\) has Nextphp\\Core\\Exception\\ContainerException in PHPDoc @throws tag but it''s not thrown\.$#'
+			identifier: throws.unusedType
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Parameter \#1 \$concrete of method Nextphp\\Core\\Container\\Resolver\\ReflectionResolver\:\:reflectClass\(\) expects class\-string\<object\>, string given\.$#'
 			identifier: argument.type
 			count: 1
 			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of method Nextphp\\Core\\Container\\Resolver\\ReflectionResolver\:\:reflectMethod\(\) expects class\-string\|object, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Unable to resolve the template type T in call to method Nextphp\\Core\\Container\\Resolver\\ReflectionResolver\:\:reflectClass\(\)$#'
+			identifier: argument.templateType
+			count: 1
+			path: packages/core/src/Container/Resolver/ReflectionResolver.php
+
+		-
+			message: '#^Method Nextphp\\Events\\EventDispatcher\:\:getListenersForEvent\(\) return type has no value type specified in iterable type iterable\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/events/src/EventDispatcher.php
+
+		-
+			message: '#^Parameter \#2 \$listener of method Nextphp\\Events\\EventDispatcher\:\:addListener\(\) expects callable\(\)\: mixed, array\{Nextphp\\Events\\EventSubscriberInterface, string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/events/src/EventDispatcher.php
 
 		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
@@ -145,6 +247,276 @@ parameters:
 			path: packages/http/src/Message/Stream.php
 
 		-
+			message: '#^Property Nextphp\\Mail\\Smtp\\StreamSmtpTransport\:\:\$socket \(resource\|null\) does not accept resource\|false\.$#'
+			identifier: assign.propertyType
+			count: 1
+			path: packages/mail/src/Smtp/StreamSmtpTransport.php
+
+		-
+			message: '#^Method Nextphp\\Migrations\\Migration\\Migrator\:\:resolve\(\) should return Nextphp\\Migrations\\Migration\\Migration but returns object\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/migrations/src/Migration/Migrator.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 2
+			path: packages/migrations/src/Migration/Migrator.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:insert\(\) never returns false so it can be removed from the return type\.$#'
+			identifier: return.unusedType
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Call to method getManager\(\) on an unknown class MongoDB\\Database\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Call to method selectCollection\(\) on an unknown class MongoDB\\Database\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Call to method selectDatabase\(\) on an unknown class MongoDB\\Client\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Instantiated class MongoDB\\Client not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Connection\\MongoConnection\:\:collection\(\) has invalid return type MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Connection\\MongoConnection\:\:getDatabase\(\) has invalid return type MongoDB\\Database\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^PHPDoc tag @var for variable \$client contains unknown class MongoDB\\Client\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Property Nextphp\\Orm\\Connection\\MongoConnection\:\:\$database has unknown class MongoDB\\Database as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Property Nextphp\\Orm\\Connection\\MongoConnection\:\:\$databaseName is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Property Nextphp\\Orm\\Connection\\MongoConnection\:\:\$uri is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: packages/orm/src/Connection/MongoConnection.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 3
+			path: packages/orm/src/Connection/PdoConnection.php
+
+		-
+			message: '#^Callable callable\(array\<string, mixed\>, TModel\|null\)\: array\<string, mixed\> invoked with 1 parameter, 2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: packages/orm/src/Factory/ModelFactory.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Factory\\ModelFactory\:\:new\(\) should return static\(Nextphp\\Orm\\Factory\\ModelFactory\<TModel of Nextphp\\Orm\\Model\\Model\>\) but returns static\(Nextphp\\Orm\\Factory\\ModelFactory\<Nextphp\\Orm\\Model\\Model\>\)\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/orm/src/Factory/ModelFactory.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Migration\\Migrator\:\:resolve\(\) should return Nextphp\\Orm\\Migration\\Migration but returns object\.$#'
+			identifier: return.type
+			count: 1
+			path: packages/orm/src/Migration/Migrator.php
+
+		-
+			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
+			identifier: if.condNotBoolean
+			count: 1
+			path: packages/orm/src/Migration/Migrator.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 2
+			path: packages/orm/src/Migration/Migrator.php
+
+		-
+			message: '#^Expression "\$model\-\>\{\$relation\}" on a separate line does not do anything\.$#'
+			identifier: expr.resultUnused
+			count: 1
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Unsafe access to private property Nextphp\\Orm\\Model\\Model\:\:\$defaultConnection through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 3
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Unsafe access to private property Nextphp\\Orm\\Model\\Model\:\:\$globalScopes through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 4
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Unsafe access to private property Nextphp\\Orm\\Model\\Model\:\:\$listeners through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 2
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Unsafe access to private property Nextphp\\Orm\\Model\\Model\:\:\$preventLazyLoading through static\:\:\.$#'
+			identifier: staticClassAccess.privateProperty
+			count: 2
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 8
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Variable method call on \$this\(Nextphp\\Orm\\Model\\Model\)\.$#'
+			identifier: method.dynamicName
+			count: 1
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Variable property access on static\(Nextphp\\Orm\\Model\\Model\)\.$#'
+			identifier: property.dynamicName
+			count: 1
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Method Nextphp\\Orm\\Query\\Builder\:\:havingRaw\(\) has parameter \$bindings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Parameter \#1 \$items of class Nextphp\\Orm\\Pagination\\Paginator constructor expects list\<array\<string, mixed\>\>, array\<int, array\<string, mixed\>\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Property Nextphp\\Orm\\Query\\Builder\:\:\$bindings is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Property Nextphp\\Orm\\Query\\Builder\:\:\$onlyTrashed is never read, only written\.$#'
+			identifier: property.onlyWritten
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Call to method aggregate\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method countDocuments\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method deleteMany\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method find\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method findOne\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method getArrayCopy\(\) on an unknown class MongoDB\\Model\\BSONDocument\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method insertMany\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method insertOne\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method replaceOne\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Call to method updateMany\(\) on an unknown class MongoDB\\Collection\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Class MongoDB\\Model\\BSONDocument not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: packages/orm/src/Seeder/SeederRunner.php
+
+		-
 			message: '#^Method Nextphp\\Routing\\Attributes\\Route\:\:__construct\(\) has parameter \$can with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -167,3 +539,78 @@ parameters:
 			identifier: if.condNotBoolean
 			count: 1
 			path: packages/routing/src/UrlGenerator.php
+
+		-
+			message: '#^Trait Nextphp\\Testing\\Database\\DatabaseTransactions is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: packages/testing/src/Database/DatabaseTransactions.php
+
+		-
+			message: '#^Trait Nextphp\\Testing\\Database\\RefreshDatabase is used zero times and is not analysed\.$#'
+			identifier: trait.unused
+			count: 1
+			path: packages/testing/src/Database/RefreshDatabase.php
+
+		-
+			message: '#^Parameter \#1 \$callable of class Nextphp\\Http\\Handler\\CallableHandler constructor expects callable\(Psr\\Http\\Message\\ServerRequestInterface\)\: Psr\\Http\\Message\\ResponseInterface, Closure\(Nextphp\\Http\\Message\\ServerRequest\)\: Psr\\Http\\Message\\ResponseInterface given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/testing/src/RoutingHttpTestClient.php
+
+		-
+			message: '#^Parameter \#1 \$presence of class Nextphp\\Validation\\Rule\\ExistsRule constructor expects Nextphp\\Validation\\Contracts\\PresenceVerifierInterface, Nextphp\\Validation\\Contracts\\PresenceVerifierInterface\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/validation/src/Validator.php
+
+		-
+			message: '#^Parameter \#1 \$presence of class Nextphp\\Validation\\Rule\\UniqueRule constructor expects Nextphp\\Validation\\Contracts\\PresenceVerifierInterface, Nextphp\\Validation\\Contracts\\PresenceVerifierInterface\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: packages/validation/src/Validator.php
+
+		-
+			message: '#^Offset 2 on array\{non\-falsy\-string, non\-empty\-string, string, string\} in isset\(\) always exists and is not nullable\.$#'
+			identifier: isset.offset
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^PHPDoc tag @component has invalid value \(\(''name'', \[\.\.\.\]\) \.\.\. @endcomponent\)\: Unexpected token "''name''", expected TOKEN_DOUBLE_QUOTED_STRING at offset 550 on line 19$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^PHPDoc tag @extends has invalid value \(\(''layout''\)\)\: Unexpected token "\(", expected type at offset 454 on line 16$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^PHPDoc tag @include has invalid value \(\(''view'', \[\.\.\.\]\)\)\: Unexpected token "''view''", expected TOKEN_DOUBLE_QUOTED_STRING at offset 426 on line 15$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^PHPDoc tag @section has invalid value \(\(''name''\) \.\.\. @endsection\)\: Unexpected token "''name''", expected TOKEN_DOUBLE_QUOTED_STRING at offset 479 on line 17$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '''
+				#^PHPDoc tag @slot has invalid value \(\('name'\) \.\.\. @endslot
+				  \<x\-component\-name \:prop\="\$val"\> \.\.\. \</x\-component\-name\>\)\: Unexpected token "'name'", expected TOKEN_DOUBLE_QUOTED_STRING at offset 594 on line 20$#
+			'''
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^PHPDoc tag @yield has invalid value \(\(''name'', ''default''\)\)\: Unexpected token "''name''", expected TOKEN_DOUBLE_QUOTED_STRING at offset 515 on line 18$#'
+			identifier: phpDoc.parseError
+			count: 1
+			path: packages/view/src/Compiler.php

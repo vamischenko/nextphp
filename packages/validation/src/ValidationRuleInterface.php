@@ -6,5 +6,6 @@ namespace Nextphp\Validation;
 
 interface ValidationRuleInterface
 {
-    public function validate(string $field, mixed $value, array $data): ?string;
+    /** @param array<string, mixed> $data */
+    public function validate(string $field, mixed $value, array $data): ValidationError|string|null;
 }

@@ -11,6 +11,7 @@ use Nextphp\Orm\Model\Relations\BelongsTo;
 use Nextphp\Orm\Model\Relations\BelongsToMany;
 use Nextphp\Orm\Model\Relations\HasMany;
 use Nextphp\Orm\Model\Relations\HasOne;
+use Nextphp\Orm\Model\Relations\MorphTo;
 use Nextphp\Orm\Query\Builder;
 
 abstract class Model
@@ -55,6 +56,11 @@ abstract class Model
     private static array $globalScopes = [];
 
     private static bool $preventLazyLoading = false;
+
+    protected static bool $warnOnLazyLoading = false;
+
+    /** @var null|callable(Model, string): void */
+    protected static $lazyLoadingWarningHandler = null;
 
     private static ?ConnectionInterface $defaultConnection = null;
 
@@ -174,9 +180,13 @@ abstract class Model
             if (static::$preventLazyLoading) {
                 throw new OrmException(sprintf('Lazy loading violation on relation "%s" for model %s', $key, static::class));
             }
+
+            if (self::$warnOnLazyLoading) {
+                $this->warnAboutLazyLoading($key);
+            }
             $relation = $this->$key();
 
-            if ($relation instanceof Relations\Relation) {
+            if ($relation instanceof Relations\Relation || $relation instanceof MorphTo) {
                 $result = $relation->getResults();
                 $this->relations[$key] = $result;
 
@@ -450,6 +460,19 @@ abstract class Model
         static::$preventLazyLoading = $state;
     }
 
+    public static function warnOnLazyLoading(bool $state = true): void
+    {
+        self::$warnOnLazyLoading = $state;
+    }
+
+    /**
+     * @param null|callable(Model, string): void $handler
+     */
+    public static function setLazyLoadingWarningHandler(?callable $handler): void
+    {
+        self::$lazyLoadingWarningHandler = $handler;
+    }
+
     /**
      * @param array<string, mixed> $row
      */
@@ -549,6 +572,22 @@ abstract class Model
         return new BelongsToMany($this, $related, $pivotTable, $foreignPivotKey, $relatedPivotKey, $parentKey, $relatedKey);
     }
 
+    /**
+     * @param array<string, class-string<Model>> $typeMap
+     */
+    protected function morphTo(
+        ?string $name = null,
+        ?string $typeColumn = null,
+        ?string $idColumn = null,
+        array $typeMap = [],
+    ): MorphTo {
+        $relationName = $name ?? $this->inferCallerMethod();
+        $typeColumn ??= $relationName . '_type';
+        $idColumn ??= $relationName . '_id';
+
+        return new MorphTo($this, $typeColumn, $idColumn, $typeMap);
+    }
+
     // -------------------------------------------------------------------------
     // Model Events
     // -------------------------------------------------------------------------
@@ -556,6 +595,42 @@ abstract class Model
     public static function on(ModelEvent $event, callable $listener): void
     {
         static::$listeners[static::class . ':' . $event->value][] = $listener;
+    }
+
+    public static function observe(object|string $observer): void
+    {
+        $instance = is_string($observer) ? new $observer() : $observer;
+
+        if (method_exists($instance, 'creating')) {
+            static::on(ModelEvent::Creating, static fn (Model $m): mixed => $instance->creating($m));
+        }
+        if (method_exists($instance, 'created')) {
+            static::on(ModelEvent::Created, static fn (Model $m): mixed => $instance->created($m));
+        }
+        if (method_exists($instance, 'updating')) {
+            static::on(ModelEvent::Updating, static fn (Model $m): mixed => $instance->updating($m));
+        }
+        if (method_exists($instance, 'updated')) {
+            static::on(ModelEvent::Updated, static fn (Model $m): mixed => $instance->updated($m));
+        }
+        if (method_exists($instance, 'saving')) {
+            static::on(ModelEvent::Saving, static fn (Model $m): mixed => $instance->saving($m));
+        }
+        if (method_exists($instance, 'saved')) {
+            static::on(ModelEvent::Saved, static fn (Model $m): mixed => $instance->saved($m));
+        }
+        if (method_exists($instance, 'deleting')) {
+            static::on(ModelEvent::Deleting, static fn (Model $m): mixed => $instance->deleting($m));
+        }
+        if (method_exists($instance, 'deleted')) {
+            static::on(ModelEvent::Deleted, static fn (Model $m): mixed => $instance->deleted($m));
+        }
+        if (method_exists($instance, 'restoring')) {
+            static::on(ModelEvent::Restoring, static fn (Model $m): mixed => $instance->restoring($m));
+        }
+        if (method_exists($instance, 'restored')) {
+            static::on(ModelEvent::Restored, static fn (Model $m): mixed => $instance->restored($m));
+        }
     }
 
     private function fireEvent(ModelEvent $event): void
@@ -637,5 +712,28 @@ abstract class Model
     private function snakeCase(string $value): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $value) ?? $value);
+    }
+
+    private function warnAboutLazyLoading(string $relation): void
+    {
+        if (is_callable(static::$lazyLoadingWarningHandler)) {
+            $handler = static::$lazyLoadingWarningHandler;
+            $handler($this, $relation);
+
+            return;
+        }
+
+        @trigger_error(
+            sprintf('N+1 warning: lazy loaded relation "%s" on model %s', $relation, static::class),
+            E_USER_WARNING,
+        );
+    }
+
+    private function inferCallerMethod(): string
+    {
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
+        $caller = $trace[2]['function'] ?? $trace[1]['function'] ?? '';
+
+        return $caller !== '' ? $caller : 'morph';
     }
 }

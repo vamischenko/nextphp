@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "nextphp/core": "*@dev",
         "psr/http-message": "^2.0",
         "psr/http-server-middleware": "^1.0"
     },
@@ -31,5 +32,10 @@
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "repositories": [
+        {"type": "path", "url": "../core"}
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

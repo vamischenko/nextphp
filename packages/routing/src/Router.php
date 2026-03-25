@@ -83,6 +83,30 @@ final class Router
     }
 
     /**
+     * Start a fluent API route group with a normalized version prefix.
+     *
+     * Examples:
+     *   $router->api()->group(...);      // /api/v1
+     *   $router->api(2)->group(...);     // /api/v2
+     *   $router->api('v3')->group(...);  // /api/v3
+     *   $router->api('3')->group(...);   // /api/v3
+     */
+    public function api(int|string $version = 'v1'): RouteGroup
+    {
+        $versionPrefix = is_int($version) ? 'v' . $version : trim($version, '/ ');
+
+        if ($versionPrefix !== '' && ctype_digit($versionPrefix)) {
+            $versionPrefix = 'v' . $versionPrefix;
+        }
+
+        if ($versionPrefix === '') {
+            $versionPrefix = 'v1';
+        }
+
+        return $this->prefix('/api/' . $versionPrefix);
+    }
+
+    /**
      * Start a fluent route group with the given name prefix.
      */
     public function name(string $namePrefix): RouteGroup

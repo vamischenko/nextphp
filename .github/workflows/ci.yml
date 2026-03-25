@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -15,7 +18,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
@@ -30,7 +33,7 @@ jobs:
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v4
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ matrix.php }}-${{ hashFiles('**/composer.lock') }}
@@ -41,27 +44,71 @@ jobs:
       - name: Install root dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
 
-      - name: Install core dependencies
-        run: cd packages/core && composer install --prefer-dist --no-interaction --no-progress
+      - name: Install package dependencies
+        run: |
+          for pkg in packages/*/; do
+            echo "→ Installing $pkg"
+            composer install --working-dir="$pkg" --prefer-dist --no-interaction --no-progress
+          done
 
-      - name: Install http dependencies
-        run: cd packages/http && composer install --prefer-dist --no-interaction --no-progress
+      - name: Run tests
+        run: |
+          FAILED=()
+          for pkg in packages/*/; do
+            name=$(basename "$pkg")
+            if [ -f "$pkg/vendor/bin/phpunit" ]; then
+              echo "→ Testing $name"
+              if ! (cd "$pkg" && vendor/bin/phpunit --no-coverage 2>&1); then
+                FAILED+=("$name")
+              fi
+            fi
+          done
+          if [ ${#FAILED[@]} -gt 0 ]; then
+            echo "Failed packages: ${FAILED[*]}"
+            exit 1
+          fi
 
-      - name: Install routing dependencies
-        run: cd packages/routing && composer install --prefer-dist --no-interaction --no-progress
-
-      - name: Run tests — core
-        run: cd packages/core && vendor/bin/phpunit --coverage-clover=coverage-core.xml
-
-      - name: Run tests — http
-        run: cd packages/http && vendor/bin/phpunit --coverage-clover=coverage-http.xml
-
-      - name: Run tests — routing
-        run: cd packages/routing && vendor/bin/phpunit --coverage-clover=coverage-routing.xml
+      - name: Run tests with coverage (PHP 8.3 only)
+        if: matrix.php == '8.3'
+        run: |
+          for pkg in packages/*/; do
+            name=$(basename "$pkg")
+            if [ -f "$pkg/vendor/bin/phpunit" ]; then
+              echo "→ Coverage $name"
+              (cd "$pkg" && vendor/bin/phpunit --coverage-clover="coverage-${name}.xml" 2>&1) || true
+            fi
+          done
 
       - name: Upload coverage to Codecov
         if: matrix.php == '8.3'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v4
         with:
-          files: packages/core/coverage-core.xml,packages/http/coverage-http.xml,packages/routing/coverage-routing.xml
+          files: packages/*/coverage-*.xml
           fail_ci_if_error: false
+
+  static-analysis:
+    name: PHPStan (level 8)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, dom, fileinfo, intl, pdo, pdo_sqlite
+          tools: composer:v2
+
+      - name: Install root dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Install package dependencies (for stubs)
+        run: |
+          for pkg in packages/*/; do
+            composer install --working-dir="$pkg" --prefer-dist --no-interaction --no-progress
+          done
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=512M

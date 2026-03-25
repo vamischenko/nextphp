@@ -4,19 +4,18 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing\Exception;
 
-use RuntimeException;
+use Nextphp\Core\Exception\NextphpException;
 
-final class MethodNotAllowedException extends RuntimeException
+final class MethodNotAllowedException extends NextphpException
 {
-    /** @var string[] */
-    private array $allowedMethods;
-
     /**
      * @param string[] $allowedMethods
      */
-    public function __construct(array $allowedMethods, string $method, string $path)
-    {
-        $this->allowedMethods = $allowedMethods;
+    public function __construct(
+        private readonly array $allowedMethods,
+        string $method,
+        string $path,
+    ) {
         parent::__construct(sprintf(
             'Method "%s" not allowed for "%s". Allowed: %s.',
             $method,

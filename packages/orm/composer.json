@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "nextphp/core": "*@dev",
         "ext-pdo": "*"
     },
     "require-dev": {
@@ -32,5 +33,10 @@
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "repositories": [
+        {"type": "path", "url": "../core"}
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

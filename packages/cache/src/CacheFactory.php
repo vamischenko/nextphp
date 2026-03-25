@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Nextphp\Cache;
 
+use Memcached;
+use PDO;
 use Redis;
 
 final class CacheFactory
@@ -40,5 +42,32 @@ final class CacheFactory
     public static function redisFromInstance(Redis $redis, string $prefix = 'nextphp:'): RedisCache
     {
         return new RedisCache($redis, $prefix);
+    }
+
+    public static function memcached(
+        string $host = '127.0.0.1',
+        int $port = 11211,
+        string $prefix = 'nextphp:',
+    ): MemcachedCache {
+        $mc = new Memcached();
+        $mc->addServer($host, $port);
+
+        return new MemcachedCache($mc, $prefix);
+    }
+
+    /**
+     * Create MemcachedCache from an already-configured Memcached instance.
+     */
+    public static function memcachedFromInstance(Memcached $mc, string $prefix = 'nextphp:'): MemcachedCache
+    {
+        return new MemcachedCache($mc, $prefix);
+    }
+
+    public static function database(
+        PDO $pdo,
+        string $table = 'cache',
+        string $tagsTable = 'cache_tags',
+    ): DatabaseCache {
+        return new DatabaseCache($pdo, $table, $tagsTable);
     }
 }

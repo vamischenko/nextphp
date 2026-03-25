@@ -12,9 +12,7 @@
     checkForThrowsInGlobalScope="true"
 >
     <projectFiles>
-        <directory name="packages/core/src" />
-        <directory name="packages/http/src" />
-        <directory name="packages/routing/src" />
+        <directory name="packages" />
         <ignoreFiles>
             <directory name="packages/*/vendor" />
             <directory name="packages/*/tests" />

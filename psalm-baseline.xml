@@ -1,15 +1,455 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="packages/auth/src/ArrayRememberMeTokenStore.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayRememberMeTokenStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/ArraySessionStore.php">
+    <UnusedClass>
+      <code><![CDATA[ArraySessionStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/Attributes/Can.php">
+    <UnusedClass>
+      <code><![CDATA[Can]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/AuthorizeMiddleware.php">
+    <UnusedClass>
+      <code><![CDATA[AuthorizeMiddleware]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/AuthorizePsrMiddleware.php">
+    <MismatchingDocblockParamType>
+      <code><![CDATA[callable(ServerRequestInterface): array<int, mixed>]]></code>
+    </MismatchingDocblockParamType>
+    <MismatchingDocblockPropertyType>
+      <code><![CDATA[callable(ServerRequestInterface): array<int, mixed>]]></code>
+    </MismatchingDocblockPropertyType>
+    <UnusedClass>
+      <code><![CDATA[AuthorizePsrMiddleware]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/CanMiddleware.php">
+    <MixedAssignment>
+      <code><![CDATA[$subject]]></code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/auth/src/EmailVerification/ArrayEmailVerificationTokenStore.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayEmailVerificationTokenStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/EmailVerification/EmailVerificationService.php">
+    <UnusedClass>
+      <code><![CDATA[EmailVerificationService]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/Gate.php">
+    <UnusedClass>
+      <code><![CDATA[Gate]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/InMemoryTokenStore.php">
+    <UnusedClass>
+      <code><![CDATA[InMemoryTokenStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/Jwt/JwtEncoder.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/auth/src/Jwt/JwtGuard.php">
+    <MixedAssignment>
+      <code><![CDATA[$sub]]></code>
+    </MixedAssignment>
+    <UnusedClass>
+      <code><![CDATA[JwtGuard]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/PasswordReset/ArrayPasswordResetTokenStore.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayPasswordResetTokenStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/PasswordReset/DatabasePasswordResetTokenStore.php">
+    <UnusedClass>
+      <code><![CDATA[DatabasePasswordResetTokenStore]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/PasswordReset/PasswordResetService.php">
+    <UnusedClass>
+      <code><![CDATA[PasswordResetService]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/PolicyMiddlewareFactory.php">
+    <UnusedClass>
+      <code><![CDATA[PolicyMiddlewareFactory]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/PolicyRegistry.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[define]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/auth/src/RememberMeService.php">
+    <UnusedClass>
+      <code><![CDATA[RememberMeService]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/SessionGuard.php">
+    <MixedReturnStatement>
+      <code><![CDATA[$this->session->get(self::SESSION_KEY)]]></code>
+    </MixedReturnStatement>
+    <UnusedClass>
+      <code><![CDATA[SessionGuard]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/TokenGuard.php">
+    <UnusedClass>
+      <code><![CDATA[TokenGuard]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/auth/src/Totp/TotpGenerator.php">
+    <UnusedClass>
+      <code><![CDATA[TotpGenerator]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/cache/benchmarks/cache_benchmark.php">
+    <InvalidOperand>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[round($elapsed, 2)]]></code>
+    </InvalidOperand>
+  </file>
+  <file src="packages/cache/src/ArrayCache.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_string($key)]]></code>
+      <code><![CDATA[is_string($key)]]></code>
+    </DocblockTypeContradiction>
+    <MixedAssignment>
+      <code><![CDATA[$result[$key]]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[flushTag]]></code>
+      <code><![CDATA[remember]]></code>
+      <code><![CDATA[tag]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+    <UnusedForeachValue>
+      <code><![CDATA[$keys]]></code>
+    </UnusedForeachValue>
+  </file>
+  <file src="packages/cache/src/CacheFactory.php">
+    <MixedArgument>
+      <code><![CDATA[$mc]]></code>
+      <code><![CDATA[$redis]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$mc]]></code>
+      <code><![CDATA[$redis]]></code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code><![CDATA[addServer]]></code>
+      <code><![CDATA[connect]]></code>
+      <code><![CDATA[select]]></code>
+    </MixedMethodCall>
+    <UndefinedClass>
+      <code><![CDATA[Memcached]]></code>
+      <code><![CDATA[Memcached]]></code>
+      <code><![CDATA[Redis]]></code>
+      <code><![CDATA[Redis]]></code>
+    </UndefinedClass>
+    <UnusedClass>
+      <code><![CDATA[CacheFactory]]></code>
+    </UnusedClass>
+    <UnusedParam>
+      <code><![CDATA[$mc]]></code>
+      <code><![CDATA[$prefix]]></code>
+      <code><![CDATA[$prefix]]></code>
+      <code><![CDATA[$redis]]></code>
+    </UnusedParam>
+  </file>
+  <file src="packages/cache/src/Contracts/CacheMetricsHookInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[record]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/cache/src/DatabaseCache.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_string($key)]]></code>
+      <code><![CDATA[is_string($key)]]></code>
+    </DocblockTypeContradiction>
+    <MixedArrayAccess>
+      <code><![CDATA[$row['expires_at']]]></code>
+      <code><![CDATA[$row['expires_at']]]></code>
+      <code><![CDATA[$row['value']]]></code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code><![CDATA[$key]]></code>
+      <code><![CDATA[$result[$key]]]></code>
+      <code><![CDATA[$row]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[createSchema]]></code>
+      <code><![CDATA[flushTag]]></code>
+      <code><![CDATA[remember]]></code>
+      <code><![CDATA[tag]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="packages/cache/src/FileCache.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_string($key)]]></code>
+    </DocblockTypeContradiction>
+    <MixedAssignment>
+      <code><![CDATA[$data]]></code>
+      <code><![CDATA[$expiresAt]]></code>
+      <code><![CDATA[$result[$key]]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[array<string, true>]]></code>
+      <code><![CDATA[is_array($data) ? $data : []]]></code>
+    </MixedReturnTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[flushTag]]></code>
+      <code><![CDATA[remember]]></code>
+      <code><![CDATA[tag]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[is_string($key)]]></code>
+    </RedundantConditionGivenDocblockType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[scandir($this->directory)]]></code>
+    </RiskyTruthyFalsyComparison>
+  </file>
+  <file src="packages/cache/src/Instrumentation/BenchmarkHook.php">
+    <UnusedClass>
+      <code><![CDATA[BenchmarkHook]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/cache/src/MemcachedCache.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_string($key)]]></code>
+      <code><![CDATA[is_string($key)]]></code>
+    </DocblockTypeContradiction>
+    <MixedAssignment>
+      <code><![CDATA[$result[$origKey]]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->memcached->flush()]]></code>
+      <code><![CDATA[$this->memcached->set(
+            $this->prefixed($key),
+            $value,
+            $seconds ?? 0,
+        )]]></code>
+    </MixedReturnStatement>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[flushTag]]></code>
+      <code><![CDATA[remember]]></code>
+      <code><![CDATA[tag]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+    <UndefinedClass>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[$this->memcached]]></code>
+      <code><![CDATA[Memcached]]></code>
+      <code><![CDATA[Memcached]]></code>
+      <code><![CDATA[private]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="packages/cache/src/RedisCache.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_string($key)]]></code>
+      <code><![CDATA[is_string($key)]]></code>
+    </DocblockTypeContradiction>
+    <MixedArrayAccess>
+      <code><![CDATA[$values[$i]]]></code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code><![CDATA[$key]]></code>
+      <code><![CDATA[$keys]]></code>
+      <code><![CDATA[$keys]]></code>
+      <code><![CDATA[$raw]]></code>
+      <code><![CDATA[$raw]]></code>
+      <code><![CDATA[$result[$key]]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$values]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[flushTag]]></code>
+      <code><![CDATA[remember]]></code>
+      <code><![CDATA[tag]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+    <UndefinedClass>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[private]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="packages/console/src/Application.php">
+    <MixedArgument>
+      <code><![CDATA[$parsed['arguments']]]></code>
+      <code><![CDATA[$parsed['options']]]></code>
+    </MixedArgument>
+    <UnusedClass>
+      <code><![CDATA[Application]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/console/src/Command/MakeControllerCommand.php">
+    <UnusedClass>
+      <code><![CDATA[MakeControllerCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/console/src/Command/MakeMigrationCommand.php">
+    <UnusedClass>
+      <code><![CDATA[MakeMigrationCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/console/src/Command/MakeModelCommand.php">
+    <UnusedClass>
+      <code><![CDATA[MakeModelCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/console/src/Generator/Generator.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/console/src/Input.php">
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$v]]></code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="packages/console/src/Installer/InstallProjectCommand.php">
+    <UnusedClass>
+      <code><![CDATA[InstallProjectCommand]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/console/src/Installer/ProjectInstaller.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/console/src/Output.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[$headers !== [] && is_array($headers[0])]]></code>
+      <code><![CDATA[is_array($headers[0])]]></code>
+    </DocblockTypeContradiction>
+    <InvalidOperand>
+      <code><![CDATA[$current / $total * $width]]></code>
+      <code><![CDATA[$current / $total * 100]]></code>
+    </InvalidOperand>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[buffer]]></code>
+      <code><![CDATA[clearBuffer]]></code>
+      <code><![CDATA[confirm]]></code>
+      <code><![CDATA[info]]></code>
+      <code><![CDATA[progress]]></code>
+      <code><![CDATA[table]]></code>
+      <code><![CDATA[warn]]></code>
+    </PossiblyUnusedMethod>
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) $cell]]></code>
+      <code><![CDATA[(string) ($row[$i] ?? '')]]></code>
+    </RedundantCastGivenDocblockType>
+  </file>
+  <file src="packages/console/src/Schedule/CronExpression.php">
+    <PossiblyUndefinedArrayOffset>
+      <code><![CDATA[$step]]></code>
+    </PossiblyUndefinedArrayOffset>
+  </file>
+  <file src="packages/console/src/Schedule/ScheduledTask.php">
+    <MixedAssignment>
+      <code><![CDATA[$minute]]></code>
+      <code><![CDATA[$minute]]></code>
+      <code><![CDATA[$minute]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[daily]]></code>
+      <code><![CDATA[dailyAt]]></code>
+      <code><![CDATA[description]]></code>
+      <code><![CDATA[everyFifteenMinutes]]></code>
+      <code><![CDATA[everyFiveMinutes]]></code>
+      <code><![CDATA[everyMinute]]></code>
+      <code><![CDATA[everyTenMinutes]]></code>
+      <code><![CDATA[everyThirtyMinutes]]></code>
+      <code><![CDATA[getDescription]]></code>
+      <code><![CDATA[getExpression]]></code>
+      <code><![CDATA[hasRan]]></code>
+      <code><![CDATA[hourly]]></code>
+      <code><![CDATA[hourlyAt]]></code>
+      <code><![CDATA[monthly]]></code>
+      <code><![CDATA[monthlyOn]]></code>
+      <code><![CDATA[weekdays]]></code>
+      <code><![CDATA[weekends]]></code>
+      <code><![CDATA[weekly]]></code>
+      <code><![CDATA[weeklyOn]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/console/src/Schedule/Scheduler.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$args]]></code>
+    </ArgumentTypeCoercion>
+    <UnusedClass>
+      <code><![CDATA[Scheduler]]></code>
+    </UnusedClass>
+  </file>
   <file src="packages/core/src/Async/FiberScheduler.php">
     <UnusedClass>
       <code><![CDATA[FiberScheduler]]></code>
     </UnusedClass>
   </file>
   <file src="packages/core/src/Async/Task.php">
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw $this->error]]></code>
-      <code><![CDATA[throw new RuntimeException('Task is not completed yet.')]]></code>
-    </MissingThrowsDocblock>
     <PossiblyUnusedMethod>
       <code><![CDATA[await]]></code>
     </PossiblyUnusedMethod>
@@ -30,9 +470,6 @@
     </UnusedClass>
   </file>
   <file src="packages/core/src/Container/AbstractServiceProvider.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function boot(ContainerInterface $container): void]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[AbstractServiceProvider]]></code>
     </UnusedClass>
@@ -41,25 +478,6 @@
     <ClassMustBeFinal>
       <code><![CDATA[Container]]></code>
     </ClassMustBeFinal>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function addServiceProvider(ServiceProviderInterface $provider): void]]></code>
-      <code><![CDATA[public function bind(string $abstract, Closure|string|null $concrete = null): void]]></code>
-      <code><![CDATA[public function boot(): void]]></code>
-      <code><![CDATA[public function bound(string $abstract): bool]]></code>
-      <code><![CDATA[public function call(callable|array|string $callback, array $parameters = []): mixed]]></code>
-      <code><![CDATA[public function flushScoped(): void]]></code>
-      <code><![CDATA[public function get(string $id): mixed]]></code>
-      <code><![CDATA[public function has(string $id): bool]]></code>
-      <code><![CDATA[public function instance(string $abstract, object $instance): void]]></code>
-      <code><![CDATA[public function make(string $abstract, array $parameters = []): mixed]]></code>
-      <code><![CDATA[public function scoped(string $abstract, Closure|string|null $concrete = null): void]]></code>
-      <code><![CDATA[public function singleton(string $abstract, Closure|string|null $concrete = null): void]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[build]]></code>
-      <code><![CDATA[resolveBinding]]></code>
-      <code><![CDATA[resolveCallable]]></code>
-    </MissingThrowsDocblock>
     <MixedAssignment>
       <code><![CDATA[$object]]></code>
     </MixedAssignment>
@@ -79,7 +497,6 @@
       <code><![CDATA[bind]]></code>
       <code><![CDATA[boot]]></code>
       <code><![CDATA[call]]></code>
-      <code><![CDATA[flushScoped]]></code>
       <code><![CDATA[scoped]]></code>
       <code><![CDATA[singleton]]></code>
     </PossiblyUnusedMethod>
@@ -99,6 +516,9 @@
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$method]]></code>
     </PossiblyUndefinedArrayOffset>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[clearCache]]></code>
+    </PossiblyUnusedMethod>
     <RedundantCast>
       <code><![CDATA[(string) $method]]></code>
     </RedundantCast>
@@ -110,6 +530,192 @@
     <ClassMustBeFinal>
       <code><![CDATA[NotFoundException]]></code>
     </ClassMustBeFinal>
+  </file>
+  <file src="packages/events/src/Async/AsyncEventDispatcher.php">
+    <MixedAssignment>
+      <code><![CDATA[$listener]]></code>
+    </MixedAssignment>
+    <UnusedClass>
+      <code><![CDATA[AsyncEventDispatcher]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/events/src/Async/DispatchEventJob.php">
+    <MixedFunctionCall>
+      <code><![CDATA[($this->listener)($this->event)]]></code>
+    </MixedFunctionCall>
+  </file>
+  <file src="packages/events/src/Async/ShouldQueueListener.php">
+    <UnusedClass>
+      <code><![CDATA[ShouldQueueListener]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/events/src/Attribute/ListensTo.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/events/src/Event/AbstractEvent.php">
+    <UnusedClass>
+      <code><![CDATA[AbstractEvent]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/events/src/EventDiscovery.php">
+    <MixedMethodCall>
+      <code><![CDATA[new $class()]]></code>
+    </MixedMethodCall>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[ListensTo]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnusedClass>
+      <code><![CDATA[EventDiscovery]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/events/src/EventDispatcher.php">
+    <MixedAssignment>
+      <code><![CDATA[$listener]]></code>
+    </MixedAssignment>
+    <MixedFunctionCall>
+      <code><![CDATA[$listener($event)]]></code>
+    </MixedFunctionCall>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[addSubscriber]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/filesystem/src/FilesystemInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[signedUrl]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/filesystem/src/Flysystem/FlysystemFilesystem.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <UnusedClass>
+      <code><![CDATA[FlysystemFilesystem]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/filesystem/src/Flysystem/NextphpFilesystemAdapter.php">
+    <ParamNameMismatch>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+      <code><![CDATA[$location]]></code>
+    </ParamNameMismatch>
+    <UnusedClass>
+      <code><![CDATA[NextphpFilesystemAdapter]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/filesystem/src/Ftp/FtpClientInterface.php">
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="packages/filesystem/src/Ftp/NativeFtpClient.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$list]]></code>
+    </MixedArgumentTypeCoercion>
+  </file>
+  <file src="packages/filesystem/src/FtpFilesystem.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <UnusedClass>
+      <code><![CDATA[FtpFilesystem]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/filesystem/src/LocalFilesystem.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <UnusedClass>
+      <code><![CDATA[LocalFilesystem]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/filesystem/src/S3Filesystem.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <UnusedClass>
+      <code><![CDATA[S3Filesystem]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/filesystem/src/Sftp/SftpClientInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[authKey]]></code>
+      <code><![CDATA[disconnect]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="packages/filesystem/src/Sftp/Ssh2SftpClient.php">
+    <UnusedFunctionCall>
+      <code><![CDATA[ssh2_sftp_mkdir]]></code>
+    </UnusedFunctionCall>
+  </file>
+  <file src="packages/filesystem/src/SftpFilesystem.php">
+    <DocblockTypeContradiction>
+      <code><![CDATA[is_resource($stream)]]></code>
+    </DocblockTypeContradiction>
+    <UnusedClass>
+      <code><![CDATA[SftpFilesystem]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/graphql/src/GraphQL.php">
+    <MixedAssignment>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/graphql/src/Http/GraphQLRouteRegistrar.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$variables]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$variables]]></code>
+    </MixedAssignment>
+    <UnusedClass>
+      <code><![CDATA[GraphQLRouteRegistrar]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/graphql/src/Schema.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[query]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/http/src/Cookie/Cookie.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getDomain]]></code>
+      <code><![CDATA[getExpires]]></code>
+      <code><![CDATA[getName]]></code>
+      <code><![CDATA[getPath]]></code>
+      <code><![CDATA[getSameSite]]></code>
+      <code><![CDATA[getValue]]></code>
+      <code><![CDATA[isHttpOnly]]></code>
+      <code><![CDATA[isSecure]]></code>
+      <code><![CDATA[withValue]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/http/src/Cookie/CookieJar.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[all]]></code>
+      <code><![CDATA[forget]]></code>
+      <code><![CDATA[isEmpty]]></code>
+      <code><![CDATA[queue]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/http/src/Cookie/CookieMiddleware.php">
+    <UnusedClass>
+      <code><![CDATA[CookieMiddleware]]></code>
+    </UnusedClass>
   </file>
   <file src="packages/http/src/Exception/BadRequestException.php">
     <UnusedClass>
@@ -127,9 +733,6 @@
     </UnusedClass>
   </file>
   <file src="packages/http/src/Factory/RequestFactory.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function createRequest(string $method, mixed $uri): RequestInterface]]></code>
-    </MissingOverrideAttribute>
     <RedundantCastGivenDocblockType>
       <code><![CDATA[(string) $uri]]></code>
     </RedundantCastGivenDocblockType>
@@ -138,17 +741,11 @@
     </UnusedClass>
   </file>
   <file src="packages/http/src/Factory/ResponseFactory.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function createResponse(int $code = 200, string $reasonPhrase = ''): ResponseInterface]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[ResponseFactory]]></code>
     </UnusedClass>
   </file>
   <file src="packages/http/src/Factory/ServerRequestFactory.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function createServerRequest(string $method, mixed $uri, array $serverParams = []): ServerRequestInterface]]></code>
-    </MissingOverrideAttribute>
     <MoreSpecificImplementedParamType>
       <code><![CDATA[$serverParams]]></code>
     </MoreSpecificImplementedParamType>
@@ -157,27 +754,14 @@
     </UnusedClass>
   </file>
   <file src="packages/http/src/Factory/StreamFactory.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function createStream(string $content = ''): StreamInterface]]></code>
-      <code><![CDATA[public function createStreamFromFile(string $filename, string $mode = 'r'): StreamInterface]]></code>
-      <code><![CDATA[public function createStreamFromResource(mixed $resource): StreamInterface]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[StreamFactory]]></code>
     </UnusedClass>
   </file>
   <file src="packages/http/src/Factory/UriFactory.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function createUri(string $uri = ''): UriInterface]]></code>
-    </MissingOverrideAttribute>
     <UnusedClass>
       <code><![CDATA[UriFactory]]></code>
     </UnusedClass>
-  </file>
-  <file src="packages/http/src/Handler/CallableHandler.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
-    </MissingOverrideAttribute>
   </file>
   <file src="packages/http/src/Kernel/HttpKernel.php">
     <ArgumentTypeCoercion>
@@ -188,6 +772,8 @@
     </InvalidStringClass>
     <MixedAssignment>
       <code><![CDATA[$arguments[]]]></code>
+      <code><![CDATA[$arguments[]]]></code>
+      <code><![CDATA[$controller]]></code>
       <code><![CDATA[$result]]></code>
     </MixedAssignment>
     <PossiblyInvalidArgument>
@@ -196,14 +782,13 @@
     <PossiblyUndefinedArrayOffset>
       <code><![CDATA[$method]]></code>
     </PossiblyUndefinedArrayOffset>
-    <UnusedClass>
-      <code><![CDATA[HttpKernel]]></code>
-    </UnusedClass>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[addGlobalMiddleware]]></code>
+      <code><![CDATA[aliases]]></code>
+    </PossiblyUnusedMethod>
   </file>
   <file src="packages/http/src/Message/MessageTrait.php">
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw new InvalidArgumentException('Header value cannot be an empty array.')]]></code>
-    </MissingThrowsDocblock>
     <MixedArgument>
       <code><![CDATA[$value]]></code>
     </MixedArgument>
@@ -213,14 +798,6 @@
       <code><![CDATA[$this->uri->getPort()]]></code>
       <code><![CDATA[$uri->getPort()]]></code>
     </InvalidOperand>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getMethod(): string]]></code>
-      <code><![CDATA[public function getRequestTarget(): string]]></code>
-      <code><![CDATA[public function getUri(): UriInterface]]></code>
-      <code><![CDATA[public function withMethod(string $method): static]]></code>
-      <code><![CDATA[public function withRequestTarget(string $requestTarget): static]]></code>
-      <code><![CDATA[public function withUri(UriInterface $uri, bool $preserveHost = false): static]]></code>
-    </MissingOverrideAttribute>
     <PossiblyNullOperand>
       <code><![CDATA[$this->uri->getPort()]]></code>
       <code><![CDATA[$uri->getPort()]]></code>
@@ -230,42 +807,14 @@
     <ClassMustBeFinal>
       <code><![CDATA[Response]]></code>
     </ClassMustBeFinal>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getReasonPhrase(): string]]></code>
-      <code><![CDATA[public function getStatusCode(): int]]></code>
-      <code><![CDATA[public function withStatus(int $code, string $reasonPhrase = ''): static]]></code>
-    </MissingOverrideAttribute>
   </file>
   <file src="packages/http/src/Message/ServerRequest.php">
     <InvalidArgument>
       <code><![CDATA[$_GET]]></code>
     </InvalidArgument>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getAttribute(string $name, mixed $default = null): mixed]]></code>
-      <code><![CDATA[public function getAttributes(): array]]></code>
-      <code><![CDATA[public function getCookieParams(): array]]></code>
-      <code><![CDATA[public function getParsedBody(): mixed]]></code>
-      <code><![CDATA[public function getQueryParams(): array]]></code>
-      <code><![CDATA[public function getServerParams(): array]]></code>
-      <code><![CDATA[public function getUploadedFiles(): array]]></code>
-      <code><![CDATA[public function withAttribute(string $name, mixed $value): static]]></code>
-      <code><![CDATA[public function withCookieParams(array $cookies): static]]></code>
-      <code><![CDATA[public function withParsedBody(mixed $data): static]]></code>
-      <code><![CDATA[public function withQueryParams(array $query): static]]></code>
-      <code><![CDATA[public function withUploadedFiles(array $uploadedFiles): static]]></code>
-      <code><![CDATA[public function withoutAttribute(string $name): static]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[withParsedBody]]></code>
-    </MissingThrowsDocblock>
     <MixedArgumentTypeCoercion>
       <code><![CDATA[$headers]]></code>
     </MixedArgumentTypeCoercion>
-    <MixedPropertyTypeCoercion>
-      <code><![CDATA[$cookies]]></code>
-      <code><![CDATA[$query]]></code>
-      <code><![CDATA[$uploadedFiles]]></code>
-    </MixedPropertyTypeCoercion>
     <MixedReturnStatement>
       <code><![CDATA[$this->parsedBody]]></code>
     </MixedReturnStatement>
@@ -285,31 +834,6 @@
     <InvalidPropertyAssignmentValue>
       <code><![CDATA[$this->stream]]></code>
     </InvalidPropertyAssignmentValue>
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function close(): void]]></code>
-      <code><![CDATA[public function detach(): mixed]]></code>
-      <code><![CDATA[public function eof(): bool]]></code>
-      <code><![CDATA[public function getContents(): string]]></code>
-      <code><![CDATA[public function getMetadata(?string $key = null): mixed]]></code>
-      <code><![CDATA[public function getSize(): ?int]]></code>
-      <code><![CDATA[public function isReadable(): bool]]></code>
-      <code><![CDATA[public function isSeekable(): bool]]></code>
-      <code><![CDATA[public function isWritable(): bool]]></code>
-      <code><![CDATA[public function read(int $length): string]]></code>
-      <code><![CDATA[public function rewind(): void]]></code>
-      <code><![CDATA[public function seek(int $offset, int $whence = SEEK_SET): void]]></code>
-      <code><![CDATA[public function tell(): int]]></code>
-      <code><![CDATA[public function write(string $string): int]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[getContents]]></code>
-      <code><![CDATA[rewind]]></code>
-      <code><![CDATA[rewind]]></code>
-      <code><![CDATA[throw new InvalidArgumentException('Stream must be a resource.')]]></code>
-      <code><![CDATA[throw new RuntimeException('Cannot open php://temp stream.')]]></code>
-      <code><![CDATA[throw new RuntimeException('Stream is detached.')]]></code>
-      <code><![CDATA[write]]></code>
-    </MissingThrowsDocblock>
     <PossiblyUnusedReturnValue>
       <code><![CDATA[int]]></code>
       <code><![CDATA[mixed]]></code>
@@ -319,64 +843,917 @@
     </RedundantCast>
   </file>
   <file src="packages/http/src/Message/UploadedFile.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getClientFilename(): ?string]]></code>
-      <code><![CDATA[public function getClientMediaType(): ?string]]></code>
-      <code><![CDATA[public function getError(): int]]></code>
-      <code><![CDATA[public function getSize(): ?int]]></code>
-      <code><![CDATA[public function getStream(): StreamInterface]]></code>
-      <code><![CDATA[public function moveTo(string $targetPath): void]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw new RuntimeException('File has already been moved.')]]></code>
-      <code><![CDATA[throw new RuntimeException(sprintf('Uploaded file has error: %d', $this->error))]]></code>
-    </MissingThrowsDocblock>
     <UnusedClass>
       <code><![CDATA[UploadedFile]]></code>
     </UnusedClass>
   </file>
-  <file src="packages/http/src/Message/Uri.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function getAuthority(): string]]></code>
-      <code><![CDATA[public function getFragment(): string]]></code>
-      <code><![CDATA[public function getHost(): string]]></code>
-      <code><![CDATA[public function getPath(): string]]></code>
-      <code><![CDATA[public function getPort(): ?int]]></code>
-      <code><![CDATA[public function getQuery(): string]]></code>
-      <code><![CDATA[public function getScheme(): string]]></code>
-      <code><![CDATA[public function getUserInfo(): string]]></code>
-      <code><![CDATA[public function withFragment(string $fragment): static]]></code>
-      <code><![CDATA[public function withHost(string $host): static]]></code>
-      <code><![CDATA[public function withPath(string $path): static]]></code>
-      <code><![CDATA[public function withPort(?int $port): static]]></code>
-      <code><![CDATA[public function withQuery(string $query): static]]></code>
-      <code><![CDATA[public function withScheme(string $scheme): static]]></code>
-      <code><![CDATA[public function withUserInfo(string $user, ?string $password = null): static]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw new InvalidArgumentException(sprintf('Invalid port: %d', $port))]]></code>
-      <code><![CDATA[throw new InvalidArgumentException(sprintf('Unable to parse URI: %s', $uri))]]></code>
-    </MissingThrowsDocblock>
+  <file src="packages/http/src/Middleware/DebugbarMiddleware.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$response->getHeaders()]]></code>
+    </MixedArgumentTypeCoercion>
+    <UnusedClass>
+      <code><![CDATA[DebugbarMiddleware]]></code>
+    </UnusedClass>
   </file>
   <file src="packages/http/src/Middleware/MiddlewareAliasRegistry.php">
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw new InvalidArgumentException(sprintf('Middleware alias "%s" is not registered.', $alias))]]></code>
-    </MissingThrowsDocblock>
-    <MixedPropertyTypeCoercion>
-      <code><![CDATA[$this->aliases]]></code>
-    </MixedPropertyTypeCoercion>
     <PossiblyUnusedMethod>
       <code><![CDATA[has]]></code>
       <code><![CDATA[register]]></code>
     </PossiblyUnusedMethod>
   </file>
-  <file src="packages/http/src/Middleware/Pipeline.php">
-    <MissingOverrideAttribute>
-      <code><![CDATA[public function handle(ServerRequestInterface $request): ResponseInterface]]></code>
-    </MissingOverrideAttribute>
-    <MissingThrowsDocblock>
-      <code><![CDATA[throw new RuntimeException('Middleware pipeline exhausted with no fallback handler.')]]></code>
-    </MissingThrowsDocblock>
+  <file src="packages/http/src/Session/ArraySession.php">
+    <UnusedClass>
+      <code><![CDATA[ArraySession]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Session/FileSession.php">
+    <UnusedClass>
+      <code><![CDATA[FileSession]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/http/src/Session/SessionInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[all]]></code>
+      <code><![CDATA[flush]]></code>
+      <code><![CDATA[forget]]></code>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[has]]></code>
+      <code><![CDATA[regenerate]]></code>
+      <code><![CDATA[set]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/http/src/Session/SessionMiddleware.php">
+    <UnusedClass>
+      <code><![CDATA[SessionMiddleware]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/log/src/Handler/ArrayHandler.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayHandler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/log/src/Handler/NullHandler.php">
+    <UnusedClass>
+      <code><![CDATA[NullHandler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/log/src/Handler/StreamHandler.php">
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[resource]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnusedClass>
+      <code><![CDATA[StreamHandler]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/log/src/LogRecord.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$context]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="packages/log/src/Logger.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$context]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$val]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[pushHandler]]></code>
+    </PossiblyUnusedMethod>
+    <RedundantCast>
+      <code><![CDATA[(string) $val]]></code>
+    </RedundantCast>
+  </file>
+  <file src="packages/mail/src/AdvancedSmtpMailer.php">
+    <UnusedClass>
+      <code><![CDATA[AdvancedSmtpMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/ArrayMailer.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/MailgunMailer.php">
+    <UnusedClass>
+      <code><![CDATA[MailgunMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/PostmarkMailer.php">
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) json_encode([
+            'From'     => $this->from,
+            'To'       => $mailable->to(),
+            'Subject'  => $mailable->subject(),
+            'TextBody' => $mailable->text(),
+            'HtmlBody' => $mailable->html(),
+        ], JSON_THROW_ON_ERROR)]]></code>
+    </RedundantCastGivenDocblockType>
+    <UnusedClass>
+      <code><![CDATA[PostmarkMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/QueuedMailer.php">
+    <UnusedClass>
+      <code><![CDATA[QueuedMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/SesMailer.php">
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) json_encode([
+            'FromEmailAddress' => $this->from,
+            'Destination'      => ['ToAddresses' => [$mailable->to()]],
+            'Content'          => [
+                'Simple' => [
+                    'Subject' => ['Data' => $mailable->subject(), 'Charset' => 'UTF-8'],
+                    'Body'    => [
+                        'Text' => ['Data' => $mailable->text(), 'Charset' => 'UTF-8'],
+                        'Html' => ['Data' => $mailable->html(), 'Charset' => 'UTF-8'],
+                    ],
+                ],
+            ],
+        ], JSON_THROW_ON_ERROR)]]></code>
+    </RedundantCastGivenDocblockType>
+    <UnusedClass>
+      <code><![CDATA[SesMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/mail/src/Smtp/SmtpTransportInterface.php">
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[string]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="packages/mail/src/Smtp/StreamSmtpTransport.php">
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->socket]]></code>
+    </InvalidPropertyAssignmentValue>
+    <PossiblyFalsePropertyAssignmentValue>
+      <code><![CDATA[@fsockopen($host, $port, $errno, $errstr, 5.0)]]></code>
+    </PossiblyFalsePropertyAssignmentValue>
+  </file>
+  <file src="packages/mail/src/SmtpMailer.php">
+    <UnusedClass>
+      <code><![CDATA[SmtpMailer]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/migrations/src/Migration/Migration.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$connection]]></code>
+      <code><![CDATA[$schema]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="packages/migrations/src/Migration/Migrator.php">
+    <InvalidStringClass>
+      <code><![CDATA[new $class()]]></code>
+    </InvalidStringClass>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[new $class()]]></code>
+    </LessSpecificReturnStatement>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[array_column($rows, 'migration')]]></code>
+      <code><![CDATA[array_column($rows, 'migration')]]></code>
+      <code><![CDATA[string[]]]></code>
+      <code><![CDATA[string[]]]></code>
+    </MixedReturnTypeCoercion>
+    <MoreSpecificReturnType>
+      <code><![CDATA[Migration]]></code>
+    </MoreSpecificReturnType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[file_get_contents($file)]]></code>
+      <code><![CDATA[glob($this->migrationsPath . '/*.php')]]></code>
+    </RiskyTruthyFalsyComparison>
+    <UnresolvableInclude>
+      <code><![CDATA[require_once $file]]></code>
+    </UnresolvableInclude>
+    <UnusedClass>
+      <code><![CDATA[Migrator]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/migrations/src/Schema/Blueprint.php">
+    <MixedAssignment>
+      <code><![CDATA[$name]]></code>
+    </MixedAssignment>
+    <MixedOperand>
+      <code><![CDATA[$col['name']]]></code>
+      <code><![CDATA[$col['type']]]></code>
+      <code><![CDATA[$name]]></code>
+      <code><![CDATA[is_string($col['default']) ? "'" . $col['default'] . "'" : $col['default']]]></code>
+    </MixedOperand>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[default]]></code>
+      <code><![CDATA[id]]></code>
+      <code><![CDATA[nullable]]></code>
+      <code><![CDATA[softDeletes]]></code>
+      <code><![CDATA[string]]></code>
+      <code><![CDATA[timestamps]]></code>
+      <code><![CDATA[unique]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/migrations/src/Schema/Schema.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[drop]]></code>
+      <code><![CDATA[hasTable]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/octane/src/Adapter/RoadRunnerRuntime.php">
+    <UnusedClass>
+      <code><![CDATA[RoadRunnerRuntime]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/octane/src/Adapter/SwooleRuntime.php">
+    <UnusedClass>
+      <code><![CDATA[SwooleRuntime]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/octane/src/Lifecycle/OctaneLifecycleHooks.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[onRequestEnd]]></code>
+      <code><![CDATA[onRequestStart]]></code>
+      <code><![CDATA[onWorkerStart]]></code>
+      <code><![CDATA[onWorkerStop]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/octane/src/Octane.php">
+    <UnusedClass>
+      <code><![CDATA[Octane]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/octane/src/Worker/OctaneHttpKernelBridge.php">
+    <UnusedClass>
+      <code><![CDATA[OctaneHttpKernelBridge]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/octane/src/Worker/OctaneWorker.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[boot]]></code>
+      <code><![CDATA[handle]]></code>
+      <code><![CDATA[hooks]]></code>
+      <code><![CDATA[stop]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Connection/ClickHouseConnection.php">
+    <InvalidOperand>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+    </InvalidOperand>
+    <MixedAssignment>
+      <code><![CDATA[$binding]]></code>
+      <code><![CDATA[$decoded]]></code>
+    </MixedAssignment>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[$rows]]></code>
+      <code><![CDATA[array<int, array<string, mixed>>]]></code>
+    </MixedReturnTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Connection/Connection.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[Connection]]></code>
+    </ClassMustBeFinal>
+    <UnusedClass>
+      <code><![CDATA[Connection]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/orm/src/Connection/ConnectionInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[enableQueryLog]]></code>
+      <code><![CDATA[flushQueryLog]]></code>
+      <code><![CDATA[getQueryLog]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[T]]></code>
+      <code><![CDATA[bool]]></code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="packages/orm/src/Connection/ConnectionPool.php">
+    <UnusedClass>
+      <code><![CDATA[ConnectionPool]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/orm/src/Connection/CurlHttpClient.php">
+    <MixedArgument>
+      <code><![CDATA[$httpCode]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$httpCode]]></code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/orm/src/Connection/MongoConnection.php">
+    <ClassMustBeFinal>
+      <code><![CDATA[MongoConnection]]></code>
+    </ClassMustBeFinal>
+    <MixedAssignment>
+      <code><![CDATA[$this->database]]></code>
+      <code><![CDATA[$this->session]]></code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code><![CDATA[startTransaction]]></code>
+    </MixedMethodCall>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[getDatabase]]></code>
+      <code><![CDATA[getSession]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedParam>
+      <code><![CDATA[$name]]></code>
+    </PossiblyUnusedParam>
+    <UndefinedClass>
+      <code><![CDATA[\MongoDB\Client]]></code>
+    </UndefinedClass>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$client]]></code>
+      <code><![CDATA[$client]]></code>
+      <code><![CDATA[$manager]]></code>
+      <code><![CDATA[$manager]]></code>
+      <code><![CDATA[$this->database]]></code>
+      <code><![CDATA[$this->session]]></code>
+      <code><![CDATA[$this->session]]></code>
+      <code><![CDATA[?object]]></code>
+      <code><![CDATA[\MongoDB\Collection]]></code>
+      <code><![CDATA[\MongoDB\Database]]></code>
+      <code><![CDATA[\MongoDB\Driver\Session|null]]></code>
+      <code><![CDATA[object]]></code>
+      <code><![CDATA[private ?object $session = null;]]></code>
+    </UndefinedDocblockClass>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[\MongoDB\Client]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnusedProperty>
+      <code><![CDATA[$databaseName]]></code>
+      <code><![CDATA[$uri]]></code>
+    </UnusedProperty>
+  </file>
+  <file src="packages/orm/src/Connection/PdoConnection.php">
+    <InvalidOperand>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+    </InvalidOperand>
+    <MixedAssignment>
+      <code><![CDATA[$result]]></code>
+    </MixedAssignment>
+    <MixedReturnStatement>
+      <code><![CDATA[$result !== false ? $result : null]]></code>
+      <code><![CDATA[$result !== false ? $result : null]]></code>
+    </MixedReturnStatement>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[$statement->fetchAll()]]></code>
+      <code><![CDATA[array<int, array<string, mixed>>]]></code>
+    </MixedReturnTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[mysql]]></code>
+      <code><![CDATA[pgsql]]></code>
+      <code><![CDATA[sqlite]]></code>
+    </PossiblyUnusedMethod>
+    <UnsafeInstantiation>
+      <code><![CDATA[new static(
+            sprintf('mysql:host=%s;port=%d;dbname=%s;charset=utf8mb4', $host, $port, $database),
+            $username,
+            $password,
+        )]]></code>
+      <code><![CDATA[new static(
+            sprintf('pgsql:host=%s;port=%d;dbname=%s', $host, $port, $database),
+            $username,
+            $password,
+        )]]></code>
+      <code><![CDATA[new static('sqlite:' . $path)]]></code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/orm/src/Connection/SqlConnectionInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getDriver]]></code>
+      <code><![CDATA[getPdo]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Exception/QueryException.php">
+    <PossiblyFalseArgument>
+      <code><![CDATA[json_encode($bindings)]]></code>
+    </PossiblyFalseArgument>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getBindings]]></code>
+      <code><![CDATA[getSql]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Factory/FakerGenerator.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[boolean]]></code>
+      <code><![CDATA[date]]></code>
+      <code><![CDATA[email]]></code>
+      <code><![CDATA[firstName]]></code>
+      <code><![CDATA[hexColor]]></code>
+      <code><![CDATA[ipv4]]></code>
+      <code><![CDATA[lastName]]></code>
+      <code><![CDATA[name]]></code>
+      <code><![CDATA[paragraph]]></code>
+      <code><![CDATA[randomElement]]></code>
+      <code><![CDATA[randomFloat]]></code>
+      <code><![CDATA[randomNumber]]></code>
+      <code><![CDATA[timestamp]]></code>
+      <code><![CDATA[title]]></code>
+      <code><![CDATA[unique]]></code>
+      <code><![CDATA[url]]></code>
+      <code><![CDATA[username]]></code>
+      <code><![CDATA[uuid]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Factory/ModelFactory.php">
+    <InvalidDocblock>
+      <code><![CDATA[public function makeRaw(array $override = []): array]]></code>
+    </InvalidDocblock>
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$clone->afterMaking]]></code>
+    </InvalidPropertyAssignmentValue>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$override]]></code>
+      <code><![CDATA[$override]]></code>
+    </MixedArgumentTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[afterCreating]]></code>
+      <code><![CDATA[afterMaking]]></code>
+      <code><![CDATA[count]]></code>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[make]]></code>
+      <code><![CDATA[makeRaw]]></code>
+      <code><![CDATA[new]]></code>
+      <code><![CDATA[state]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$faker]]></code>
+    </PossiblyUnusedProperty>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$model]]></code>
+    </PropertyNotSetInConstructor>
+    <TooFewArguments>
+      <code><![CDATA[$callback($attrs)]]></code>
+    </TooFewArguments>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[TModel]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnsafeGenericInstantiation>
+      <code><![CDATA[new static()]]></code>
+    </UnsafeGenericInstantiation>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $this->model()]]></code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/orm/src/Migration/Migration.php">
+    <PossiblyUnusedProperty>
+      <code><![CDATA[$connection]]></code>
+      <code><![CDATA[$schema]]></code>
+    </PossiblyUnusedProperty>
+  </file>
+  <file src="packages/orm/src/Migration/Migrator.php">
+    <InvalidStringClass>
+      <code><![CDATA[new $class()]]></code>
+    </InvalidStringClass>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[new $class()]]></code>
+    </LessSpecificReturnStatement>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[array_column($rows, 'migration')]]></code>
+      <code><![CDATA[array_column($rows, 'migration')]]></code>
+      <code><![CDATA[string[]]]></code>
+      <code><![CDATA[string[]]]></code>
+    </MixedReturnTypeCoercion>
+    <MoreSpecificReturnType>
+      <code><![CDATA[Migration]]></code>
+    </MoreSpecificReturnType>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[file_get_contents($file)]]></code>
+      <code><![CDATA[glob($this->migrationsPath . '/*.php')]]></code>
+    </RiskyTruthyFalsyComparison>
+    <UnresolvableInclude>
+      <code><![CDATA[require_once $file]]></code>
+    </UnresolvableInclude>
+    <UnusedClass>
+      <code><![CDATA[Migrator]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/orm/src/Model/Model.php">
+    <InvalidStringClass>
+      <code><![CDATA[new $observer()]]></code>
+    </InvalidStringClass>
+    <MixedAssignment>
+      <code><![CDATA[$dirty[$key]]]></code>
+      <code><![CDATA[$relation]]></code>
+      <code><![CDATA[$value]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code><![CDATA[$method]]></code>
+    </MixedMethodCall>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__get]]></code>
+      <code><![CDATA[__set]]></code>
+      <code><![CDATA[addGlobalScope]]></code>
+      <code><![CDATA[belongsTo]]></code>
+      <code><![CDATA[belongsToMany]]></code>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[delete]]></code>
+      <code><![CDATA[findOrFail]]></code>
+      <code><![CDATA[forceCreate]]></code>
+      <code><![CDATA[getAttributes]]></code>
+      <code><![CDATA[hasMany]]></code>
+      <code><![CDATA[hasOne]]></code>
+      <code><![CDATA[isDirty]]></code>
+      <code><![CDATA[morphTo]]></code>
+      <code><![CDATA[observe]]></code>
+      <code><![CDATA[onlyTrashed]]></code>
+      <code><![CDATA[preventLazyLoading]]></code>
+      <code><![CDATA[restore]]></code>
+      <code><![CDATA[setAttribute]]></code>
+      <code><![CDATA[setConnection]]></code>
+      <code><![CDATA[setDefaultConnection]]></code>
+      <code><![CDATA[setLazyLoadingWarningHandler]]></code>
+      <code><![CDATA[update]]></code>
+      <code><![CDATA[warnOnLazyLoading]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[withScope]]></code>
+      <code><![CDATA[withTrashed]]></code>
+    </PossiblyUnusedMethod>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $related()]]></code>
+      <code><![CDATA[new $related()]]></code>
+      <code><![CDATA[new $related()]]></code>
+      <code><![CDATA[new $related()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+      <code><![CDATA[new static()]]></code>
+    </UnsafeInstantiation>
+    <UnusedVariable>
+      <code><![CDATA[$instance]]></code>
+      <code><![CDATA[$instance]]></code>
+    </UnusedVariable>
+  </file>
+  <file src="packages/orm/src/Model/Relations/BelongsTo.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$related]]></code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="packages/orm/src/Model/Relations/BelongsToMany.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$related]]></code>
+    </ArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$parentId]]></code>
+      <code><![CDATA[$parentId]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[attach]]></code>
+      <code><![CDATA[detach]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Model/Relations/HasMany.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$related]]></code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="packages/orm/src/Model/Relations/HasOne.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$related]]></code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="packages/orm/src/Model/Relations/MorphTo.php">
+    <MixedAssignment>
+      <code><![CDATA[$id]]></code>
+    </MixedAssignment>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[class-string<Model>]]></code>
+    </UnnecessaryVarAnnotation>
+  </file>
+  <file src="packages/orm/src/Model/Relations/Relation.php">
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[Model]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $related()]]></code>
+      <code><![CDATA[new $this->related()]]></code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/orm/src/Pagination/Paginator.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[count]]></code>
+      <code><![CDATA[currentPage]]></code>
+      <code><![CDATA[isNotEmpty]]></code>
+      <code><![CDATA[items]]></code>
+      <code><![CDATA[nextPage]]></code>
+      <code><![CDATA[onFirstPage]]></code>
+      <code><![CDATA[perPage]]></code>
+      <code><![CDATA[previousPage]]></code>
+      <code><![CDATA[toJson]]></code>
+      <code><![CDATA[total]]></code>
+    </PossiblyUnusedMethod>
+    <RedundantCastGivenDocblockType>
+      <code><![CDATA[(string) json_encode($this->toArray(), JSON_THROW_ON_ERROR)]]></code>
+    </RedundantCastGivenDocblockType>
+  </file>
+  <file src="packages/orm/src/Query/Builder.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$items]]></code>
+    </ArgumentTypeCoercion>
+    <ClassMustBeFinal>
+      <code><![CDATA[Builder]]></code>
+    </ClassMustBeFinal>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[Paginator<array<string, mixed>>]]></code>
+      <code><![CDATA[new Paginator($items, $total, $perPage, $page)]]></code>
+    </MixedReturnTypeCoercion>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[addSelect]]></code>
+      <code><![CDATA[distinct]]></code>
+      <code><![CDATA[doesntExist]]></code>
+      <code><![CDATA[getEagerLoads]]></code>
+      <code><![CDATA[groupBy]]></code>
+      <code><![CDATA[having]]></code>
+      <code><![CDATA[havingRaw]]></code>
+      <code><![CDATA[joinUsing]]></code>
+      <code><![CDATA[leftJoin]]></code>
+      <code><![CDATA[orWhere]]></code>
+      <code><![CDATA[orderByDesc]]></code>
+      <code><![CDATA[paginate]]></code>
+      <code><![CDATA[raw]]></code>
+      <code><![CDATA[rightJoin]]></code>
+      <code><![CDATA[select]]></code>
+      <code><![CDATA[skip]]></code>
+      <code><![CDATA[take]]></code>
+      <code><![CDATA[whereBetween]]></code>
+      <code><![CDATA[whereNotIn]]></code>
+      <code><![CDATA[whereRaw]]></code>
+      <code><![CDATA[with]]></code>
+    </PossiblyUnusedMethod>
+    <PossiblyUnusedReturnValue>
+      <code><![CDATA[static]]></code>
+    </PossiblyUnusedReturnValue>
+    <UnsafeInstantiation>
+      <code><![CDATA[new static($this->connection)]]></code>
+    </UnsafeInstantiation>
+    <UnusedProperty>
+      <code><![CDATA[$bindings]]></code>
+      <code><![CDATA[$onlyTrashed]]></code>
+    </UnusedProperty>
+  </file>
+  <file src="packages/orm/src/Query/GrammarInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[quoteIdentifier]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Query/JoinClause.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[orOn]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Query/MongoBuilder.php">
+    <InvalidOperand>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+      <code><![CDATA[(microtime(true) - $start) * 1000]]></code>
+    </InvalidOperand>
+    <MixedArgument>
+      <code><![CDATA[$result->getInsertedIds()]]></code>
+      <code><![CDATA[$result->getInsertedIds()]]></code>
+    </MixedArgument>
+    <MixedArrayAccess>
+      <code><![CDATA[$result->getInsertedIds()]]></code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code><![CDATA[$count]]></code>
+      <code><![CDATA[$cursor]]></code>
+      <code><![CDATA[$cursor]]></code>
+      <code><![CDATA[$doc]]></code>
+      <code><![CDATA[$doc]]></code>
+      <code><![CDATA[$doc]]></code>
+      <code><![CDATA[$id]]></code>
+      <code><![CDATA[$result]]></code>
+      <code><![CDATA[$result]]></code>
+      <code><![CDATA[$result]]></code>
+      <code><![CDATA[$result]]></code>
+      <code><![CDATA[$result]]></code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code><![CDATA[getDeletedCount]]></code>
+      <code><![CDATA[getInsertedId]]></code>
+      <code><![CDATA[getInsertedIds]]></code>
+      <code><![CDATA[getModifiedCount]]></code>
+      <code><![CDATA[getModifiedCount]]></code>
+    </MixedMethodCall>
+    <MixedReturnStatement>
+      <code><![CDATA[$count]]></code>
+      <code><![CDATA[$result->getDeletedCount()]]></code>
+      <code><![CDATA[$result->getModifiedCount()]]></code>
+      <code><![CDATA[$result->getModifiedCount()]]></code>
+    </MixedReturnStatement>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[aggregate]]></code>
+      <code><![CDATA[delete]]></code>
+      <code><![CDATA[exists]]></code>
+      <code><![CDATA[first]]></code>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[insert]]></code>
+      <code><![CDATA[insertMany]]></code>
+      <code><![CDATA[limit]]></code>
+      <code><![CDATA[offset]]></code>
+      <code><![CDATA[orderByDesc]]></code>
+      <code><![CDATA[replace]]></code>
+      <code><![CDATA[select]]></code>
+      <code><![CDATA[table]]></code>
+      <code><![CDATA[update]]></code>
+      <code><![CDATA[where]]></code>
+      <code><![CDATA[whereBetween]]></code>
+      <code><![CDATA[whereIn]]></code>
+      <code><![CDATA[whereNotIn]]></code>
+      <code><![CDATA[whereNotNull]]></code>
+      <code><![CDATA[whereNull]]></code>
+      <code><![CDATA[whereRaw]]></code>
+    </PossiblyUnusedMethod>
+    <UndefinedClass>
+      <code><![CDATA[\MongoDB\BSON\Regex]]></code>
+      <code><![CDATA[\MongoDB\Model\BSONDocument]]></code>
+    </UndefinedClass>
+    <UndefinedDocblockClass>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+      <code><![CDATA[$this->connection->collection($this->collection)]]></code>
+    </UndefinedDocblockClass>
+  </file>
+  <file src="packages/orm/src/Schema/Blueprint.php">
+    <MixedAssignment>
+      <code><![CDATA[$columnName]]></code>
+    </MixedAssignment>
+    <MixedOperand>
+      <code><![CDATA[$col['name']]]></code>
+      <code><![CDATA[$col['type']]]></code>
+      <code><![CDATA[$columnName]]></code>
+      <code><![CDATA[is_string($col['default']) ? "'" . $col['default'] . "'" : $col['default']]]></code>
+    </MixedOperand>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[bigIncrements]]></code>
+      <code><![CDATA[bigInteger]]></code>
+      <code><![CDATA[boolean]]></code>
+      <code><![CDATA[decimal]]></code>
+      <code><![CDATA[default]]></code>
+      <code><![CDATA[float]]></code>
+      <code><![CDATA[foreign]]></code>
+      <code><![CDATA[index]]></code>
+      <code><![CDATA[integer]]></code>
+      <code><![CDATA[json]]></code>
+      <code><![CDATA[nullable]]></code>
+      <code><![CDATA[on]]></code>
+      <code><![CDATA[onDelete]]></code>
+      <code><![CDATA[references]]></code>
+      <code><![CDATA[softDeletes]]></code>
+      <code><![CDATA[string]]></code>
+      <code><![CDATA[text]]></code>
+      <code><![CDATA[timestamps]]></code>
+      <code><![CDATA[toDropSql]]></code>
+      <code><![CDATA[unique]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Schema/Schema.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[create]]></code>
+      <code><![CDATA[dropIfExists]]></code>
+      <code><![CDATA[hasTable]]></code>
+      <code><![CDATA[rename]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/orm/src/Seeder/Seeder.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[callAll]]></code>
+    </PossiblyUnusedMethod>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $class()]]></code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/orm/src/Seeder/SeederRunner.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[discover]]></code>
+      <code><![CDATA[register]]></code>
+      <code><![CDATA[runAll]]></code>
+    </PossiblyUnusedMethod>
+    <RiskyTruthyFalsyComparison>
+      <code><![CDATA[glob(rtrim($directory, '/') . '/*.php')]]></code>
+    </RiskyTruthyFalsyComparison>
+    <UnnecessaryVarAnnotation>
+      <code><![CDATA[class-string<Seeder>]]></code>
+    </UnnecessaryVarAnnotation>
+    <UnresolvableInclude>
+      <code><![CDATA[require_once $file]]></code>
+    </UnresolvableInclude>
+    <UnsafeInstantiation>
+      <code><![CDATA[new $class()]]></code>
+    </UnsafeInstantiation>
+  </file>
+  <file src="packages/queue/src/Backoff/ExponentialBackoffStrategy.php">
+    <InvalidOperand>
+      <code><![CDATA[$this->baseDelaySeconds * (2 ** max($attempt - 1, 0))]]></code>
+    </InvalidOperand>
+    <InvalidReturnStatement>
+      <code><![CDATA[min($value, $this->maxDelaySeconds)]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[int]]></code>
+    </InvalidReturnType>
+  </file>
+  <file src="packages/queue/src/Batch/Batch.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[add]]></code>
+      <code><![CDATA[catch]]></code>
+      <code><![CDATA[dispatch]]></code>
+      <code><![CDATA[failedCount]]></code>
+      <code><![CDATA[finally]]></code>
+      <code><![CDATA[isFinished]]></code>
+      <code><![CDATA[processedCount]]></code>
+      <code><![CDATA[then]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/queue/src/DatabaseQueue.php">
+    <MixedArgument>
+      <code><![CDATA[unserialize((string) $row['payload'])]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$decoded]]></code>
+    </MixedAssignment>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[array<int, array<string, mixed>>]]></code>
+      <code><![CDATA[is_array($decoded) ? $decoded : []]]></code>
+    </MixedReturnTypeCoercion>
+    <PossiblyFalseArgument>
+      <code><![CDATA[json_encode([])]]></code>
+    </PossiblyFalseArgument>
+    <UnusedClass>
+      <code><![CDATA[DatabaseQueue]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/queue/src/DeadLetterQueue.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[all]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/queue/src/FailedJobStore.php">
+    <MixedArrayAccess>
+      <code><![CDATA[$row['job']]]></code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code><![CDATA[$row]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[all]]></code>
+      <code><![CDATA[count]]></code>
+      <code><![CDATA[createSchema]]></code>
+      <code><![CDATA[delete]]></code>
+      <code><![CDATA[flush]]></code>
+      <code><![CDATA[retry]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/queue/src/InMemoryQueue.php">
+    <UnusedClass>
+      <code><![CDATA[InMemoryQueue]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/queue/src/RedisQueue.php">
+    <MixedAssignment>
+      <code><![CDATA[$payload]]></code>
+    </MixedAssignment>
+    <UndefinedClass>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[$this->redis]]></code>
+      <code><![CDATA[private]]></code>
+    </UndefinedClass>
+    <UnusedClass>
+      <code><![CDATA[RedisQueue]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/queue/src/SyncQueue.php">
+    <UnusedClass>
+      <code><![CDATA[SyncQueue]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/queue/src/Worker.php">
+    <UnusedClass>
+      <code><![CDATA[Worker]]></code>
+    </UnusedClass>
   </file>
   <file src="packages/routing/src/Attributes/Route.php">
     <PossiblyUnusedMethod>
@@ -400,6 +1777,21 @@
       <code><![CDATA[AttributeRouteLoader]]></code>
     </UnusedClass>
   </file>
+  <file src="packages/routing/src/RateLimit/ArrayRateLimiter.php">
+    <UnusedClass>
+      <code><![CDATA[ArrayRateLimiter]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/routing/src/RateLimit/RateLimitMiddleware.php">
+    <UnusedClass>
+      <code><![CDATA[RateLimitMiddleware]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/routing/src/RateLimit/RateLimiterInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[reset]]></code>
+    </PossiblyUnusedMethod>
+  </file>
   <file src="packages/routing/src/Route.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[middleware]]></code>
@@ -411,9 +1803,6 @@
     </PossiblyUnusedMethod>
   </file>
   <file src="packages/routing/src/RouteGroup.php">
-    <MixedPropertyTypeCoercion>
-      <code><![CDATA[$middleware]]></code>
-    </MixedPropertyTypeCoercion>
     <PossiblyUnusedMethod>
       <code><![CDATA[delete]]></code>
       <code><![CDATA[get]]></code>
@@ -430,17 +1819,263 @@
     <PossiblyUnusedMethod>
       <code><![CDATA[__construct]]></code>
       <code><![CDATA[any]]></code>
+      <code><![CDATA[api]]></code>
       <code><![CDATA[getCollection]]></code>
       <code><![CDATA[getUrlGenerator]]></code>
       <code><![CDATA[group]]></code>
       <code><![CDATA[match]]></code>
+      <code><![CDATA[name]]></code>
       <code><![CDATA[options]]></code>
       <code><![CDATA[resource]]></code>
     </PossiblyUnusedMethod>
+    <RedundantCast>
+      <code><![CDATA[(string) $version]]></code>
+    </RedundantCast>
   </file>
   <file src="packages/routing/src/UrlGenerator.php">
     <PossiblyUnusedMethod>
       <code><![CDATA[generate]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/Browser/BrowserTestCase.php">
+    <MixedReturnStatement>
+      <code><![CDATA[call_user_func(['Symfony\\Component\\Panther\\Client', 'createChromeClient'])]]></code>
+    </MixedReturnStatement>
+    <UnusedClass>
+      <code><![CDATA[BrowserTestCase]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/testing/src/HttpTestClient.php">
+    <MixedArgument>
+      <code><![CDATA[$result['body'] ?? '']]></code>
+      <code><![CDATA[$result['json'] ?? []]]></code>
+      <code><![CDATA[$result['status']]]></code>
+    </MixedArgument>
+    <MixedArrayAccess>
+      <code><![CDATA[$result['body']]]></code>
+      <code><![CDATA[$result['json']]]></code>
+      <code><![CDATA[$result['status']]]></code>
+    </MixedArrayAccess>
+    <MixedAssignment>
+      <code><![CDATA[$result]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[post]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/KernelHttpTestClient.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[is_array($decoded) ? $decoded : []]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$decoded]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[post]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/Mock/ExpectationBuilder.php">
+    <PossiblyFalseArgument>
+      <code><![CDATA[json_encode($args)]]></code>
+      <code><![CDATA[json_encode($this->expectedArgs)]]></code>
+    </PossiblyFalseArgument>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[andReturnNull]]></code>
+      <code><![CDATA[andReturnUsing]]></code>
+      <code><![CDATA[atLeast]]></code>
+      <code><![CDATA[getMethod]]></code>
+      <code><![CDATA[never]]></code>
+      <code><![CDATA[once]]></code>
+      <code><![CDATA[times]]></code>
+      <code><![CDATA[twice]]></code>
+      <code><![CDATA[with]]></code>
+      <code><![CDATA[zeroOrMoreTimes]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/Mock/Mock.php">
+    <UnusedClass>
+      <code><![CDATA[Mock]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/testing/src/Mock/MockBuilder.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$target]]></code>
+    </ArgumentTypeCoercion>
+    <InvalidDocblock>
+      <code><![CDATA[class-string<object>]]></code>
+    </InvalidDocblock>
+    <InvalidStringClass>
+      <code><![CDATA[new $proxyClass()]]></code>
+    </InvalidStringClass>
+    <MixedAssignment>
+      <code><![CDATA[$default]]></code>
+    </MixedAssignment>
+  </file>
+  <file src="packages/testing/src/Mock/MockProxy.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[callArgs]]></code>
+      <code><![CDATA[callCount]]></code>
+      <code><![CDATA[expects]]></code>
+      <code><![CDATA[handleCall]]></code>
+      <code><![CDATA[verify]]></code>
+      <code><![CDATA[wasCalled]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/RoutingHttpTestClient.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[function (ServerRequest $request) use ($route, $match): ResponseInterface {
+            $result = $this->invokeRouteHandler($route->getHandler(), $request, $match->params);
+
+            return $this->normalizeResult($result);
+        }]]></code>
+    </ArgumentTypeCoercion>
+    <InvalidStringClass>
+      <code><![CDATA[new $handler[0]()]]></code>
+    </InvalidStringClass>
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$json]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$args[]]]></code>
+      <code><![CDATA[$decoded]]></code>
+      <code><![CDATA[$result]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[get]]></code>
+      <code><![CDATA[post]]></code>
+      <code><![CDATA[withMiddleware]]></code>
+    </PossiblyUnusedMethod>
+    <RedundantCast>
+      <code><![CDATA[(string) $handler[1]]]></code>
+    </RedundantCast>
+    <TooManyArguments>
+      <code><![CDATA[$handler]]></code>
+    </TooManyArguments>
+  </file>
+  <file src="packages/testing/src/TestCase.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[client]]></code>
+      <code><![CDATA[kernelClient]]></code>
+      <code><![CDATA[mock]]></code>
+      <code><![CDATA[response]]></code>
+      <code><![CDATA[routingClient]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/testing/src/TestResponse.php">
+    <MixedAssignment>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[assertBodyContains]]></code>
+      <code><![CDATA[assertJson]]></code>
+      <code><![CDATA[assertMatchesSnapshot]]></code>
+      <code><![CDATA[assertStatus]]></code>
+      <code><![CDATA[body]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/validation/src/Attribute/Max.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/validation/src/Attribute/Min.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/validation/src/AttributeValidator.php">
+    <MixedAssignment>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <UnusedClass>
+      <code><![CDATA[AttributeValidator]]></code>
+    </UnusedClass>
+    <UnusedMethodCall>
+      <code><![CDATA[setAccessible]]></code>
+    </UnusedMethodCall>
+  </file>
+  <file src="packages/validation/src/Exception/ValidationException.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[getResult]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/validation/src/FormRequest.php">
+    <UnusedClass>
+      <code><![CDATA[FormRequest]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/validation/src/Presence/InMemoryPresenceVerifier.php">
+    <UnusedClass>
+      <code><![CDATA[InMemoryPresenceVerifier]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/validation/src/ValidationResult.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[errorsFor]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/validation/src/Validator.php">
+    <InvalidArgument>
+      <code><![CDATA[[
+            'en' => require __DIR__ . '/Translation/lang/en.php',
+            'ru' => require __DIR__ . '/Translation/lang/ru.php',
+        ]]]></code>
+    </InvalidArgument>
+    <MixedArgument>
+      <code><![CDATA[$rule]]></code>
+      <code><![CDATA[$rule]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$rule]]></code>
+      <code><![CDATA[$value]]></code>
+    </MixedAssignment>
+    <PossiblyUnusedMethod>
+      <code><![CDATA[make]]></code>
+      <code><![CDATA[setAttributeNames]]></code>
+      <code><![CDATA[setLocale]]></code>
+      <code><![CDATA[setMessages]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/view/src/Compiler.php">
+    <InvalidDocblock>
+      <code><![CDATA[final class Compiler]]></code>
+    </InvalidDocblock>
+  </file>
+  <file src="packages/view/src/ComponentRegistry.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[autoDiscover]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/view/src/ViewEngine.php">
+    <UnresolvableInclude>
+      <code><![CDATA[include $compiledFile]]></code>
+    </UnresolvableInclude>
+    <UnusedClass>
+      <code><![CDATA[ViewEngine]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/websocket/src/Adapter/RatchetAdapter.php">
+    <UnusedClass>
+      <code><![CDATA[RatchetAdapter]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/websocket/src/Adapter/SwooleAdapter.php">
+    <UnusedClass>
+      <code><![CDATA[SwooleAdapter]]></code>
+    </UnusedClass>
+  </file>
+  <file src="packages/websocket/src/ConnectionInterface.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[close]]></code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="packages/websocket/src/WebSocketServer.php">
+    <PossiblyUnusedMethod>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[broadcast]]></code>
+      <code><![CDATA[countConnections]]></code>
     </PossiblyUnusedMethod>
   </file>
 </files>

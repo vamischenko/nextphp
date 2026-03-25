@@ -23,6 +23,9 @@ class Container implements ContainerInterface
     /** @var ServiceProviderInterface[] */
     private array $providers = [];
 
+    /** @var CompilerPassInterface[] */
+    private array $compilerPasses = [];
+
     private bool $booted = false;
 
     private ReflectionResolver $resolver;
@@ -145,6 +148,11 @@ class Container implements ContainerInterface
         $this->providers[] = $provider;
     }
 
+    public function addCompilerPass(CompilerPassInterface $pass): void
+    {
+        $this->compilerPasses[] = $pass;
+    }
+
     public function boot(): void
     {
         if ($this->booted) {
@@ -153,6 +161,10 @@ class Container implements ContainerInterface
 
         foreach ($this->providers as $provider) {
             $provider->register($this);
+        }
+
+        foreach ($this->compilerPasses as $pass) {
+            $pass->process($this, $this->bindings);
         }
 
         foreach ($this->providers as $provider) {

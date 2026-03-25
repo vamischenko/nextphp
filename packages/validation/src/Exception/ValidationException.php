@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace Nextphp\Validation\Exception;
 
 use Nextphp\Validation\ValidationResult;
-use RuntimeException;
 
-final class ValidationException extends RuntimeException
+final class ValidationException extends \Nextphp\Core\Exception\NextphpException
 {
     public function __construct(
         private readonly ValidationResult $result,

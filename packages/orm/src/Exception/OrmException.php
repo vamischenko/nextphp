@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Nextphp\Orm\Exception;
 
-use RuntimeException;
+use Nextphp\Core\Exception\NextphpException;
 
-class OrmException extends RuntimeException
+class OrmException extends NextphpException
 {
 }
