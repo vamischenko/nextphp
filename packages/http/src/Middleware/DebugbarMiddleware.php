@@ -42,7 +42,7 @@ final class DebugbarMiddleware implements MiddlewareInterface
             );
         }
 
-        if (! $this->injectHtml) {
+        if (!$this->injectHtml) {
             return $response;
         }
 
@@ -79,15 +79,14 @@ final class DebugbarMiddleware implements MiddlewareInterface
 
         return sprintf(
             <<<'HTML'
-<div style="position:fixed;left:0;right:0;bottom:0;z-index:2147483647;background:#111827;color:#e5e7eb;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;padding:8px 12px;box-shadow:0 -6px 24px rgba(0,0,0,.25);">
-  <span style="font-weight:700;">Nextphp Debugbar</span>
-  <span style="margin-left:12px;">time: <b>%s ms</b></span>
-  <span style="margin-left:12px;">peak mem: <b>%s MB</b></span>
-</div>
-HTML,
+                <div style="position:fixed;left:0;right:0;bottom:0;z-index:2147483647;background:#111827;color:#e5e7eb;font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;padding:8px 12px;box-shadow:0 -6px 24px rgba(0,0,0,.25);">
+                  <span style="font-weight:700;">Nextphp Debugbar</span>
+                  <span style="margin-left:12px;">time: <b>%s ms</b></span>
+                  <span style="margin-left:12px;">peak mem: <b>%s MB</b></span>
+                </div>
+                HTML,
             number_format($elapsedMs, 3, '.', ''),
             number_format($memMb, 2, '.', ''),
         );
     }
 }
-

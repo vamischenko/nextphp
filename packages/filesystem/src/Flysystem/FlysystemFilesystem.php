@@ -42,7 +42,7 @@ final class FlysystemFilesystem implements FilesystemInterface
         /** @psalm-suppress UndefinedMethod */
         $publicUrl = $this->fs->publicUrl($path);
 
-        if (is_string($publicUrl) && $publicUrl !== '') {
+        if ($publicUrl !== '') {
             return $publicUrl;
         }
 

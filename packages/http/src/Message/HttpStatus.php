@@ -88,4 +88,3 @@ enum HttpStatus: int
         return self::tryFrom($code)?->phrase() ?? '';
     }
 }
-

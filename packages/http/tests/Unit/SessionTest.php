@@ -84,7 +84,8 @@ final class SessionTest extends TestCase
     private function makeTempDir(): string
     {
         $dir = sys_get_temp_dir() . '/nextphp_sess_' . uniqid();
-        mkdir($dir, 0755, true);
+        mkdir($dir, 0o755, true);
+
         return $dir;
     }
 
@@ -92,7 +93,7 @@ final class SessionTest extends TestCase
     public function fileSessionPersistsData(): void
     {
         $dir = $this->makeTempDir();
-        $id  = 'test-session-id';
+        $id = 'test-session-id';
 
         $session = new FileSession($dir, $id);
         $session->start();
@@ -110,7 +111,7 @@ final class SessionTest extends TestCase
     public function fileSessionRegenerateDeletesOldFile(): void
     {
         $dir = $this->makeTempDir();
-        $id  = 'old-id';
+        $id = 'old-id';
 
         $session = new FileSession($dir, $id);
         $session->start();
@@ -132,12 +133,13 @@ final class SessionTest extends TestCase
     public function middlewareStartsSessionAndSetsAttribute(): void
     {
         $session = new ArraySession();
-        $mw      = new SessionMiddleware($session);
+        $mw = new SessionMiddleware($session);
 
         $request = new ServerRequest('GET', 'http://example.com');
         $handler = new CallableHandler(static function (ServerRequestInterface $req): ResponseInterface {
             $sess = $req->getAttribute('session');
             self::assertInstanceOf(ArraySession::class, $sess);
+
             return new Response(200);
         });
 
@@ -148,10 +150,10 @@ final class SessionTest extends TestCase
     public function middlewareWritesSessionCookie(): void
     {
         $session = new ArraySession('fixed-id');
-        $mw      = new SessionMiddleware($session, cookieName: 'SESS');
+        $mw = new SessionMiddleware($session, cookieName: 'SESS');
 
-        $request  = new ServerRequest('GET', 'http://example.com');
-        $handler  = new CallableHandler(static fn (): ResponseInterface => new Response(200));
+        $request = new ServerRequest('GET', 'http://example.com');
+        $handler = new CallableHandler(static fn (): ResponseInterface => new Response(200));
         $response = $mw->process($request, $handler);
 
         $setCookie = $response->getHeader('Set-Cookie');

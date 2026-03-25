@@ -38,13 +38,13 @@ final class SessionMiddleware implements MiddlewareInterface
 
         $this->session->start();
 
-        $request  = $request->withAttribute('session', $this->session);
+        $request = $request->withAttribute('session', $this->session);
         $response = $handler->handle($request);
 
         $this->session->save();
 
         $expires = $this->cookieTtl > 0 ? time() + $this->cookieTtl : 0;
-        $cookie  = new Cookie(
+        $cookie = new Cookie(
             $this->cookieName,
             $this->session->getId(),
             $expires,

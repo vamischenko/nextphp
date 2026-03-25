@@ -48,8 +48,8 @@ final class CookieTest extends TestCase
     public function cookieWithExpires(): void
     {
         $expires = time() + 3600;
-        $cookie  = new Cookie('tok', 'val', expires: $expires);
-        $header  = $cookie->toHeaderValue();
+        $cookie = new Cookie('tok', 'val', expires: $expires);
+        $header = $cookie->toHeaderValue();
 
         self::assertStringContainsString('Expires=', $header);
         self::assertStringContainsString('Max-Age=', $header);
@@ -67,7 +67,7 @@ final class CookieTest extends TestCase
     public function cookieWithValue(): void
     {
         $cookie = new Cookie('foo', 'bar');
-        $new    = $cookie->withValue('baz');
+        $new = $cookie->withValue('baz');
 
         self::assertSame('bar', $cookie->getValue());
         self::assertSame('baz', $new->getValue());
@@ -96,7 +96,7 @@ final class CookieTest extends TestCase
         $jar->forget('session');
 
         $response = $jar->applyToResponse(new Response(200));
-        $header   = $response->getHeader('Set-Cookie')[0] ?? '';
+        $header = $response->getHeader('Set-Cookie')[0] ?? '';
 
         self::assertStringContainsString('session=', $header);
         self::assertStringContainsString('Expires=', $header);
@@ -123,6 +123,7 @@ final class CookieTest extends TestCase
             $cookies = $req->getAttribute('cookies', []);
             self::assertSame('bar', $cookies['foo']);
             self::assertSame('qux', $cookies['baz']);
+
             return new Response(200);
         });
 
@@ -135,6 +136,7 @@ final class CookieTest extends TestCase
         $request = new ServerRequest('GET', 'http://example.com');
         $handler = new CallableHandler(static function (ServerRequestInterface $req): ResponseInterface {
             self::assertSame([], $req->getAttribute('cookies'));
+
             return new Response(200);
         });
 

@@ -39,7 +39,7 @@ final class RateLimitMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $key    = ($this->keyResolver)($request);
+        $key = ($this->keyResolver)($request);
         $result = $this->limiter->hit($key, $this->maxAttempts, $this->decaySeconds);
 
         if ($result->exceeded()) {

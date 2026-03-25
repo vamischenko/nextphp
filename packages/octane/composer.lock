@@ -67,11 +67,13 @@
             "dist": {
                 "type": "path",
                 "url": "../http",
-                "reference": "a16f3ea75c1ef077e13b01c75f9d819dd3fd30d0"
+                "reference": "52a7153172e91b9c3a6a893c99b1293743793e01"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "nextphp/routing": "*@dev",
                 "php": "^8.2",
+                "psr/container": "^2.0",
                 "psr/http-factory": "^1.1",
                 "psr/http-message": "^2.0",
                 "psr/http-server-handler": "^1.0",
@@ -127,10 +129,12 @@
             "dist": {
                 "type": "path",
                 "url": "../routing",
-                "reference": "45c5c93c85b2dfae514b1dcbd7cad37dcc758481"
+                "reference": "c53089a3f94225c253c25a3f78c3adcf588646ac"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "php": "^8.2",
+                "psr/http-factory": "^1.0",
                 "psr/http-message": "^2.0",
                 "psr/http-server-middleware": "^1.0"
             },
@@ -1186,11 +1190,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.42",
+            "version": "2.1.43",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1279e1ce86ba768f0780c9d889852b4e02ff40d0",
-                "reference": "1279e1ce86ba768f0780c9d889852b4e02ff40d0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d01bebe3edfd4d49b9666ee5b8271ddca561042f",
+                "reference": "d01bebe3edfd4d49b9666ee5b8271ddca561042f",
                 "shasum": ""
             },
             "require": {
@@ -1235,7 +1239,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-17T14:58:32+00:00"
+            "time": "2026-03-24T20:40:50+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

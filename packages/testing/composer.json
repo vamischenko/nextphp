@@ -29,7 +29,8 @@
     "repositories": [
         {"type": "path", "url": "../http"},
         {"type": "path", "url": "../routing"},
-        {"type": "path", "url": "../orm"}
+        {"type": "path", "url": "../orm"},
+        {"type": "path", "url": "../core"}
     ],
     "scripts": {
         "test": "vendor/bin/phpunit",

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nextphp\Http\Tests\Unit;
 
+use LogicException;
 use Nextphp\Http\Exception\ExceptionHandler;
 use Nextphp\Http\Exception\NotFoundException;
 use Nextphp\Http\Message\ServerRequest;
@@ -46,7 +47,7 @@ final class ExceptionHandlerTest extends TestCase
         $request = new ServerRequest('GET', '/x');
 
         $response = $handler->handle(new RuntimeException('Debug error'), $request);
-        $body     = (string) $response->getBody();
+        $body = (string) $response->getBody();
 
         self::assertSame(500, $response->getStatusCode());
         self::assertStringContainsString('Debug error', $body);
@@ -61,7 +62,7 @@ final class ExceptionHandlerTest extends TestCase
         $request = new ServerRequest('GET', '/x', headers: ['Accept' => 'application/json']);
 
         $response = $handler->handle(new RuntimeException('Debug json'), $request);
-        $data     = json_decode((string) $response->getBody(), true);
+        $data = json_decode((string) $response->getBody(), true);
 
         self::assertArrayHasKey('trace', $data);
         self::assertArrayHasKey('class', $data);
@@ -75,7 +76,7 @@ final class ExceptionHandlerTest extends TestCase
         $request = new ServerRequest('GET', '/x', headers: ['Accept' => 'application/json']);
 
         $response = $handler->handle(new RuntimeException('Secret'), $request);
-        $data     = json_decode((string) $response->getBody(), true);
+        $data = json_decode((string) $response->getBody(), true);
 
         self::assertArrayNotHasKey('trace', $data);
         self::assertArrayNotHasKey('class', $data);
@@ -84,13 +85,13 @@ final class ExceptionHandlerTest extends TestCase
     #[Test]
     public function debugPageShowsPreviousException(): void
     {
-        $handler  = new ExceptionHandler(debug: true);
-        $request  = new ServerRequest('GET', '/x');
-        $previous = new \LogicException('Root cause');
+        $handler = new ExceptionHandler(debug: true);
+        $request = new ServerRequest('GET', '/x');
+        $previous = new LogicException('Root cause');
         $exception = new RuntimeException('Top level', previous: $previous);
 
         $response = $handler->handle($exception, $request);
-        $body     = (string) $response->getBody();
+        $body = (string) $response->getBody();
 
         self::assertStringContainsString('Root cause', $body);
         self::assertStringContainsString('LogicException', $body);

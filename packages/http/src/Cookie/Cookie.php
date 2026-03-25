@@ -66,7 +66,8 @@ final class Cookie
      */
     public function withValue(string $value): self
     {
-        $clone        = clone $this;
+        $clone = clone $this;
+
         // readonly workaround via clone constructor
         return new self(
             $clone->name,

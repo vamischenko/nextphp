@@ -40,10 +40,52 @@
         "vimeo/psalm": "^6.0"
     },
     "autoload": {
-        "psr-4": {}
+        "psr-4": {
+            "Nextphp\\Auth\\": "packages/auth/src/",
+            "Nextphp\\Cache\\": "packages/cache/src/",
+            "Nextphp\\Console\\": "packages/console/src/",
+            "Nextphp\\Core\\": "packages/core/src/",
+            "Nextphp\\Events\\": "packages/events/src/",
+            "Nextphp\\Filesystem\\": "packages/filesystem/src/",
+            "Nextphp\\GraphQL\\": "packages/graphql/src/",
+            "Nextphp\\Http\\": "packages/http/src/",
+            "Nextphp\\Log\\": "packages/log/src/",
+            "Nextphp\\Mail\\": "packages/mail/src/",
+            "Nextphp\\Migrations\\": "packages/migrations/src/",
+            "Nextphp\\Octane\\": "packages/octane/src/",
+            "Nextphp\\Orm\\": "packages/orm/src/",
+            "Nextphp\\Queue\\": "packages/queue/src/",
+            "Nextphp\\Routing\\": "packages/routing/src/",
+            "Nextphp\\Testing\\": "packages/testing/src/",
+            "Nextphp\\Validation\\": "packages/validation/src/",
+            "Nextphp\\View\\": "packages/view/src/",
+            "Nextphp\\Websocket\\": "packages/websocket/src/",
+            "Nextphp\\WebSocket\\": "packages/websocket/src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": {}
+        "psr-4": {
+            "Nextphp\\Auth\\Tests\\": "packages/auth/tests/",
+            "Nextphp\\Cache\\Tests\\": "packages/cache/tests/",
+            "Nextphp\\Console\\Tests\\": "packages/console/tests/",
+            "Nextphp\\Core\\Tests\\": "packages/core/tests/",
+            "Nextphp\\Events\\Tests\\": "packages/events/tests/",
+            "Nextphp\\Filesystem\\Tests\\": "packages/filesystem/tests/",
+            "Nextphp\\GraphQL\\Tests\\": "packages/graphql/tests/",
+            "Nextphp\\Http\\Tests\\": "packages/http/tests/",
+            "Nextphp\\Log\\Tests\\": "packages/log/tests/",
+            "Nextphp\\Mail\\Tests\\": "packages/mail/tests/",
+            "Nextphp\\Migrations\\Tests\\": "packages/migrations/tests/",
+            "Nextphp\\Octane\\Tests\\": "packages/octane/tests/",
+            "Nextphp\\Orm\\Tests\\": "packages/orm/tests/",
+            "Nextphp\\Queue\\Tests\\": "packages/queue/tests/",
+            "Nextphp\\Routing\\Tests\\": "packages/routing/tests/",
+            "Nextphp\\Testing\\Tests\\": "packages/testing/tests/",
+            "Nextphp\\Validation\\Tests\\": "packages/validation/tests/",
+            "Nextphp\\View\\Tests\\": "packages/view/tests/",
+            "Nextphp\\Websocket\\Tests\\": "packages/websocket/tests/",
+            "Nextphp\\WebSocket\\Tests\\": "packages/websocket/tests/"
+        }
     },
     "replace": {
         "nextphp/core": "self.version",

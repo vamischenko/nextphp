@@ -23,7 +23,8 @@
         }
     },
     "repositories": [
-        {"type":"path","url":"../orm"}
+        {"type":"path","url":"../orm"},
+        {"type":"path","url":"../core"}
     ],
     "scripts": {
         "test": "vendor/bin/phpunit",

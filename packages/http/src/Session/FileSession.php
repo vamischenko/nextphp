@@ -32,7 +32,7 @@ final class FileSession implements SessionInterface
         }
 
         $this->started = true;
-        $file          = $this->filePath();
+        $file = $this->filePath();
 
         if (is_file($file)) {
             $contents = file_get_contents($file);
@@ -53,7 +53,7 @@ final class FileSession implements SessionInterface
 
     public function regenerate(): void
     {
-        $old      = $this->filePath();
+        $old = $this->filePath();
         $this->id = $this->newId();
 
         if (is_file($old)) {
@@ -94,7 +94,7 @@ final class FileSession implements SessionInterface
     public function save(): void
     {
         if (!is_dir($this->storagePath)) {
-            mkdir($this->storagePath, 0755, true);
+            mkdir($this->storagePath, 0o755, true);
         }
 
         file_put_contents($this->filePath(), serialize($this->data));

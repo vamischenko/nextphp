@@ -27,14 +27,16 @@ final class RateLimitMiddlewareTest extends TestCase
     {
         $request = $this->createMock(ServerRequestInterface::class);
         $request->method('getServerParams')->willReturn(['REMOTE_ADDR' => $ip]);
+
         return $request;
     }
 
     private function makeHandler(int $status = 200): RequestHandlerInterface
     {
         $response = $this->makeResponse($status);
-        $handler  = $this->createMock(RequestHandlerInterface::class);
+        $handler = $this->createMock(RequestHandlerInterface::class);
         $handler->method('handle')->willReturn($response);
+
         return $handler;
     }
 
@@ -45,14 +47,16 @@ final class RateLimitMiddlewareTest extends TestCase
         $response->method('withHeader')->willReturnSelf();
         $stream = $this->createMock(StreamInterface::class);
         $response->method('getBody')->willReturn($stream);
+
         return $response;
     }
 
     private function makeFactory(int $status = 429): ResponseFactoryInterface
     {
-        $factory  = $this->createMock(ResponseFactoryInterface::class);
+        $factory = $this->createMock(ResponseFactoryInterface::class);
         $response = $this->makeResponse($status);
         $factory->method('createResponse')->willReturn($response);
+
         return $factory;
     }
 
@@ -83,8 +87,8 @@ final class RateLimitMiddlewareTest extends TestCase
     #[Test]
     public function setsRateLimitHeaders(): void
     {
-        $limiter  = new ArrayRateLimiter();
-        $factory  = $this->makeFactory();
+        $limiter = new ArrayRateLimiter();
+        $factory = $this->makeFactory();
         $expected = [];
 
         $inner = $this->createMock(ResponseInterface::class);
@@ -92,6 +96,7 @@ final class RateLimitMiddlewareTest extends TestCase
         $inner->method('withHeader')->willReturnCallback(
             function (string $name, string $value) use ($inner, &$expected): ResponseInterface {
                 $expected[$name] = $value;
+
                 return $inner;
             }
         );
@@ -120,7 +125,7 @@ final class RateLimitMiddlewareTest extends TestCase
 
         $factory->method('createResponse')->with(429)->willReturn($tooManyResponse);
 
-        $mw      = new RateLimitMiddleware($limiter, $factory, maxAttempts: 2, decaySeconds: 60);
+        $mw = new RateLimitMiddleware($limiter, $factory, maxAttempts: 2, decaySeconds: 60);
         $request = $this->makeRequest();
         $handler = $this->makeHandler();
 
@@ -149,9 +154,9 @@ final class RateLimitMiddlewareTest extends TestCase
     #[Test]
     public function customKeyResolverIsUsed(): void
     {
-        $limiter  = new ArrayRateLimiter();
-        $factory  = $this->makeFactory();
-        $mw       = new RateLimitMiddleware(
+        $limiter = new ArrayRateLimiter();
+        $factory = $this->makeFactory();
+        $mw = new RateLimitMiddleware(
             $limiter,
             $factory,
             maxAttempts: 1,

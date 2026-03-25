@@ -24,7 +24,7 @@ final class CookieMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $parsed  = $this->parseCookieHeader($request->getHeaderLine('Cookie'));
+        $parsed = $this->parseCookieHeader($request->getHeaderLine('Cookie'));
         $request = $request->withAttribute('cookies', $parsed);
 
         $response = $handler->handle($request);
@@ -51,9 +51,9 @@ final class CookieMiddleware implements MiddlewareInterface
             if ($eq === false) {
                 $cookies[urldecode($part)] = '';
             } else {
-                $name            = urldecode(substr($part, 0, $eq));
-                $value           = urldecode(substr($part, $eq + 1));
-                $cookies[$name]  = $value;
+                $name = urldecode(substr($part, 0, $eq));
+                $value = urldecode(substr($part, $eq + 1));
+                $cookies[$name] = $value;
             }
         }
 

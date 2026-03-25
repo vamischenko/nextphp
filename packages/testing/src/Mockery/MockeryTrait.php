@@ -22,6 +22,8 @@ trait MockeryTrait
      * @template T of object
      * @param class-string<T> $class
      * @return object
+     *
+     * @psalm-suppress PossiblyUnusedMethod
      */
     protected function mockery(string $class): object
     {

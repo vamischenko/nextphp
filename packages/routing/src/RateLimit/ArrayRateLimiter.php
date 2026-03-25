@@ -21,15 +21,15 @@ final class ArrayRateLimiter implements RateLimiterInterface
 
         if (!isset($this->buckets[$key]) || $this->buckets[$key]['resets_at'] <= $now) {
             $this->buckets[$key] = [
-                'hits'     => 0,
+                'hits' => 0,
                 'resets_at' => $now + $decaySeconds,
             ];
         }
 
         $this->buckets[$key]['hits']++;
 
-        $hits      = $this->buckets[$key]['hits'];
-        $resetsAt  = $this->buckets[$key]['resets_at'];
+        $hits = $this->buckets[$key]['hits'];
+        $resetsAt = $this->buckets[$key]['resets_at'];
         $remaining = $maxAttempts - $hits;
 
         return new RateLimitResult($remaining, $maxAttempts, $resetsAt);

@@ -11,6 +11,7 @@ use Nextphp\Core\Container\Container;
 use Nextphp\Core\Container\ContainerInterface;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 final class CompilerPassTest extends TestCase
 {
@@ -18,10 +19,12 @@ final class CompilerPassTest extends TestCase
     public function passIsExecutedDuringBoot(): void
     {
         $container = new Container();
-        $executed  = false;
+        $executed = false;
 
         $container->addCompilerPass(new class ($executed) implements CompilerPassInterface {
-            public function __construct(private bool &$executed) {}
+            public function __construct(private bool &$executed)
+            {
+            }
 
             public function process(ContainerInterface $container, array &$bindings): void
             {
@@ -39,14 +42,14 @@ final class CompilerPassTest extends TestCase
     {
         $container = new Container();
 
-        $container->bind('service', fn () => new \stdClass());
+        $container->bind('service', fn () => new stdClass());
 
-        $container->addCompilerPass(new class implements CompilerPassInterface {
+        $container->addCompilerPass(new class () implements CompilerPassInterface {
             public function process(ContainerInterface $container, array &$bindings): void
             {
                 if (isset($bindings['service'])) {
-                    $replacement       = new \stdClass();
-                    $replacement->tag  = 'replaced';
+                    $replacement = new stdClass();
+                    $replacement->tag = 'replaced';
                     $bindings['service'] = new Binding(
                         BindingType::Instance,
                         null,
@@ -58,7 +61,7 @@ final class CompilerPassTest extends TestCase
 
         $container->boot();
 
-        /** @var \stdClass $svc */
+        /** @var stdClass $svc */
         $svc = $container->make('service');
         self::assertSame('replaced', $svc->tag);
     }
@@ -67,11 +70,13 @@ final class CompilerPassTest extends TestCase
     public function passRunsAfterProvidersRegisterButBeforeProvidersBoot(): void
     {
         $container = new Container();
-        $log       = [];
+        $log = [];
 
         $container->addServiceProvider(new class ($log) extends \Nextphp\Core\Container\AbstractServiceProvider {
             /** @param list<string> $log */
-            public function __construct(private array &$log) {}
+            public function __construct(private array &$log)
+            {
+            }
 
             public function register(ContainerInterface $c): void
             {
@@ -86,7 +91,9 @@ final class CompilerPassTest extends TestCase
 
         $container->addCompilerPass(new class ($log) implements CompilerPassInterface {
             /** @param list<string> $log */
-            public function __construct(private array &$log) {}
+            public function __construct(private array &$log)
+            {
+            }
 
             public function process(ContainerInterface $container, array &$bindings): void
             {
@@ -103,12 +110,14 @@ final class CompilerPassTest extends TestCase
     public function multiplePassesRunInOrder(): void
     {
         $container = new Container();
-        $log       = [];
+        $log = [];
 
         for ($i = 1; $i <= 3; $i++) {
             $container->addCompilerPass(new class ($log, $i) implements CompilerPassInterface {
                 /** @param list<string> $log */
-                public function __construct(private array &$log, private int $n) {}
+                public function __construct(private array &$log, private int $n)
+                {
+                }
 
                 public function process(ContainerInterface $container, array &$bindings): void
                 {
@@ -130,7 +139,9 @@ final class CompilerPassTest extends TestCase
 
         $called = false;
         $container->addCompilerPass(new class ($called) implements CompilerPassInterface {
-            public function __construct(private bool &$called) {}
+            public function __construct(private bool &$called)
+            {
+            }
 
             public function process(ContainerInterface $container, array &$bindings): void
             {
