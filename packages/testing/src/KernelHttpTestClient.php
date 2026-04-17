@@ -9,6 +9,9 @@ use Nextphp\Http\Message\ServerRequest;
 
 final class KernelHttpTestClient
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly HttpKernel $kernel,
     ) {

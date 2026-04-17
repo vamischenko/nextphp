@@ -17,6 +17,9 @@ enum LogLevel: string
     case Info      = PsrLevel::INFO;
     case Debug     = PsrLevel::DEBUG;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function severity(): int
     {
         return match ($this) {

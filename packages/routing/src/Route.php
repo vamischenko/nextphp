@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Routing;
 
 /**
- * @psalm-immutable
+  * @psalm-external-mutation-free
  */
 final class Route
 {

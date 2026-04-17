@@ -38,6 +38,9 @@ final class CookieJar
         $this->set(new Cookie($name, $value, $expires, $path, $domain, $secure, $httpOnly, $sameSite));
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function forget(string $name, string $path = '/', string $domain = ''): void
     {
         $this->set(Cookie::expire($name, $path, $domain));

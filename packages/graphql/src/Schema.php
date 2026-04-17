@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\GraphQL;
 
 /**
- * @psalm-immutable
+ * @psalm-mutable
  */
 final class Schema
 {
@@ -14,6 +14,7 @@ final class Schema
 
     /**
      * @param callable(array<string, mixed>): mixed $resolver
+       * @psalm-external-mutation-free
      */
     public function query(string $field, callable $resolver): void
     {
@@ -22,6 +23,7 @@ final class Schema
 
     /**
      * @return callable(array<string, mixed>): mixed
+       * @psalm-mutation-free
      */
     public function resolverFor(string $field): callable
     {

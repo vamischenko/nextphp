@@ -9,6 +9,9 @@ final class StreamSmtpTransport implements SmtpTransportInterface
     /** @var resource|null */
     private $socket = null;
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function connect(string $host, int $port): void
     {
         $this->socket = @fsockopen($host, $port, $errno, $errstr, 5.0);

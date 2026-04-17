@@ -6,6 +6,9 @@ namespace Nextphp\Octane;
 
 final class Octane
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly OctaneRuntimeInterface $runtime,
     ) {

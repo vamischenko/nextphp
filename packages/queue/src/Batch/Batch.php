@@ -37,11 +37,17 @@ final class Batch
 
     private bool $dispatched = false;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly QueueInterface $queue,
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function add(JobInterface ...$jobs): static
     {
         foreach ($jobs as $job) {
@@ -52,6 +58,9 @@ final class Batch
     }
 
     /** Called when ALL jobs in the batch succeed. */
+    /**
+      * @psalm-external-mutation-free
+     */
     public function then(callable $callback): static
     {
         $this->thenCallbacks[] = $callback;
@@ -60,6 +69,9 @@ final class Batch
     }
 
     /** Called when ANY job in the batch fails. */
+    /**
+      * @psalm-external-mutation-free
+     */
     public function catch(callable $callback): static
     {
         $this->catchCallbacks[] = $callback;
@@ -68,6 +80,9 @@ final class Batch
     }
 
     /** Called after the entire batch finishes (success or failure). */
+    /**
+      * @psalm-external-mutation-free
+     */
     public function finally(callable $callback): static
     {
         $this->finallyCallbacks[] = $callback;
@@ -106,6 +121,9 @@ final class Batch
         $this->checkCompletion();
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function pendingCount(): int
     {
         return max(0, $this->pending - $this->processed - $this->failed);
@@ -121,6 +139,9 @@ final class Batch
         return $this->failed;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function isFinished(): bool
     {
         return $this->dispatched && $this->pendingCount() === 0;

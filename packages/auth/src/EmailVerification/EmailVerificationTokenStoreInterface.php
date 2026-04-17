@@ -10,7 +10,7 @@ namespace Nextphp\Auth\EmailVerification;
 interface EmailVerificationTokenStoreInterface
 {
     /**
-      * @psalm-external-mutation-free
+     * @psalm-impure
      */
     public function store(string $userId, string $token): void;
 

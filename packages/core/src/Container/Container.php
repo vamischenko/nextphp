@@ -30,6 +30,9 @@ class Container implements ContainerInterface
 
     private ReflectionResolver $resolver;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct()
     {
         $this->resolver = new ReflectionResolver($this);
@@ -127,6 +130,9 @@ class Container implements ContainerInterface
         );
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $id): bool
     {
         return $this->bound($id);

@@ -33,6 +33,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $collected
+       * @psalm-pure
      */
     private function badge(string $name, array $collected): string
     {
@@ -47,6 +48,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $collected
+       * @psalm-mutation-free
      */
     private function renderPanel(string $name, array $collected): string
     {
@@ -61,6 +63,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $data
+       * @psalm-pure
      */
     private function renderQueries(array $data): string
     {
@@ -80,6 +83,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $data
+       * @psalm-pure
      */
     private function renderTimeline(array $data): string
     {
@@ -101,6 +105,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $data
+       * @psalm-pure
      */
     private function renderMemory(array $data): string
     {
@@ -113,6 +118,7 @@ final class HtmlRenderer
 
     /**
      * @param array<string, mixed> $data
+       * @psalm-pure
      */
     private function renderRequest(array $data): string
     {
@@ -129,6 +135,9 @@ final class HtmlRenderer
         return $html . '</ul>';
     }
 
+    /**
+      * @psalm-pure
+     */
     private function wrap(string $tabs, string $panels): string
     {
         return <<<HTML

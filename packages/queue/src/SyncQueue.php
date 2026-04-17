@@ -21,11 +21,17 @@ final class SyncQueue implements QueueInterface
         $job->handle();
     }
 
+    /**
+      * @psalm-pure
+     */
     public function pop(): ?QueuedJob
     {
         return null;
     }
 
+    /**
+      * @psalm-pure
+     */
     public function size(): int
     {
         return 0;

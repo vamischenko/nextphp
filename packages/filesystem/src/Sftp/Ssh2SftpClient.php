@@ -19,6 +19,9 @@ final class Ssh2SftpClient implements SftpClientInterface
     /** @var resource|null */
     private mixed $sftp = null;
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function connect(string $host, int $port): bool
     {
         if (!function_exists('ssh2_connect')) {
@@ -32,6 +35,9 @@ final class Ssh2SftpClient implements SftpClientInterface
         return true;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function authPassword(string $user, string $password): bool
     {
         if (!ssh2_auth_password($this->session(), $user, $password)) {
@@ -42,6 +48,9 @@ final class Ssh2SftpClient implements SftpClientInterface
         return $this->sftp !== null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function authKey(string $user, string $pubKeyFile, string $privKeyFile, string $passphrase = ''): bool
     {
         if (!ssh2_auth_pubkey_file($this->session(), $user, $pubKeyFile, $privKeyFile, $passphrase)) {
@@ -71,6 +80,9 @@ final class Ssh2SftpClient implements SftpClientInterface
         return file_put_contents($uri, $contents) !== false;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function delete(string $remotePath): bool
     {
         return ssh2_sftp_unlink($this->sftpResource(), $remotePath);
@@ -81,18 +93,27 @@ final class Ssh2SftpClient implements SftpClientInterface
         return file_exists($this->uri($remotePath));
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function disconnect(): void
     {
         $this->sftp    = null;
         $this->session = null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function uri(string $path): string
     {
         return 'ssh2.sftp://' . (int) $this->sftpResource() . '/' . ltrim($path, '/');
     }
 
     /** @return resource */
+    /**
+      * @psalm-mutation-free
+     */
     private function session(): mixed
     {
         if ($this->session === null) {
@@ -102,6 +123,9 @@ final class Ssh2SftpClient implements SftpClientInterface
     }
 
     /** @return resource */
+    /**
+      * @psalm-mutation-free
+     */
     private function sftpResource(): mixed
     {
         if ($this->sftp === null) {

@@ -46,7 +46,8 @@ final class TotpGenerator
 
     /**
      * Verify a code within the drift window.
-       * @psalm-mutation-free
+     *
+     * @psalm-impure
      */
     public function verify(string $secret, string $code, ?int $timestamp = null): bool
     {

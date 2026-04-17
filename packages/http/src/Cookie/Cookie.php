@@ -122,6 +122,7 @@ final class Cookie
 
     /**
      * Create an expired "delete" cookie.
+       * @psalm-pure
      */
     public static function expire(string $name, string $path = '/', string $domain = ''): self
     {

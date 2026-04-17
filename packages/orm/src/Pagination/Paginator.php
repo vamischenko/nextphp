@@ -10,7 +10,7 @@ namespace Nextphp\Orm\Pagination;
  * @template T
  */
 /**
- * @psalm-immutable
+  * @psalm-immutable
  */
 final class Paginator
 {

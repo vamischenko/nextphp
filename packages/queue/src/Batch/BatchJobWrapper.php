@@ -11,6 +11,9 @@ use Nextphp\Queue\JobInterface;
  */
 final class BatchJobWrapper implements JobInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly JobInterface $inner,
         private readonly Batch $batch,

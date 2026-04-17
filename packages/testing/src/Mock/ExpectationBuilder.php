@@ -24,10 +24,16 @@ final class ExpectationBuilder
 
     private int $actualCallCount = 0;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly string $method)
     {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function andReturn(mixed $value): static
     {
         $this->returnValue    = $value;
@@ -38,6 +44,7 @@ final class ExpectationBuilder
 
     /**
      * @param callable(): mixed $callback
+       * @psalm-external-mutation-free
      */
     public function andReturnUsing(callable $callback): static
     {
@@ -46,12 +53,18 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function andReturnNull(): static
     {
         return $this->andReturn(null);
     }
 
     /** @param mixed ...$args */
+    /**
+      * @psalm-external-mutation-free
+     */
     public function with(mixed ...$args): static
     {
         $this->expectedArgs = $args;
@@ -59,6 +72,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function once(): static
     {
         $this->expectedCallCount = 1;
@@ -66,6 +82,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function twice(): static
     {
         $this->expectedCallCount = 2;
@@ -73,6 +92,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function times(int $n): static
     {
         $this->expectedCallCount = $n;
@@ -80,6 +102,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function never(): static
     {
         $this->expectedCallCount = 0;
@@ -87,6 +112,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function atLeast(int $n): static
     {
         // Store as negative sentinel: -n means "at least n"
@@ -95,6 +123,9 @@ final class ExpectationBuilder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function zeroOrMoreTimes(): static
     {
         $this->expectedCallCount = null;
@@ -138,6 +169,7 @@ final class ExpectationBuilder
 
     /**
      * Verify call-count expectations. Called in tearDown / verify().
+       * @psalm-mutation-free
      */
     public function verify(): void
     {

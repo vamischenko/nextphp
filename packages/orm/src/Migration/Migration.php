@@ -8,7 +8,7 @@ use Nextphp\Orm\Connection\ConnectionInterface;
 use Nextphp\Orm\Schema\Schema;
 
 /**
- * @psalm-immutable
+ * @psalm-mutable
  */
 abstract class Migration
 {

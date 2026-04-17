@@ -10,6 +10,7 @@ final class TestResponse
 {
     /**
      * @param array<string, mixed> $json
+       * @psalm-mutation-free
      */
     public function __construct(
         private readonly int $status,
@@ -18,6 +19,9 @@ final class TestResponse
     ) {
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function assertStatus(int $expected): self
     {
         if ($this->status !== $expected) {
@@ -29,6 +33,7 @@ final class TestResponse
 
     /**
      * @param array<string, mixed> $expected
+       * @psalm-mutation-free
      */
     public function assertJson(array $expected): self
     {
@@ -46,6 +51,9 @@ final class TestResponse
         return $this->body;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function assertBodyContains(string $needle): self
     {
         if (! str_contains($this->body, $needle)) {

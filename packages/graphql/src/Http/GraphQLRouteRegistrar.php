@@ -11,6 +11,9 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class GraphQLRouteRegistrar
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly GraphQL $graphql,
     ) {

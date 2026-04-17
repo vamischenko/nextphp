@@ -10,7 +10,7 @@ final class ArrayEmailVerificationTokenStore implements EmailVerificationTokenSt
     private array $store = [];
 
     /**
-     * @psalm-external-mutation-free
+     * @psalm-impure
      */
     public function store(string $userId, string $token): void
     {

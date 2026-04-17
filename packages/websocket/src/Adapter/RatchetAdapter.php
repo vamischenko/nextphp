@@ -12,6 +12,9 @@ use Nextphp\WebSocket\WebSocketServer;
  */
 final class RatchetAdapter
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly WebSocketServer $server,
     ) {

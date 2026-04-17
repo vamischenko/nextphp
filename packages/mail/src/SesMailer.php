@@ -17,6 +17,9 @@ final class SesMailer implements MailerInterface
 {
     private const SERVICE = 'ses';
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $accessKey,
         private readonly string $secretKey,
@@ -64,6 +67,9 @@ final class SesMailer implements MailerInterface
         ], JSON_THROW_ON_ERROR);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function authorization(string $payload, string $datetime, string $date): string
     {
         $host          = "email.{$this->region}.amazonaws.com";
@@ -89,6 +95,9 @@ final class SesMailer implements MailerInterface
         return "AWS4-HMAC-SHA256 Credential={$this->accessKey}/{$scope}, SignedHeaders={$signedHeaders}, Signature={$signature}";
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function signingKey(string $date): string
     {
         $kDate    = hash_hmac('sha256', $date, 'AWS4' . $this->secretKey, binary: true);

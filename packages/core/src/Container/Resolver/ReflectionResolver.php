@@ -31,6 +31,9 @@ final class ReflectionResolver
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function clearCache(): void
     {
         self::$classCache = [];

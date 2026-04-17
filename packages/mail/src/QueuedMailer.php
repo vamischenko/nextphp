@@ -9,11 +9,17 @@ final class QueuedMailer implements MailerInterface
     /** @var Mailable[] */
     private array $queue = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly MailerInterface $transport,
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function send(Mailable $mailable): void
     {
         $this->queue[] = $mailable;
@@ -30,6 +36,9 @@ final class QueuedMailer implements MailerInterface
         return $sent;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function pendingCount(): int
     {
         return count($this->queue);

@@ -13,6 +13,7 @@ final class MethodNotAllowedException extends HttpException
 
     /**
      * @param string[] $allowedMethods
+       * @psalm-mutation-free
      */
     public function __construct(array $allowedMethods = [], string $message = '', ?Throwable $previous = null)
     {

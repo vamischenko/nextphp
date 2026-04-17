@@ -16,6 +16,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @param array<string, mixed> $json
+       * @psalm-pure
      */
     protected function response(int $status, string $body = '', array $json = []): TestResponse
     {
@@ -24,17 +25,24 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * @param callable(string, string, array<string, mixed>): array{status:int, body?:string, json?:array<string,mixed>} $handler
+      * @psalm-pure
      */
     protected function client(callable $handler): HttpTestClient
     {
         return new HttpTestClient($handler);
     }
 
+    /**
+     * @psalm-pure
+     */
     protected function routingClient(Router $router): RoutingHttpTestClient
     {
         return new RoutingHttpTestClient($router);
     }
 
+    /**
+     * @psalm-pure
+     */
     protected function kernelClient(HttpKernel $kernel): KernelHttpTestClient
     {
         return new KernelHttpTestClient($kernel);

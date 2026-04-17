@@ -10,6 +10,9 @@ use Psr\Http\Message\UriInterface;
 
 final class UriFactory implements UriFactoryInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function createUri(string $uri = ''): UriInterface
     {
         return new Uri($uri);

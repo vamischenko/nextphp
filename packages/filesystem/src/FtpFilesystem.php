@@ -12,6 +12,9 @@ final class FtpFilesystem implements FilesystemInterface
 {
     private readonly FtpClientInterface $client;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $host,
         private readonly string $user,
@@ -80,6 +83,9 @@ final class FtpFilesystem implements FilesystemInterface
         });
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function url(string $path): string
     {
         if ($this->baseUrl === '') {
@@ -88,6 +94,9 @@ final class FtpFilesystem implements FilesystemInterface
         return rtrim($this->baseUrl, '/') . '/' . ltrim($path, '/');
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function signedUrl(string $path, int $expiresInSeconds): string
     {
         // FTP has no native signed URL concept — return a plain URL.

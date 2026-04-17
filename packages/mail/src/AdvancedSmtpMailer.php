@@ -9,6 +9,9 @@ use Nextphp\Mail\Smtp\StreamSmtpTransport;
 
 final class AdvancedSmtpMailer implements MailerInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $host,
         private readonly int $port = 25,

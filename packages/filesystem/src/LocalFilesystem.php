@@ -6,6 +6,9 @@ namespace Nextphp\Filesystem;
 
 final class LocalFilesystem implements FilesystemInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $root,
         private readonly string $baseUrl = '/storage',
@@ -46,6 +49,9 @@ final class LocalFilesystem implements FilesystemInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function url(string $path): string
     {
         return rtrim($this->baseUrl, '/') . '/' . ltrim($path, '/');
@@ -92,6 +98,9 @@ final class LocalFilesystem implements FilesystemInterface
         fclose($targetStream);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function fullPath(string $path): string
     {
         return rtrim($this->root, '/') . '/' . ltrim($path, '/');

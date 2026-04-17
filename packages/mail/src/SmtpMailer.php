@@ -9,6 +9,9 @@ use Nextphp\Mail\Smtp\SocketSmtpClient;
 
 final class SmtpMailer implements MailerInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $host,
         private readonly int $port = 25,

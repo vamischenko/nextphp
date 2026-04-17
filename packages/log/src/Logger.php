@@ -18,11 +18,17 @@ final class Logger extends AbstractLogger
 
     private int $minSeverity;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(LogLevel $minLevel = LogLevel::Debug)
     {
         $this->minSeverity = $minLevel->severity();
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function pushHandler(LogHandlerInterface $handler): static
     {
         $this->handlers[] = $handler;
@@ -55,6 +61,7 @@ final class Logger extends AbstractLogger
 
     /**
      * @param array<mixed> $context
+       * @psalm-pure
      */
     private function interpolate(string $message, array $context): string
     {

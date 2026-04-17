@@ -12,6 +12,9 @@ use Nextphp\WebSocket\WebSocketServer;
  */
 final class SwooleAdapter
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly WebSocketServer $server,
     ) {

@@ -13,6 +13,9 @@ use RuntimeException;
  */
 final class MailgunMailer implements MailerInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $apiKey,
         private readonly string $domain,

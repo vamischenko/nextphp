@@ -18,6 +18,9 @@ final class RoutingHttpTestClient
     /** @var MiddlewareInterface[] */
     private array $middleware = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Router $router,
     ) {

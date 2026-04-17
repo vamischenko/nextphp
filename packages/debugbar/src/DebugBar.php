@@ -16,6 +16,9 @@ final class DebugBar
 
     private bool $enabled;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(bool $enabled = true)
     {
         $this->enabled = $enabled;
@@ -33,6 +36,7 @@ final class DebugBar
 
     /**
      * Return the named collector (or null if not registered).
+       * @psalm-mutation-free
      */
     public function getCollector(string $name): ?CollectorInterface
     {

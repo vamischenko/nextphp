@@ -201,6 +201,9 @@ final class MockBuilder
         return implode(', ', $parts);
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     private static function generatePassArgs(\ReflectionMethod $method): string
     {
         $parts = [];

@@ -10,6 +10,9 @@ namespace Nextphp\Console;
 final class Input
 {
     /** @param array<int, string> $argv */
+    /**
+      * @psalm-pure
+     */
     public static function parse(array $argv): array
     {
         $arguments = [];

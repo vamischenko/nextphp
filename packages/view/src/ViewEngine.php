@@ -22,6 +22,9 @@ final class ViewEngine
     private readonly Compiler $compiler;
     private readonly ComponentRegistry $components;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $viewsPath,
         private readonly ?string $compiledPath = null,
@@ -86,6 +89,7 @@ final class ViewEngine
      * Register a custom directive (delegated to Compiler).
      *
      * @param callable(string): string $handler
+       * @psalm-external-mutation-free
      */
     public function directive(string $name, callable $handler): void
     {
@@ -163,6 +167,7 @@ final class ViewEngine
      * Extract @section('name') ... @endsection blocks from a template.
      *
      * @return array<string, string>
+       * @psalm-pure
      */
     private function extractSections(string $source): array
     {
@@ -215,11 +220,17 @@ final class ViewEngine
     // Helpers
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-mutation-free
+     */
     private function resolvePath(string $view): string
     {
         return rtrim($this->viewsPath, '/') . '/' . str_replace('.', '/', $view) . '.php';
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function compiledFilePath(string $view): ?string
     {
         if ($this->compiledPath === null) {

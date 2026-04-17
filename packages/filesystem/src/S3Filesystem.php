@@ -9,6 +9,9 @@ final class S3Filesystem implements FilesystemInterface
     /** @var array<string, string> */
     private array $objects = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $bucket,
         private readonly string $region = 'us-east-1',
@@ -16,11 +19,17 @@ final class S3Filesystem implements FilesystemInterface
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function put(string $path, string $contents): void
     {
         $this->objects[$path] = $contents;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(string $path): string
     {
         if (! isset($this->objects[$path])) {
@@ -30,16 +39,25 @@ final class S3Filesystem implements FilesystemInterface
         return $this->objects[$path];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function exists(string $path): bool
     {
         return array_key_exists($path, $this->objects);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function delete(string $path): void
     {
         unset($this->objects[$path]);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function url(string $path): string
     {
         return sprintf('https://%s.s3.%s.amazonaws.com/%s', $this->bucket, $this->region, ltrim($path, '/'));
@@ -66,6 +84,9 @@ final class S3Filesystem implements FilesystemInterface
         return $stream;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function writeStream(string $path, $stream): void
     {
         if (! is_resource($stream)) {

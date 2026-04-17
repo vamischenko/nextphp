@@ -29,7 +29,7 @@ final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreIn
     }
 
     /**
-     * @psalm-external-mutation-free
+     * @psalm-impure
      */
     public function store(string $email, string $token): void
     {
@@ -48,7 +48,7 @@ final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreIn
     }
 
     /**
-     * @psalm-mutation-free
+     * @psalm-impure
      */
     public function find(string $email): ?array
     {
@@ -72,7 +72,7 @@ final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreIn
     }
 
     /**
-     * @psalm-external-mutation-free
+     * @psalm-impure
      */
     public function delete(string $email): void
     {

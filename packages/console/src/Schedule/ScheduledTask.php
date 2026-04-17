@@ -60,68 +60,107 @@ final class ScheduledTask
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function everyMinute(): self
     {
         return $this->cron('* * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function everyFiveMinutes(): self
     {
         return $this->cron('*/5 * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function everyTenMinutes(): self
     {
         return $this->cron('*/10 * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function everyFifteenMinutes(): self
     {
         return $this->cron('*/15 * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function everyThirtyMinutes(): self
     {
         return $this->cron('*/30 * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function hourly(): self
     {
         return $this->cron('0 * * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function hourlyAt(int $minute): self
     {
         return $this->cron(sprintf('%d * * * *', $minute));
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function daily(): self
     {
         return $this->cron('0 0 * * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function dailyAt(string $time): self
     {
         [$hour, $minute] = explode(':', $time) + [0, '0'];
         return $this->cron(sprintf('%d %d * * *', (int) $minute, (int) $hour));
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function weekly(): self
     {
         return $this->cron('0 0 * * 0');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function weeklyOn(int $weekday, string $time = '00:00'): self
     {
         [$hour, $minute] = explode(':', $time) + [0, '0'];
         return $this->cron(sprintf('%d %d * * %d', (int) $minute, (int) $hour, $weekday));
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function monthly(): self
     {
         return $this->cron('0 0 1 * *');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function monthlyOn(int $day = 1, string $time = '00:00'): self
     {
         [$hour, $minute] = explode(':', $time) + [0, '0'];

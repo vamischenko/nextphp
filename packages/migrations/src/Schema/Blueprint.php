@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Migrations\Schema;
 
+/**
+ * @psalm-external-mutation-free
+ */
 final class Blueprint
 {
     /** @var array<int, array<string, mixed>> */
@@ -12,10 +15,16 @@ final class Blueprint
     /** @var array<int, array{name: string, columns: string[], unique: bool}> */
     private array $indexes = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly string $table)
     {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function id(string $column = 'id'): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'INTEGER', 'autoincrement' => true, 'nullable' => false, 'default' => null];
@@ -23,6 +32,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function string(string $column, int $length = 255): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'VARCHAR(' . $length . ')', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -30,6 +42,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function timestamp(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'TIMESTAMP', 'autoincrement' => false, 'nullable' => true, 'default' => null];
@@ -47,6 +62,9 @@ final class Blueprint
         return $this->timestamp($column);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function nullable(): self
     {
         $idx = array_key_last($this->columns);
@@ -57,6 +75,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function default(mixed $value): self
     {
         $idx = array_key_last($this->columns);
@@ -67,6 +88,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function unique(): self
     {
         $idx = array_key_last($this->columns);
@@ -78,6 +102,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function toCreateSql(): string
     {
         $defs = [];
@@ -99,6 +126,7 @@ final class Blueprint
 
     /**
      * @return string[]
+       * @psalm-mutation-free
      */
     public function toIndexSql(): array
     {

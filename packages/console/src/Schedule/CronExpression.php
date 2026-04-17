@@ -36,6 +36,9 @@ final class CronExpression
             && self::matchField($dow,    (int) $time->format('w'), 0, 6);
     }
 
+    /**
+     * @psalm-pure
+     */
     private static function matchField(string $field, int $value, int $min, int $max): bool
     {
         // Handle comma-separated list: "1,3,5"
@@ -51,6 +54,9 @@ final class CronExpression
         return self::matchPart($field, $value, $min, $max);
     }
 
+    /**
+     * @psalm-pure
+     */
     private static function matchPart(string $part, int $value, int $min, int $max): bool
     {
         // Step: "*/5" or "1-30/5"
@@ -84,6 +90,7 @@ final class CronExpression
 
     /**
      * @return array{int, int}
+      * @psalm-pure
      */
     private static function parseRange(string $range, int $min, int $max): array
     {

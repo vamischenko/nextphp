@@ -12,6 +12,9 @@ use Psr\Http\Message\ServerRequestInterface;
 
 final class OctaneWorker
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly HttpKernel $kernel,
         private readonly ContainerInterface $container,

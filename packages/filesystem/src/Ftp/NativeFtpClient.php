@@ -13,6 +13,9 @@ final class NativeFtpClient implements FtpClientInterface
 {
     private ?\FTP\Connection $conn = null;
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function connect(string $host, int $port, int $timeout): bool
     {
         $conn = ftp_connect($host, $port, $timeout);
@@ -23,6 +26,9 @@ final class NativeFtpClient implements FtpClientInterface
         return true;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function login(string $user, string $password): bool
     {
         return ftp_login($this->connection(), $user, $password);
@@ -33,21 +39,33 @@ final class NativeFtpClient implements FtpClientInterface
         return ftp_pasv($this->connection(), $pasv);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(string $localPath, string $remotePath): bool
     {
         return ftp_get($this->connection(), $localPath, $remotePath);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function put(string $remotePath, string $localPath): bool
     {
         return ftp_put($this->connection(), $remotePath, $localPath);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function delete(string $remotePath): bool
     {
         return ftp_delete($this->connection(), $remotePath);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function nlist(string $dir): bool|string
     {
         $list = ftp_nlist($this->connection(), $dir);
@@ -65,6 +83,9 @@ final class NativeFtpClient implements FtpClientInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function connection(): \FTP\Connection
     {
         if ($this->conn === null) {

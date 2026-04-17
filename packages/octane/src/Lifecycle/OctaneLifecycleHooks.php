@@ -21,21 +21,33 @@ final class OctaneLifecycleHooks
     /** @var list<callable(): void> */
     private array $workerStopHooks = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onWorkerStart(callable $hook): void
     {
         $this->workerStartHooks[] = $hook;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onRequestStart(callable $hook): void
     {
         $this->requestStartHooks[] = $hook;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onRequestEnd(callable $hook): void
     {
         $this->requestEndHooks[] = $hook;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onWorkerStop(callable $hook): void
     {
         $this->workerStopHooks[] = $hook;

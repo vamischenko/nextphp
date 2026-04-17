@@ -40,6 +40,9 @@ final class InMemoryQueue implements QueueInterface
         return null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function size(): int
     {
         return count($this->items);

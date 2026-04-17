@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Orm\Query;
 
 /**
- * @psalm-immutable
+  * @psalm-external-mutation-free
  */
 final class JoinClause
 {

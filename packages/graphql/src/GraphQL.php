@@ -6,6 +6,9 @@ namespace Nextphp\GraphQL;
 
 final class GraphQL
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Schema $schema,
     ) {
@@ -32,6 +35,9 @@ final class GraphQL
         }
     }
 
+    /**
+      * @psalm-pure
+     */
     private function extractField(string $query): string
     {
         if (preg_match('/\{\s*([a-zA-Z_][a-zA-Z0-9_]*)/', $query, $match) !== 1) {
@@ -44,6 +50,7 @@ final class GraphQL
     /**
      * @param array<string, mixed> $variables
      * @return array<string, mixed>
+       * @psalm-pure
      */
     private function extractArgs(string $query, array $variables): array
     {

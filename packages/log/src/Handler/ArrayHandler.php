@@ -13,6 +13,9 @@ final class ArrayHandler implements LogHandlerInterface
     /** @var LogRecord[] */
     private array $records = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function handle(LogRecord $record): void
     {
         $this->records[] = $record;
@@ -24,6 +27,9 @@ final class ArrayHandler implements LogHandlerInterface
         return $this->records;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function clear(): void
     {
         $this->records = [];

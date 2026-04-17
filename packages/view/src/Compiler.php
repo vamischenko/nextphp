@@ -36,6 +36,7 @@ final class Compiler
      * Register a custom directive.
      *
      * @param callable(string): string $handler receives the raw argument string, returns PHP code
+       * @psalm-external-mutation-free
      */
     public function directive(string $name, callable $handler): void
     {
@@ -83,6 +84,9 @@ final class Compiler
     // Echo
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileEcho(string $template): string
     {
         // {!! raw !!}
@@ -106,6 +110,9 @@ final class Compiler
     // @if / @elseif / @else / @endif
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileIf(string $template): string
     {
         $template = preg_replace('/@if\s*\((.+?)\)/s', '<?php if ($1): ?>', $template) ?? $template;
@@ -119,6 +126,9 @@ final class Compiler
     // @unless / @endunless
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileUnless(string $template): string
     {
         $template = preg_replace('/@unless\s*\((.+?)\)/s', '<?php if (!($1)): ?>', $template) ?? $template;
@@ -130,6 +140,9 @@ final class Compiler
     // @switch / @case / @default / @endswitch
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileSwitch(string $template): string
     {
         $template = preg_replace('/@switch\s*\((.+?)\)/s', '<?php switch ($1): ?>', $template) ?? $template;
@@ -143,6 +156,9 @@ final class Compiler
     // @foreach / @endforeach
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileForEach(string $template): string
     {
         $template = preg_replace('/@foreach\s*\((.+?)\)/s', '<?php foreach ($1): ?>', $template) ?? $template;
@@ -154,6 +170,9 @@ final class Compiler
     // @forelse / @empty / @endforelse
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileForElse(string $template): string
     {
         // @forelse ($items as $item) ... @empty ... @endforelse
@@ -171,6 +190,9 @@ final class Compiler
     // @for / @endfor
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileFor(string $template): string
     {
         $template = preg_replace('/@for\s*\((.+?)\)/s', '<?php for ($1): ?>', $template) ?? $template;
@@ -182,6 +204,9 @@ final class Compiler
     // @while / @endwhile
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileWhile(string $template): string
     {
         $template = preg_replace('/@while\s*\((.+?)\)/s', '<?php while ($1): ?>', $template) ?? $template;
@@ -193,6 +218,9 @@ final class Compiler
     // @include
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileInclude(string $template): string
     {
         // @include('view.name', ['key' => 'val'])
@@ -213,6 +241,9 @@ final class Compiler
     // @yield / @section / @endsection  (for layout merging — handled at render time)
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileYield(string $template): string
     {
         // @yield('name') or @yield('name', 'default')
@@ -229,6 +260,9 @@ final class Compiler
         return $template;
     }
 
+    /**
+      * @psalm-pure
+     */
     private function compileSection(string $template): string
     {
         // @section('name') ... @endsection  →  kept as-is; extracted by ViewEngine
@@ -239,6 +273,9 @@ final class Compiler
     // @component / @slot / @endcomponent / @endslot
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     private function compileComponents(string $template): string
     {
         // @slot('name') ... @endslot
@@ -271,6 +308,9 @@ final class Compiler
     // <x-component-name :prop="$expr" attr="literal"> ... </x-component-name>
     // -------------------------------------------------------------------------
 
+    /**
+     * @psalm-pure
+     */
     private function compileXTags(string $template): string
     {
         // Self-closing: <x-alert :message="$msg" />
@@ -301,6 +341,7 @@ final class Compiler
 
     /**
      * Convert " :prop=\"$expr\" attr=\"literal\" " into a PHP array string.
+      * @psalm-pure
      */
     private static function parseXAttributes(string $attrs): string
     {

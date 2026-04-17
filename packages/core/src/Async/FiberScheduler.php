@@ -36,6 +36,9 @@ final class FiberScheduler
         } while ($pending);
     }
 
+    /**
+      * @psalm-pure
+     */
     public static function suspend(mixed $value = null): mixed
     {
         return Fiber::suspend($value);

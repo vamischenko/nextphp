@@ -15,6 +15,9 @@ final class PostmarkMailer implements MailerInterface
 {
     private const API_URL = 'https://api.postmarkapp.com/email';
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $serverToken,
         private readonly string $from,

@@ -7,7 +7,7 @@ namespace Nextphp\Orm\Connection;
 use Nextphp\Orm\Exception\OrmException;
 
 /**
- * @psalm-immutable
+ * @psalm-mutable
  */
 final class ConnectionPool
 {
@@ -16,16 +16,25 @@ final class ConnectionPool
 
     private string $default = 'default';
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function add(string $name, ConnectionInterface $connection): void
     {
         $this->connections[$name] = $connection;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function setDefault(string $name): void
     {
         $this->default = $name;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(?string $name = null): ConnectionInterface
     {
         $name ??= $this->default;
@@ -37,6 +46,9 @@ final class ConnectionPool
         return $this->connections[$name];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $name): bool
     {
         return isset($this->connections[$name]);

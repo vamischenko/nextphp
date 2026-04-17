@@ -13,7 +13,7 @@ final class ArrayPasswordResetTokenStore implements PasswordResetTokenStoreInter
     private array $records = [];
 
     /**
-     * @psalm-external-mutation-free
+     * @psalm-impure
      */
     public function store(string $email, string $token): void
     {

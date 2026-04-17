@@ -9,6 +9,9 @@ use Nextphp\Filesystem\FilesystemInterface;
 
 final class FlysystemFilesystem implements FilesystemInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly FilesystemOperator $fs,
         private readonly string $baseUrl = '',
@@ -37,6 +40,9 @@ final class FlysystemFilesystem implements FilesystemInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function url(string $path): string
     {
         /** @psalm-suppress UndefinedMethod */

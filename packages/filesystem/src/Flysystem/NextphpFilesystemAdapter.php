@@ -33,6 +33,9 @@ final class NextphpFilesystemAdapter implements FilesystemAdapter
         return $this->fs->exists($this->prefixer->prefixPath($location));
     }
 
+    /**
+      * @psalm-pure
+     */
     public function directoryExists(string $location): bool
     {
         return false;
@@ -79,41 +82,65 @@ final class NextphpFilesystemAdapter implements FilesystemAdapter
         $this->fs->delete($this->prefixer->prefixPath($location));
     }
 
+    /**
+      * @psalm-pure
+     */
     public function deleteDirectory(string $location): void
     {
         // no-op (not supported)
     }
 
+    /**
+      * @psalm-pure
+     */
     public function createDirectory(string $location, Config $config): void
     {
         // no-op (not supported)
     }
 
+    /**
+      * @psalm-pure
+     */
     public function setVisibility(string $path, string $visibility): void
     {
         // no-op (not supported)
     }
 
+    /**
+      * @psalm-pure
+     */
     public function visibility(string $path): FileAttributes
     {
         throw new \RuntimeException('Visibility is not supported by NextphpFilesystemAdapter.');
     }
 
+    /**
+      * @psalm-pure
+     */
     public function mimeType(string $path): FileAttributes
     {
         throw new \RuntimeException('MIME type is not supported by NextphpFilesystemAdapter.');
     }
 
+    /**
+      * @psalm-pure
+     */
     public function lastModified(string $path): FileAttributes
     {
         throw new \RuntimeException('Last modified is not supported by NextphpFilesystemAdapter.');
     }
 
+    /**
+      * @psalm-pure
+     */
     public function fileSize(string $path): FileAttributes
     {
         throw new \RuntimeException('File size is not supported by NextphpFilesystemAdapter.');
     }
 
+    /**
+      * @psalm-pure
+     */
     public function listContents(string $path, bool $deep): iterable
     {
         return [];

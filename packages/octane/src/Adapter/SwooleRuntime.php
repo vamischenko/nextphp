@@ -25,6 +25,9 @@ final class SwooleRuntime implements OctaneRuntimeInterface
         $tick();
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function stop(): void
     {
         $this->running = false;

@@ -11,10 +11,16 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 final class RequestCollector implements CollectorInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly ServerRequestInterface $request)
     {
     }
 
+    /**
+      * @psalm-pure
+     */
     public function getName(): string
     {
         return 'request';

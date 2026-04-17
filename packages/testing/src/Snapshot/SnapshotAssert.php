@@ -6,6 +6,9 @@ namespace Nextphp\Testing\Snapshot;
 
 final class SnapshotAssert
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $snapshotDir,
     ) {

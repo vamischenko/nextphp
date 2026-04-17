@@ -9,6 +9,9 @@ final class WebSocketServer implements MessageHandlerInterface
     /** @var array<string, ConnectionInterface> */
     private array $connections = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ?MessageHandlerInterface $handler = null,
     ) {
@@ -38,6 +41,9 @@ final class WebSocketServer implements MessageHandlerInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function countConnections(): int
     {
         return count($this->connections);

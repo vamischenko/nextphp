@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Nextphp\Queue;
 
 /**
- * @psalm-immutable
+ * @psalm-mutable
  */
 final class DeadLetterQueue
 {
     /** @var array<int, array{job: JobInterface, error: string}> */
     private array $items = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function push(JobInterface $job, string $error): void
     {
         $this->items[] = ['job' => $job, 'error' => $error];

@@ -7,12 +7,19 @@ namespace Nextphp\Migrations\Migration;
 use Nextphp\Orm\Connection\ConnectionInterface;
 use Nextphp\Migrations\Schema\Schema;
 
+/**
+ * @psalm-mutable
+ * @psalm-suppress MissingImmutableAnnotation
+ */
 abstract class Migration
 {
     protected Schema $schema;
 
     protected ConnectionInterface $connection;
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function setConnection(ConnectionInterface $connection): void
     {
         $this->connection = $connection;

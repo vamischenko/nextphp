@@ -22,6 +22,7 @@ abstract class MockProxy
     /**
      * Register an expectation for a method call.
      * Multiple expectations for the same method are matched in order.
+       * @psalm-external-mutation-free
      */
     public function expects(string $method): ExpectationBuilder
     {
@@ -33,6 +34,7 @@ abstract class MockProxy
 
     /**
      * Returns true if the method was called at least once.
+       * @psalm-mutation-free
      */
     public function wasCalled(string $method): bool
     {
@@ -41,6 +43,7 @@ abstract class MockProxy
 
     /**
      * Returns the number of times the method was called.
+       * @psalm-mutation-free
      */
     public function callCount(string $method): int
     {
@@ -51,6 +54,7 @@ abstract class MockProxy
      * Returns the arguments of the n-th call (0-indexed).
      *
      * @return array<mixed>
+       * @psalm-mutation-free
      */
     public function callArgs(string $method, int $index = 0): array
     {
@@ -59,6 +63,7 @@ abstract class MockProxy
 
     /**
      * Verify all registered expectations. Call this at the end of the test.
+       * @psalm-mutation-free
      */
     public function verify(): void
     {
@@ -95,6 +100,9 @@ abstract class MockProxy
         return self::defaultForType($returnTypeName);
     }
 
+    /**
+     * @psalm-pure
+     */
     private static function defaultForType(?string $type): mixed
     {
         return match ($type) {

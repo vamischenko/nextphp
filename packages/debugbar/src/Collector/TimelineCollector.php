@@ -40,6 +40,9 @@ final class TimelineCollector implements CollectorInterface
         }
     }
 
+    /**
+      * @psalm-pure
+     */
     public function getName(): string
     {
         return 'timeline';

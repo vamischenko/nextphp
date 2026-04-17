@@ -8,6 +8,9 @@ use Redis;
 
 final class RedisQueue implements QueueInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Redis $redis,
         private readonly string $key = 'nextphp:queue:default',

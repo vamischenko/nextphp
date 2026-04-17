@@ -18,12 +18,16 @@ final class ComponentRegistry
 
     /**
      * @param string|callable(array<string,mixed>): string $view view dot-path or callable
+       * @psalm-external-mutation-free
      */
     public function register(string $name, string|callable $view): void
     {
         $this->components[$name] = $view;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $name): bool
     {
         return isset($this->components[$name]);
@@ -31,6 +35,7 @@ final class ComponentRegistry
 
     /**
      * @return string|callable(array<string,mixed>): string
+       * @psalm-mutation-free
      */
     public function get(string $name): string|callable
     {

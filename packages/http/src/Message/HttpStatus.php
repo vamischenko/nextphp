@@ -86,6 +86,9 @@ enum HttpStatus: int
         };
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public static function phraseFor(int $code): string
     {
         return self::tryFrom($code)?->phrase() ?? '';

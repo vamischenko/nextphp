@@ -20,6 +20,9 @@ use PDO;
  */
 final class FailedJobStore
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PDO $pdo,
         private readonly string $table = 'failed_jobs',

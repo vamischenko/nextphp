@@ -12,6 +12,9 @@ final class Worker
     /** @var array<int, array{job: JobInterface, error: string}> */
     private array $failedJobs = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly QueueInterface $queue,
         private readonly int $maxTries = 3,

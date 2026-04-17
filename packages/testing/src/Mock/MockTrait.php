@@ -16,6 +16,9 @@ trait MockTrait
     /** @var array<string, mixed[][]> */
     private array $__calls = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function expects(string $method): ExpectationBuilder
     {
         $expectation = new ExpectationBuilder($method);
@@ -24,11 +27,17 @@ trait MockTrait
         return $expectation;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function wasCalled(string $method): bool
     {
         return isset($this->__calls[$method]) && count($this->__calls[$method]) > 0;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function callCount(string $method): int
     {
         return isset($this->__calls[$method]) ? count($this->__calls[$method]) : 0;
@@ -36,12 +45,16 @@ trait MockTrait
 
     /**
      * @return array<mixed>
+       * @psalm-mutation-free
      */
     public function callArgs(string $method, int $index = 0): array
     {
         return $this->__calls[$method][$index] ?? [];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function verify(): void
     {
         foreach ($this->__expectations as $perMethod) {

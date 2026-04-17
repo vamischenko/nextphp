@@ -27,6 +27,7 @@ final class Scheduler
      * Register a callable task.
      *
      * @param callable(): void $callback
+       * @psalm-external-mutation-free
      */
     public function call(callable $callback): ScheduledTask
     {
@@ -38,6 +39,7 @@ final class Scheduler
     /**
      * Register a console command name as a task.
      * The command will be resolved and run via the Application passed to run().
+       * @psalm-external-mutation-free
      */
     public function command(string $command, string ...$args): ScheduledTask
     {

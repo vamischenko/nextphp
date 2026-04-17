@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Validation\Translation;
 
 /**
- * @psalm-immutable
+  * @psalm-immutable
  */
 final class Translator
 {

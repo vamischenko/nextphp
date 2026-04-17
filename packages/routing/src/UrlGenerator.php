@@ -7,7 +7,7 @@ namespace Nextphp\Routing;
 use InvalidArgumentException;
 
 /**
- * @psalm-immutable
+  * @psalm-immutable
  */
 final class UrlGenerator
 {

@@ -9,11 +9,17 @@ namespace Nextphp\Debugbar\Collector;
  */
 final class MemoryCollector implements CollectorInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function getName(): string
     {
         return 'memory';
     }
 
+    /**
+      * @psalm-pure
+     */
     public function collect(): array
     {
         return [

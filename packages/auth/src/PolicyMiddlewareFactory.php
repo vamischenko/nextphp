@@ -7,7 +7,7 @@ namespace Nextphp\Auth;
 use Psr\Http\Server\MiddlewareInterface;
 
 /**
- * @psalm-immutable
+  * @psalm-immutable
  */
 final class PolicyMiddlewareFactory
 {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Nextphp\Console;
 
 /**
- * @psalm-immutable
+  * @psalm-mutable
  */
 abstract class Command
 {

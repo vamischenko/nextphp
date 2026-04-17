@@ -17,6 +17,7 @@ final class QueryCollector implements CollectorInterface
 
     /**
      * @param mixed[] $bindings
+       * @psalm-external-mutation-free
      */
     public function addQuery(string $sql, array $bindings = [], float $durationMs = 0.0): void
     {
@@ -27,11 +28,17 @@ final class QueryCollector implements CollectorInterface
         ];
     }
 
+    /**
+      * @psalm-pure
+     */
     public function getName(): string
     {
         return 'queries';
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function collect(): array
     {
         return [

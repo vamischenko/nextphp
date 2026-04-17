@@ -37,7 +37,7 @@ final class EmailVerificationService
      * Verify the token and, on success, call $markVerified.
      *
      * @param callable(string $userId): void $markVerified
-       * @psalm-mutation-free
+     * @psalm-impure
      */
     public function verify(string $userId, string $token, callable $markVerified): bool
     {

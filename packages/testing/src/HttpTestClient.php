@@ -11,6 +11,9 @@ final class HttpTestClient
      */
     private readonly \Closure $handler;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(callable $handler)
     {
         $this->handler = \Closure::fromCallable($handler);

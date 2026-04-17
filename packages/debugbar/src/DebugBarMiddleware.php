@@ -19,6 +19,9 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class DebugBarMiddleware implements MiddlewareInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly DebugBar $bar,
         private readonly HtmlRenderer $renderer = new HtmlRenderer(),
