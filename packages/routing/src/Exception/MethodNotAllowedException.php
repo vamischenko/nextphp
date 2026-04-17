@@ -10,6 +10,7 @@ final class MethodNotAllowedException extends NextphpException
 {
     /**
      * @param string[] $allowedMethods
+       * @psalm-mutation-free
      */
     public function __construct(
         private readonly array $allowedMethods,

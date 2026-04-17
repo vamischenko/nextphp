@@ -9,6 +9,9 @@ namespace Nextphp\Http\Cookie;
  */
 final class Cookie
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $name,
         private readonly string $value,
@@ -63,6 +66,7 @@ final class Cookie
 
     /**
      * Return a copy with a different value.
+       * @psalm-mutation-free
      */
     public function withValue(string $value): self
     {

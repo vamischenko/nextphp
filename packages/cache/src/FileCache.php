@@ -157,11 +157,17 @@ final class FileCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     private function path(string $key): string
     {
         return rtrim($this->directory, '/') . '/' . sha1($key) . '.json';
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     private function tagPath(string $tag): string
     {
         return rtrim($this->directory, '/') . '/tag_' . sha1($tag) . '.json';

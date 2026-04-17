@@ -28,13 +28,22 @@ abstract class Relation
      *
      * @return Model|Model[]|null
      */
+    /**
+     * @psalm-impure
+     */
     abstract public function getResults(): mixed;
 
     /**
      * Add constraints to the relation query based on the parent model.
      */
+    /**
+     * @psalm-impure
+     */
     abstract public function addConstraints(): void;
 
+    /**
+      * @psalm-mutation-free
+     */
     protected function relatedModel(): Model
     {
         return new $this->related();

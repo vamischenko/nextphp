@@ -16,6 +16,9 @@ final class TotpGenerator
     private const PERIOD   = 30;  // seconds per time-step
     private const WINDOW   = 1;   // allow ±1 step to account for clock skew
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly int $digits = self::DIGITS,
         private readonly int $period = self::PERIOD,
@@ -43,6 +46,7 @@ final class TotpGenerator
 
     /**
      * Verify a code within the drift window.
+       * @psalm-mutation-free
      */
     public function verify(string $secret, string $code, ?int $timestamp = null): bool
     {
@@ -61,6 +65,9 @@ final class TotpGenerator
     /**
      * Build a otpauth:// URI for QR-code generators (Google Authenticator, Authy, …).
      */
+    /**
+      * @psalm-mutation-free
+     */
     public function getUri(string $secret, string $account, string $issuer): string
     {
         return sprintf(
@@ -78,6 +85,9 @@ final class TotpGenerator
     // Internals
     // ------------------------------------------------------------------
 
+    /**
+     * @psalm-mutation-free
+     */
     private function hotp(string $secret, int $counter): string
     {
         $key     = $this->base32Decode($secret);
@@ -96,6 +106,9 @@ final class TotpGenerator
         return str_pad((string) $code, $this->digits, '0', STR_PAD_LEFT);
     }
 
+    /**
+       * @psalm-pure
+     */
     private function base32Encode(string $data): string
     {
         $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
@@ -120,6 +133,9 @@ final class TotpGenerator
         return $output;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function base32Decode(string $data): string
     {
         $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';

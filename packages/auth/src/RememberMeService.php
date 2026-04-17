@@ -18,6 +18,9 @@ final class RememberMeService
     /** Default remember-me token lifetime: 30 days. */
     private const DEFAULT_TTL = 60 * 60 * 24 * 30;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly RememberMeTokenStoreInterface $store,
         private readonly int $ttl = self::DEFAULT_TTL,
@@ -58,6 +61,7 @@ final class RememberMeService
 
     /**
      * Revoke a specific remember-me token (on logout).
+       * @psalm-external-mutation-free
      */
     public function revokeToken(string $token): void
     {
@@ -66,6 +70,7 @@ final class RememberMeService
 
     /**
      * Revoke all tokens for a user (e.g. "log out everywhere").
+       * @psalm-external-mutation-free
      */
     public function revokeAll(string|int $userId): void
     {

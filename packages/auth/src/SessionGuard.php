@@ -8,6 +8,9 @@ final class SessionGuard
 {
     private const SESSION_KEY = '_nextphp_auth_user';
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly UserProviderInterface $provider,
         private readonly SessionStoreInterface $session,
@@ -31,21 +34,33 @@ final class SessionGuard
         return true;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function check(): bool
     {
         return $this->session->get(self::SESSION_KEY) !== null;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function id(): string|int|null
     {
         return $this->session->get(self::SESSION_KEY);
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function logout(): void
     {
         $this->session->forget(self::SESSION_KEY);
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function userId(): string|int|null
     {
         return $this->id();

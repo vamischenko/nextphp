@@ -10,6 +10,9 @@ use Nextphp\Console\Output;
 
 final class MakeControllerCommand extends Command
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly Generator $generator)
     {
         parent::__construct('make:controller', 'Create a new controller class');

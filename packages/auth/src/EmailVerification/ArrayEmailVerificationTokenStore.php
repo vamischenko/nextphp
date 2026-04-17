@@ -9,6 +9,9 @@ final class ArrayEmailVerificationTokenStore implements EmailVerificationTokenSt
     /** @var array<string, array{user_id: string, token: string, created_at: int}> */
     private array $store = [];
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function store(string $userId, string $token): void
     {
         $this->store[$userId] = [
@@ -18,11 +21,17 @@ final class ArrayEmailVerificationTokenStore implements EmailVerificationTokenSt
         ];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function find(string $userId): ?array
     {
         return $this->store[$userId] ?? null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function delete(string $userId): void
     {
         unset($this->store[$userId]);

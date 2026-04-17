@@ -15,6 +15,9 @@ final class RouteGroup
 
     private string $namePrefix;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Router $router,
         string $prefix = '',
@@ -26,6 +29,9 @@ final class RouteGroup
         $this->namePrefix = $namePrefix;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function prefix(string $prefix): self
     {
         return new self($this->router, $this->prefix . '/' . trim($prefix, '/'), $this->middleware, $this->namePrefix);
@@ -33,12 +39,16 @@ final class RouteGroup
 
     /**
      * @param string[] $middleware
+       * @psalm-mutation-free
      */
     public function middleware(array $middleware): self
     {
         return new self($this->router, $this->prefix, array_merge($this->middleware, $middleware), $this->namePrefix);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function name(string $prefix): self
     {
         return new self($this->router, $this->prefix, $this->middleware, $this->namePrefix . $prefix);

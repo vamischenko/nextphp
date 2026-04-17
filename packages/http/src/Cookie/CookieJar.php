@@ -14,11 +14,17 @@ final class CookieJar
     /** @var list<Cookie> */
     private array $cookies = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function set(Cookie $cookie): void
     {
         $this->cookies[] = $cookie;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function queue(
         string $name,
         string $value,
@@ -43,6 +49,9 @@ final class CookieJar
         return $this->cookies;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function isEmpty(): bool
     {
         return $this->cookies === [];

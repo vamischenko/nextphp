@@ -29,6 +29,9 @@ use Psr\SimpleCache\CacheInterface;
  */
 final class DatabaseCache implements CacheInterface
 {
+    /**
+     * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PDO $pdo,
         private readonly string $table = 'cache',
@@ -219,6 +222,9 @@ final class DatabaseCache implements CacheInterface
         return (new DateTimeImmutable())->add($ttl)->getTimestamp();
     }
 
+    /**
+     * @psalm-pure
+     */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

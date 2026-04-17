@@ -31,6 +31,9 @@ final class Validator
 
     private Translator $translator;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ?PresenceVerifierInterface $presence = null,
     ) {
@@ -40,11 +43,17 @@ final class Validator
         ]);
     }
 
+    /**
+      * @psalm-pure
+     */
     public static function make(?PresenceVerifierInterface $presence = null): self
     {
         return new self($presence);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function setLocale(string $locale): self
     {
         $this->locale = $locale;
@@ -54,6 +63,7 @@ final class Validator
 
     /**
      * @param array<string, string> $map field => human-readable name
+       * @psalm-external-mutation-free
      */
     public function setAttributeNames(array $map): self
     {
@@ -64,6 +74,7 @@ final class Validator
 
     /**
      * @param array<string, string> $map key => message (supports placeholders)
+       * @psalm-external-mutation-free
      */
     public function setMessages(array $map): self
     {
@@ -117,6 +128,9 @@ final class Validator
         return new ValidationResult($errors);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function formatError(string $field, ValidationError|string $error): string
     {
         if (is_string($error)) {
@@ -134,6 +148,9 @@ final class Validator
         return $this->translator->trans($this->locale, $error->key, $params, $error->fallback);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function normalizeRule(mixed $rule): ValidationRuleInterface
     {
         if ($rule instanceof ValidationRuleInterface) {
@@ -160,6 +177,9 @@ final class Validator
         };
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function makeUniqueRule(string $rule): UniqueRule
     {
         $this->assertPresenceVerifier();
@@ -168,6 +188,9 @@ final class Validator
         return new UniqueRule($this->presence, $table, $column);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function makeExistsRule(string $rule): ExistsRule
     {
         $this->assertPresenceVerifier();
@@ -176,6 +199,9 @@ final class Validator
         return new ExistsRule($this->presence, $table, $column);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function assertPresenceVerifier(): void
     {
         if ($this->presence === null) {
@@ -185,6 +211,7 @@ final class Validator
 
     /**
      * @return array{0: string, 1: string}
+       * @psalm-pure
      */
     private function parsePresenceRule(string $rule, string $prefix): array
     {

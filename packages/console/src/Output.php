@@ -22,6 +22,9 @@ final class Output
 
     private bool $colours;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(bool $colours = true)
     {
         // Disable colours when not writing to a real TTY (e.g. tests / pipes)
@@ -171,6 +174,9 @@ final class Output
         return $this->buffer;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function clearBuffer(): void
     {
         $this->buffer = [];
@@ -186,6 +192,9 @@ final class Output
         fwrite(STDOUT, $text);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function colour(string $code, string $text): string
     {
         if (!$this->colours) {

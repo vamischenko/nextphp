@@ -9,6 +9,9 @@ namespace Nextphp\Orm\Query;
  */
 final readonly class Expression
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         public string $value,
     ) {

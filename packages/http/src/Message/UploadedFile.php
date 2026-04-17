@@ -15,6 +15,9 @@ final class UploadedFile implements UploadedFileInterface
 
     private ?StreamInterface $stream;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly StreamInterface|string $file,
         private readonly ?int $size,
@@ -109,6 +112,9 @@ final class UploadedFile implements UploadedFileInterface
         return $this->clientMediaType;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function assertNotMoved(): void
     {
         if ($this->moved) {
@@ -116,6 +122,9 @@ final class UploadedFile implements UploadedFileInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function assertNoError(): void
     {
         if ($this->error !== UPLOAD_ERR_OK) {

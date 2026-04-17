@@ -178,6 +178,9 @@ final class FakerGenerator
         return $array[array_rand($array)];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function unique(): self
     {
         // Fluent no-op for API compatibility — uniqueness guaranteed by sequence counter

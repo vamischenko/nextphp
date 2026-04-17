@@ -16,6 +16,9 @@ final class Task
 
     private bool $completed = false;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Fiber $fiber,
     ) {
@@ -49,6 +52,9 @@ final class Task
         return $this->completed;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function await(): mixed
     {
         if (!$this->completed) {

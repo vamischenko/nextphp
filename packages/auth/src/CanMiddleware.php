@@ -12,6 +12,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class CanMiddleware implements MiddlewareInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PolicyRegistry $policies,
         private readonly string $ability,

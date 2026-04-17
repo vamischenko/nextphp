@@ -23,6 +23,9 @@ final class Uri implements UriInterface
 
     private string $fragment = '';
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(string $uri = '')
     {
         if ($uri !== '') {
@@ -52,6 +55,9 @@ final class Uri implements UriInterface
         return $this->scheme;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getAuthority(): string
     {
         $authority = $this->host;
@@ -157,6 +163,9 @@ final class Uri implements UriInterface
         return $clone;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __toString(): string
     {
         $uri = '';
@@ -192,6 +201,9 @@ final class Uri implements UriInterface
         return $uri;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function filterPort(?int $port): ?int
     {
         if ($port === null) {

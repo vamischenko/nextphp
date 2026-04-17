@@ -9,11 +9,17 @@ final class Application
     /** @var array<string, Command> */
     private array $commands = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $name): bool
     {
         return isset($this->commands[$name]);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function add(Command $command): void
     {
         $this->commands[$command->getName()] = $command;

@@ -8,6 +8,9 @@ use Nextphp\Validation\ValidationResult;
 
 final class ValidationException extends \Nextphp\Core\Exception\NextphpException
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ValidationResult $result,
     ) {

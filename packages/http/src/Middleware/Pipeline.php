@@ -19,6 +19,9 @@ final class Pipeline implements RequestHandlerInterface
 
     private ?RequestHandlerInterface $fallback;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(?RequestHandlerInterface $fallback = null)
     {
         $this->fallback = $fallback;

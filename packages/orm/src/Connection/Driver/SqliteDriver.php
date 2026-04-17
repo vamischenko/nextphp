@@ -6,11 +6,17 @@ namespace Nextphp\Orm\Connection\Driver;
 
 final class SqliteDriver implements DriverInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function quoteIdentifier(string $identifier): string
     {
         return '"' . str_replace('"', '""', $identifier) . '"';
     }
 
+    /**
+      * @psalm-pure
+     */
     public function getName(): string
     {
         return 'sqlite';
@@ -21,6 +27,9 @@ final class SqliteDriver implements DriverInterface
         return $pdo->lastInsertId();
     }
 
+    /**
+      * @psalm-pure
+     */
     public function compileLimitOffset(?int $limit, ?int $offset): string
     {
         $sql = '';

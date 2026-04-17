@@ -22,6 +22,9 @@ final class RadixNode
 
     public bool $isWildcard = false;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(string $prefix = '')
     {
         $this->prefix = $prefix;

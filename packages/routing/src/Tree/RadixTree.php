@@ -10,6 +10,9 @@ final class RadixTree
 {
     private RadixNode $root;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct()
     {
         $this->root = new RadixNode('/');
@@ -83,6 +86,7 @@ final class RadixTree
 
     /**
      * @return string[]
+       * @psalm-pure
      */
     private function segmentize(string $path): array
     {

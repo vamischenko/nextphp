@@ -38,6 +38,7 @@ final class ScheduledTask
     /**
      * @param callable(): void | null  $callback
      * @param list<string>             $commandArgs
+       * @psalm-mutation-free
      */
     public function __construct(
         private readonly mixed $callback,
@@ -50,6 +51,9 @@ final class ScheduledTask
     // Frequency helpers
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function cron(string $expression): self
     {
         $this->expression = $expression;
@@ -126,6 +130,7 @@ final class ScheduledTask
 
     /**
      * Restrict execution to weekdays only (Mon–Fri).
+       * @psalm-external-mutation-free
      */
     public function weekdays(): self
     {
@@ -135,6 +140,7 @@ final class ScheduledTask
 
     /**
      * Restrict execution to weekends only (Sat–Sun).
+       * @psalm-external-mutation-free
      */
     public function weekends(): self
     {
@@ -142,6 +148,9 @@ final class ScheduledTask
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function description(string $desc): self
     {
         $this->description = $desc;
@@ -192,6 +201,9 @@ final class ScheduledTask
         return $this->expression;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getDescription(): string
     {
         return $this->description !== ''

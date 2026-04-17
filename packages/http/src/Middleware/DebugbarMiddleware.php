@@ -13,6 +13,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class DebugbarMiddleware implements MiddlewareInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly bool $injectHtml = true,
         private readonly bool $addServerTiming = true,
@@ -73,6 +76,9 @@ final class DebugbarMiddleware implements MiddlewareInterface
         ));
     }
 
+    /**
+      * @psalm-pure
+     */
     private function renderToolbar(float $elapsedMs, int $peakMem): string
     {
         $memMb = $peakMem / (1024 * 1024);

@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing\RateLimit;
 
+/**
+ * @psalm-immutable
+ */
 final readonly class RateLimitResult
 {
+    /**
+     * @psalm-mutation-free
+     */
     public function __construct(
         /** Remaining allowed attempts in this window (0 = exhausted). */
         public int $remaining,

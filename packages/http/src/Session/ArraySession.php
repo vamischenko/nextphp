@@ -21,6 +21,9 @@ final class ArraySession implements SessionInterface
         $this->id = $id !== '' ? $id : $this->newId();
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function start(): void
     {
         if ($this->started) {
@@ -40,21 +43,33 @@ final class ArraySession implements SessionInterface
         $this->id = $this->newId();
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(string $key, mixed $default = null): mixed
     {
         return $this->data[$key] ?? $default;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function set(string $key, mixed $value): void
     {
         $this->data[$key] = $value;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $key): bool
     {
         return array_key_exists($key, $this->data);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function forget(string $key): void
     {
         unset($this->data[$key]);
@@ -65,11 +80,17 @@ final class ArraySession implements SessionInterface
         return $this->data;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flush(): void
     {
         $this->data = [];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function save(): void
     {
         // no-op for in-memory

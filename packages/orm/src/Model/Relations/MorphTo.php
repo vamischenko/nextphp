@@ -10,6 +10,7 @@ final class MorphTo
 {
     /**
      * @param array<string, class-string<Model>> $typeMap
+       * @psalm-mutation-free
      */
     public function __construct(
         private readonly Model $parent,

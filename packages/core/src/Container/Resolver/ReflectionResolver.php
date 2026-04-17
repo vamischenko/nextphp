@@ -23,6 +23,9 @@ final class ReflectionResolver
     /** @var array<string, ReflectionMethod> */
     private static array $methodCache = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ContainerInterface $container,
     ) {
@@ -121,6 +124,7 @@ final class ReflectionResolver
      * @param class-string<T> $concrete
      * @return ReflectionClass<T>
      * @throws ContainerException
+       * @psalm-external-mutation-free
      */
     private function reflectClass(string $concrete): ReflectionClass
     {

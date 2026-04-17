@@ -10,6 +10,9 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 
 final class AsyncEventDispatcher implements EventDispatcherInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly EventDispatcher $dispatcher,
         private readonly QueueInterface $queue,

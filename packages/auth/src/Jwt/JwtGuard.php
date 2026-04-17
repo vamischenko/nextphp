@@ -18,6 +18,9 @@ final class JwtGuard
     /** Default token lifetime: 1 hour. */
     private const DEFAULT_TTL = 3600;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly UserProviderInterface $provider,
         private readonly JwtEncoder $encoder,

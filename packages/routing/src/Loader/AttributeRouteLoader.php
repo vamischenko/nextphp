@@ -13,6 +13,9 @@ use ReflectionMethod;
 
 final class AttributeRouteLoader
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Router $router,
     ) {

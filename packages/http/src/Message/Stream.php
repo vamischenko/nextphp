@@ -62,6 +62,7 @@ final class Stream implements StreamInterface
 
     /**
      * @param resource $stream
+       * @psalm-mutation-free
      */
     public function __construct(mixed $stream)
     {
@@ -112,6 +113,9 @@ final class Stream implements StreamInterface
         }
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function detach(): mixed
     {
         $stream = $this->stream;
@@ -123,6 +127,9 @@ final class Stream implements StreamInterface
         return $stream;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getSize(): ?int
     {
         if ($this->stream === null) {
@@ -134,6 +141,9 @@ final class Stream implements StreamInterface
         return $stats !== false ? $stats['size'] : null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function tell(): int
     {
         $this->assertOpen();
@@ -146,6 +156,9 @@ final class Stream implements StreamInterface
         return $position;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function eof(): bool
     {
         return $this->stream === null || feof($this->stream);
@@ -218,6 +231,9 @@ final class Stream implements StreamInterface
         return $data;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getContents(): string
     {
         $this->assertOpen();
@@ -237,6 +253,7 @@ final class Stream implements StreamInterface
 
     /**
      * @return array<string, mixed>|mixed|null
+       * @psalm-mutation-free
      */
     public function getMetadata(?string $key = null): mixed
     {
@@ -253,6 +270,9 @@ final class Stream implements StreamInterface
         return $meta[$key] ?? null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function assertOpen(): void
     {
         if ($this->stream === null) {

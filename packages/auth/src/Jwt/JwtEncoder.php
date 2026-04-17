@@ -9,12 +9,16 @@ namespace Nextphp\Auth\Jwt;
  */
 final class JwtEncoder
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly string $secret)
     {
     }
 
     /**
      * @param array<string, mixed> $payload
+       * @psalm-mutation-free
      */
     public function encode(array $payload): string
     {
@@ -64,11 +68,17 @@ final class JwtEncoder
         return $payload;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function sign(string $data): string
     {
         return hash_hmac('sha256', $data, $this->secret, binary: true);
     }
 
+    /**
+       * @psalm-pure
+     */
     private function base64url(string $data): string
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');

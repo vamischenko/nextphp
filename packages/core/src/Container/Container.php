@@ -39,6 +39,9 @@ class Container implements ContainerInterface
         $this->instance(static::class, $this);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function bind(string $abstract, Closure|string|null $concrete = null): void
     {
         $this->bindings[$abstract] = new Binding(
@@ -47,6 +50,9 @@ class Container implements ContainerInterface
         );
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function singleton(string $abstract, Closure|string|null $concrete = null): void
     {
         $this->bindings[$abstract] = new Binding(
@@ -57,6 +63,9 @@ class Container implements ContainerInterface
         unset($this->singletons[$abstract]);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function scoped(string $abstract, Closure|string|null $concrete = null): void
     {
         $this->bindings[$abstract] = new Binding(
@@ -65,6 +74,9 @@ class Container implements ContainerInterface
         );
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function instance(string $abstract, object $instance): void
     {
         $this->bindings[$abstract] = new Binding(
@@ -138,16 +150,25 @@ class Container implements ContainerInterface
         return $this->make($id);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function bound(string $abstract): bool
     {
         return isset($this->bindings[$abstract]);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function addServiceProvider(ServiceProviderInterface $provider): void
     {
         $this->providers[] = $provider;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function addCompilerPass(CompilerPassInterface $pass): void
     {
         $this->compilerPasses[] = $pass;
@@ -174,6 +195,9 @@ class Container implements ContainerInterface
         $this->booted = true;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flushScoped(): void
     {
         $this->scopedInstances = [];

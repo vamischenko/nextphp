@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\GraphQL;
 
+/**
+ * @psalm-immutable
+ */
 final class Schema
 {
     /** @var array<string, callable(array<string, mixed>): mixed> */

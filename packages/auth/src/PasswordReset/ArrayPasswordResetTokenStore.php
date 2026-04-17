@@ -12,6 +12,9 @@ final class ArrayPasswordResetTokenStore implements PasswordResetTokenStoreInter
     /** @var array<string, array{email: string, token: string, created_at: int}> */
     private array $records = [];
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function store(string $email, string $token): void
     {
         $this->records[$email] = [
@@ -21,11 +24,17 @@ final class ArrayPasswordResetTokenStore implements PasswordResetTokenStoreInter
         ];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function find(string $email): ?array
     {
         return $this->records[$email] ?? null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function delete(string $email): void
     {
         unset($this->records[$email]);

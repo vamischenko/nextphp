@@ -13,6 +13,9 @@ final class EventDispatcher implements EventDispatcherInterface, ListenerProvide
     /** @var array<string, array<int, array{priority: int, listener: callable}>> */
     private array $listeners = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function addListener(string $eventClass, callable $listener, int $priority = 0): void
     {
         $this->listeners[$eventClass][] = ['priority' => $priority, 'listener' => $listener];
@@ -38,6 +41,9 @@ final class EventDispatcher implements EventDispatcherInterface, ListenerProvide
         return $event;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getListenersForEvent(object $event): iterable
     {
         $resolved = [];

@@ -13,12 +13,16 @@ final class InMemoryPresenceVerifier implements PresenceVerifierInterface
 
     /**
      * @param array<string, array<int, array<string, mixed>>> $data
+       * @psalm-mutation-free
      */
     public function __construct(array $data = [])
     {
         $this->data = $data;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function exists(string $table, string $column, mixed $value): bool
     {
         foreach ($this->data[$table] ?? [] as $row) {
@@ -30,6 +34,9 @@ final class InMemoryPresenceVerifier implements PresenceVerifierInterface
         return false;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function unique(string $table, string $column, mixed $value): bool
     {
         return ! $this->exists($table, $column, $value);

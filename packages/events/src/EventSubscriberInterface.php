@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Events;
 
+/**
+ * @psalm-mutable
+ */
 interface EventSubscriberInterface
 {
     /**

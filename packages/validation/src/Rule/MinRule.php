@@ -9,11 +9,17 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class MinRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly int $min,
     ) {
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if (is_string($value) && mb_strlen($value) < $this->min) {

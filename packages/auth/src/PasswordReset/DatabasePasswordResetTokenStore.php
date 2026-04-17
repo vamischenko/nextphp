@@ -19,12 +19,18 @@ use PDO;
  */
 final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PDO $pdo,
         private readonly string $table = 'password_reset_tokens',
     ) {
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function store(string $email, string $token): void
     {
         // Upsert: delete then insert to stay portable across drivers.
@@ -41,6 +47,9 @@ final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreIn
         ]);
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function find(string $email): ?array
     {
         $stmt = $this->pdo->prepare(
@@ -62,6 +71,9 @@ final class DatabasePasswordResetTokenStore implements PasswordResetTokenStoreIn
         ];
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function delete(string $email): void
     {
         $stmt = $this->pdo->prepare(

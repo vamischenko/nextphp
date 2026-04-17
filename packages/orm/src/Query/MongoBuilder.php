@@ -37,6 +37,9 @@ final class MongoBuilder
 
     private ?int $skip = null;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly MongoConnection $connection,
     ) {
@@ -416,6 +419,7 @@ final class MongoBuilder
 
     /**
      * @return array<string, mixed>
+       * @psalm-mutation-free
      */
     private function buildOptions(): array
     {
@@ -445,6 +449,7 @@ final class MongoBuilder
      *
      * @param mixed $document
      * @return array<string, mixed>
+       * @psalm-pure
      */
     private function documentToArray(mixed $document): array
     {

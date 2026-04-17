@@ -16,6 +16,9 @@ final class Router
 
     private RouteCollection $collection;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct()
     {
         $this->tree = new RadixTree();
@@ -76,6 +79,7 @@ final class Router
      *
      * Example:
      *   $router->prefix('api/v1')->middleware(['auth'])->name('api.')->group(function (RouteGroup $g) { ... });
+       * @psalm-mutation-free
      */
     public function prefix(string $prefix): RouteGroup
     {
@@ -90,6 +94,7 @@ final class Router
      *   $router->api(2)->group(...);     // /api/v2
      *   $router->api('v3')->group(...);  // /api/v3
      *   $router->api('3')->group(...);   // /api/v3
+       * @psalm-mutation-free
      */
     public function api(int|string $version = 'v1'): RouteGroup
     {
@@ -108,6 +113,7 @@ final class Router
 
     /**
      * Start a fluent route group with the given name prefix.
+       * @psalm-mutation-free
      */
     public function name(string $namePrefix): RouteGroup
     {
@@ -189,6 +195,9 @@ final class Router
         return $this->collection;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getUrlGenerator(): UrlGenerator
     {
         return new UrlGenerator($this->collection);
@@ -207,6 +216,9 @@ final class Router
         return $route;
     }
 
+    /**
+      * @psalm-pure
+     */
     private function resourceName(string $path, string $action): string
     {
         $name = trim($path, '/');

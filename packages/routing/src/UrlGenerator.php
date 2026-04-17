@@ -6,8 +6,14 @@ namespace Nextphp\Routing;
 
 use InvalidArgumentException;
 
+/**
+ * @psalm-immutable
+ */
 final class UrlGenerator
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly RouteCollection $routes,
     ) {
@@ -19,6 +25,7 @@ final class UrlGenerator
      * @param array<string, string|int> $params
      *
      * @throws InvalidArgumentException
+       * @psalm-mutation-free
      */
     public function generate(string $name, array $params = []): string
     {

@@ -13,6 +13,9 @@ use Throwable;
 
 final class ExceptionHandler
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly bool $debug = false,
     ) {
@@ -48,6 +51,9 @@ final class ExceptionHandler
         return new Response($status, ['Content-Type' => 'text/html; charset=UTF-8'], $body);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function renderSimplePage(string $message, int $status): string
     {
         $title = htmlspecialchars($this->statusTitle($status), ENT_QUOTES, 'UTF-8');
@@ -66,6 +72,9 @@ final class ExceptionHandler
             HTML;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function renderDebugPage(Throwable $exception, int $status): string
     {
         $title = htmlspecialchars($status . ' ' . $this->statusTitle($status), ENT_QUOTES, 'UTF-8');
@@ -140,6 +149,9 @@ final class ExceptionHandler
             HTML;
     }
 
+    /**
+      * @psalm-pure
+     */
     private function statusTitle(int $status): string
     {
         return match ($status) {

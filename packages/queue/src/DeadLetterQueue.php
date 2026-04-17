@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Queue;
 
+/**
+ * @psalm-immutable
+ */
 final class DeadLetterQueue
 {
     /** @var array<int, array{job: JobInterface, error: string}> */

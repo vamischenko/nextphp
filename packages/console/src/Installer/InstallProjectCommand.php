@@ -8,6 +8,9 @@ use Nextphp\Console\Command;
 
 final class InstallProjectCommand extends Command
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ProjectInstaller $installer,
     ) {

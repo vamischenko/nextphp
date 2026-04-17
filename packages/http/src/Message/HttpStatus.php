@@ -44,6 +44,9 @@ enum HttpStatus: int
     case BadGateway = 502;
     case ServiceUnavailable = 503;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function phrase(): string
     {
         return match ($this) {

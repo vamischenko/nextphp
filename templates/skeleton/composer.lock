@@ -12,9 +12,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/auth",
-                "reference": "67f6372792f0c3f3724236ee271eb6ad5fbae89f"
+                "reference": "092944446d28b6df2adbd4031344c3ebb4d96727"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "php": "^8.2",
                 "psr/http-message": "^2.0",
                 "psr/http-server-middleware": "^1.0"
@@ -167,11 +168,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/http",
-                "reference": "a16f3ea75c1ef077e13b01c75f9d819dd3fd30d0"
+                "reference": "52a7153172e91b9c3a6a893c99b1293743793e01"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "nextphp/routing": "*@dev",
                 "php": "^8.2",
+                "psr/container": "^2.0",
                 "psr/http-factory": "^1.1",
                 "psr/http-message": "^2.0",
                 "psr/http-server-handler": "^1.0",
@@ -227,10 +230,12 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/routing",
-                "reference": "45c5c93c85b2dfae514b1dcbd7cad37dcc758481"
+                "reference": "c53089a3f94225c253c25a3f78c3adcf588646ac"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "php": "^8.2",
+                "psr/http-factory": "^1.0",
                 "psr/http-message": "^2.0",
                 "psr/http-server-middleware": "^1.0"
             },
@@ -280,9 +285,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/validation",
-                "reference": "790d2127cebf0e8f6d527827aa86c073829c11d6"
+                "reference": "b559587822f9422544e976d12f83d83453940743"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "php": "^8.2"
             },
             "require-dev": {
@@ -329,9 +335,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/view",
-                "reference": "be607935c7f96661b62b3b8dd32e655c87eba3f2"
+                "reference": "66c1a4d366965aa0096a4e0df68f463fb4097990"
             },
             "require": {
+                "nextphp/core": "*@dev",
                 "php": "^8.2"
             },
             "require-dev": {

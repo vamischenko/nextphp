@@ -61,21 +61,33 @@ final class FileSession implements SessionInterface
         }
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(string $key, mixed $default = null): mixed
     {
         return $this->data[$key] ?? $default;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function set(string $key, mixed $value): void
     {
         $this->data[$key] = $value;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $key): bool
     {
         return array_key_exists($key, $this->data);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function forget(string $key): void
     {
         unset($this->data[$key]);
@@ -86,6 +98,9 @@ final class FileSession implements SessionInterface
         return $this->data;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flush(): void
     {
         $this->data = [];
@@ -100,6 +115,9 @@ final class FileSession implements SessionInterface
         file_put_contents($this->filePath(), serialize($this->data));
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function filePath(): string
     {
         return rtrim($this->storagePath, '/') . '/sess_' . $this->id;

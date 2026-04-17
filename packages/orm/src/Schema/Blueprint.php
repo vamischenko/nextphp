@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Orm\Schema;
 
+/**
+ * @psalm-immutable
+ */
 final class Blueprint
 {
     /** @var array<int, array<string, mixed>> */
@@ -18,11 +21,17 @@ final class Blueprint
     /** @var array<int, array{column: string, references: string, on: string, onDelete: string}> */
     private array $foreignKeys = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $table,
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function id(string $column = 'id'): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'INTEGER', 'autoincrement' => true, 'nullable' => false, 'default' => null];
@@ -31,11 +40,17 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function bigIncrements(string $column): self
     {
         return $this->id($column);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function string(string $column, int $length = 255): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'VARCHAR(' . $length . ')', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -43,6 +58,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function text(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'TEXT', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -50,6 +68,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function integer(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'INTEGER', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -57,6 +78,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function bigInteger(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'BIGINT', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -64,6 +88,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function float(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'REAL', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -71,6 +98,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function decimal(string $column, int $precision = 10, int $scale = 2): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'DECIMAL(' . $precision . ',' . $scale . ')', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -78,6 +108,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function boolean(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'TINYINT(1)', 'autoincrement' => false, 'nullable' => false, 'default' => null];
@@ -85,6 +118,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function timestamp(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'TIMESTAMP', 'autoincrement' => false, 'nullable' => true, 'default' => null];
@@ -92,6 +128,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function timestamps(): self
     {
         $this->timestamp('created_at');
@@ -100,6 +139,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function softDeletes(string $column = 'deleted_at'): self
     {
         $this->timestamp($column);
@@ -107,6 +149,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function json(string $column): self
     {
         $this->columns[] = ['name' => $column, 'type' => 'TEXT', 'autoincrement' => false, 'nullable' => true, 'default' => null];
@@ -114,6 +159,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function nullable(): self
     {
         $last = array_key_last($this->columns);
@@ -125,6 +173,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function default(mixed $value): self
     {
         $last = array_key_last($this->columns);
@@ -136,6 +187,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function unique(): self
     {
         $last = array_key_last($this->columns);
@@ -148,6 +202,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function index(string $column): self
     {
         $this->indexes[] = ['name' => $this->table . '_' . $column . '_index', 'columns' => [$column], 'unique' => false];
@@ -155,6 +212,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function foreign(string $column): self
     {
         // Returns self for fluent chaining via references/on/onDelete
@@ -163,6 +223,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function references(string $column): self
     {
         $last = array_key_last($this->foreignKeys);
@@ -174,6 +237,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function on(string $table): self
     {
         $last = array_key_last($this->foreignKeys);
@@ -185,6 +251,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onDelete(string $action): self
     {
         $last = array_key_last($this->foreignKeys);
@@ -196,6 +265,9 @@ final class Blueprint
         return $this;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function toCreateSql(): string
     {
         $columnDefs = [];
@@ -229,6 +301,9 @@ final class Blueprint
         return $sql;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function toDropSql(): string
     {
         return 'DROP TABLE IF EXISTS "' . $this->table . '"';
@@ -236,6 +311,7 @@ final class Blueprint
 
     /**
      * @return string[]
+       * @psalm-mutation-free
      */
     public function toIndexSql(): array
     {

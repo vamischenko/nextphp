@@ -27,6 +27,9 @@ final class StreamFactory implements StreamFactoryInterface
         return new Stream($resource);
     }
 
+    /**
+      * @psalm-pure
+     */
     public function createStreamFromResource(mixed $resource): StreamInterface
     {
         return new Stream($resource);

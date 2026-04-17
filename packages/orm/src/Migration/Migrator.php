@@ -182,6 +182,9 @@ final class Migrator
         throw new \RuntimeException('Cannot find Migration class in: ' . $file);
     }
 
+    /**
+      * @psalm-pure
+     */
     private function getMigrationName(string $file): string
     {
         return pathinfo($file, PATHINFO_FILENAME);

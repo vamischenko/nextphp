@@ -19,7 +19,13 @@ abstract class Migration
         $this->schema = new Schema($connection);
     }
 
+    /**
+     * @psalm-impure
+     */
     abstract public function up(): void;
 
+    /**
+     * @psalm-impure
+     */
     abstract public function down(): void;
 }

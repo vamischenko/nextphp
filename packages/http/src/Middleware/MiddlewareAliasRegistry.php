@@ -12,11 +12,17 @@ final class MiddlewareAliasRegistry
     /** @var array<string, MiddlewareInterface|callable(string): MiddlewareInterface> */
     private array $aliases = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function register(string $alias, MiddlewareInterface|callable $middleware): void
     {
         $this->aliases[$alias] = $middleware;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $alias): bool
     {
         return isset($this->aliases[$alias]);

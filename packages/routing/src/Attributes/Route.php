@@ -6,12 +6,18 @@ namespace Nextphp\Routing\Attributes;
 
 use Attribute;
 
+/**
+ * @psalm-immutable
+ */
 #[Attribute(Attribute::TARGET_METHOD | Attribute::TARGET_CLASS)]
 final class Route
 {
     /**
      * @param string[] $methods
      * @param string[] $middleware
+     */
+    /**
+     * @psalm-mutation-free
      */
     public function __construct(
         public readonly string $path,

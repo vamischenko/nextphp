@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing;
 
+/**
+ * @psalm-immutable
+ */
 final class Route
 {
     /** @var string[] */
@@ -25,6 +28,7 @@ final class Route
     /**
      * @param string[]             $methods
      * @param string[]             $middleware
+       * @psalm-mutation-free
      */
     public function __construct(
         array $methods,
@@ -71,6 +75,9 @@ final class Route
         return $this->middleware;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function named(string $name): self
     {
         $this->name = $this->namePrefix !== '' ? $this->namePrefix . $name : $name;
@@ -85,6 +92,7 @@ final class Route
     /**
      * Set a name prefix to be prepended when named() is called.
      * @internal Used by RouteGroup.
+       * @psalm-external-mutation-free
      */
     public function withNamePrefix(string $prefix): self
     {
@@ -95,6 +103,7 @@ final class Route
 
     /**
      * @param string[] $middleware
+       * @psalm-external-mutation-free
      */
     public function middleware(array $middleware): self
     {
@@ -106,6 +115,7 @@ final class Route
     /**
      * Internal: attach collection so named() can register itself.
      * @internal
+       * @psalm-external-mutation-free
      */
     public function attachCollection(RouteCollection $collection): void
     {

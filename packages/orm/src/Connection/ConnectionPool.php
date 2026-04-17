@@ -6,6 +6,9 @@ namespace Nextphp\Orm\Connection;
 
 use Nextphp\Orm\Exception\OrmException;
 
+/**
+ * @psalm-immutable
+ */
 final class ConnectionPool
 {
     /** @var array<string, ConnectionInterface> */

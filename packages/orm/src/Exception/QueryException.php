@@ -10,6 +10,7 @@ final class QueryException extends OrmException
 {
     /**
      * @param mixed[] $bindings
+       * @psalm-mutation-free
      */
     public function __construct(
         private readonly string $sql,

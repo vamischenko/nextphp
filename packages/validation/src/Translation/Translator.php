@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Validation\Translation;
 
+/**
+ * @psalm-immutable
+ */
 final class Translator
 {
     /** @var array<string, array<string, string|array<string, string>>> */
@@ -11,6 +14,7 @@ final class Translator
 
     /**
      * @param array<string, array<string, string|array<string, string>>> $catalogues
+       * @psalm-mutation-free
      */
     public function __construct(array $catalogues)
     {
@@ -19,6 +23,7 @@ final class Translator
 
     /**
      * @param array<string, scalar> $params
+       * @psalm-mutation-free
      */
     public function trans(string $locale, string $key, array $params = [], ?string $fallback = null): string
     {
@@ -31,6 +36,9 @@ final class Translator
         return $message;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function lookup(string $locale, string $key): ?string
     {
         $cat = $this->catalogues[$locale] ?? null;

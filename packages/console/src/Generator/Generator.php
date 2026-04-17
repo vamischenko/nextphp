@@ -6,6 +6,9 @@ namespace Nextphp\Console\Generator;
 
 final class Generator
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $basePath,
         private readonly ?string $stubsPath = null,
@@ -58,11 +61,17 @@ final class Generator
         return str_replace(['{{CLASS}}', '{{TABLE}}'], [$class, $table], $content);
     }
 
+    /**
+      * @psalm-pure
+     */
     private function toStudlyCase(string $name): string
     {
         return str_replace('_', '', ucwords($name, '_'));
     }
 
+    /**
+      * @psalm-pure
+     */
     private function guessTable(string $name): string
     {
         // create_users_table → users

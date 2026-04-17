@@ -35,6 +35,9 @@ final class ArrayRateLimiter implements RateLimiterInterface
         return new RateLimitResult($remaining, $maxAttempts, $resetsAt);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function reset(string $key): void
     {
         unset($this->buckets[$key]);

@@ -9,11 +9,17 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class MaxRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly int $max,
     ) {
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if (is_string($value) && mb_strlen($value) > $this->max) {

@@ -194,6 +194,9 @@ class PdoConnection implements SqlConnectionInterface
         return $this->pdo;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function enableQueryLog(): void
     {
         $this->loggingEnabled = true;
@@ -207,6 +210,9 @@ class PdoConnection implements SqlConnectionInterface
         return $this->queryLog;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flushQueryLog(): void
     {
         $this->queryLog = [];
@@ -237,6 +243,9 @@ class PdoConnection implements SqlConnectionInterface
         return $statement;
     }
 
+    /**
+      * @psalm-pure
+     */
     private function resolveDriver(string $dsn): DriverInterface
     {
         return match (true) {

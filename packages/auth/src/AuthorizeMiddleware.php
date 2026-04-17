@@ -6,6 +6,9 @@ namespace Nextphp\Auth;
 
 final class AuthorizeMiddleware
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PolicyRegistry $policies,
     ) {

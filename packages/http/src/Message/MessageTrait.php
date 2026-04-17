@@ -40,6 +40,9 @@ trait MessageTrait
         return $this->headers;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function hasHeader(string $name): bool
     {
         return isset($this->headerNames[strtolower($name)]);
@@ -47,6 +50,7 @@ trait MessageTrait
 
     /**
      * @return string[]
+       * @psalm-mutation-free
      */
     public function getHeader(string $name): array
     {
@@ -59,6 +63,9 @@ trait MessageTrait
         return $this->headers[$this->headerNames[$lower]];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getHeaderLine(string $name): string
     {
         return implode(', ', $this->getHeader($name));
@@ -124,6 +131,7 @@ trait MessageTrait
 
     /**
      * @param array<string, string[]>|array<string, string> $headers
+       * @psalm-external-mutation-free
      */
     private function setHeaders(array $headers): void
     {
@@ -137,6 +145,7 @@ trait MessageTrait
 
     /**
      * @return string[]
+       * @psalm-pure
      */
     private function normalizeHeaderValue(mixed $value): array
     {

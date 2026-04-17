@@ -11,6 +11,9 @@ final class BooleanRule implements ValidationRuleInterface
 {
     private const ACCEPTABLE = [true, false, 0, 1, '0', '1', 'true', 'false'];
 
+    /**
+      * @psalm-pure
+     */
     public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if ($value === null) {

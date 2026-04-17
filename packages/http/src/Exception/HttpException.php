@@ -9,6 +9,9 @@ use Throwable;
 
 class HttpException extends NextphpException
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly int $statusCode,
         string $message = '',
@@ -22,6 +25,9 @@ class HttpException extends NextphpException
         return $this->statusCode;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     protected function defaultMessage(): string
     {
         return match ($this->statusCode) {

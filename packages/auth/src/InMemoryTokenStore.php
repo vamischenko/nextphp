@@ -17,11 +17,17 @@ final class InMemoryTokenStore implements TokenStoreInterface
         return $token;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function resolve(string $token): string|int|null
     {
         return $this->tokens[$token] ?? null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function revoke(string $token): void
     {
         unset($this->tokens[$token]);

@@ -9,6 +9,9 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class ConfirmedRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         $confirmationKey = $field . '_confirmation';

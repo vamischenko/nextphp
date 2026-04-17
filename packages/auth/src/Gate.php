@@ -9,6 +9,9 @@ final class Gate
     /** @var array<string, callable> */
     private array $abilities = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function define(string $ability, callable $callback): void
     {
         $this->abilities[$ability] = $callback;

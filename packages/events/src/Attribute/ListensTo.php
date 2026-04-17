@@ -16,10 +16,16 @@ namespace Nextphp\Events\Attribute;
  *
  * Then register via EventDiscovery::register($dispatcher, [SendWelcomeEmail::class]).
  */
+/**
+ * @psalm-immutable
+ */
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::IS_REPEATABLE)]
 final class ListensTo
 {
-    /** @param class-string $eventClass */
+    /**
+     * @param class-string $eventClass
+     * @psalm-mutation-free
+     */
     public function __construct(
         public readonly string $eventClass,
         public readonly int $priority = 0,

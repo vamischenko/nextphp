@@ -41,6 +41,9 @@ final class ArrayCache implements CacheInterface
         return true;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function delete(string $key): bool
     {
         $this->assertValidKey($key);
@@ -54,6 +57,9 @@ final class ArrayCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function clear(): bool
     {
         $this->store = [];
@@ -136,6 +142,7 @@ final class ArrayCache implements CacheInterface
 
     /**
      * @param string[] $tags
+       * @psalm-external-mutation-free
      */
     public function tag(string $key, array $tags): void
     {
@@ -146,6 +153,9 @@ final class ArrayCache implements CacheInterface
         }
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function flushTag(string $tag): bool
     {
         $this->assertValidTag($tag);
@@ -158,6 +168,9 @@ final class ArrayCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {
@@ -169,6 +182,9 @@ final class ArrayCache implements CacheInterface
         }
     }
 
+    /**
+     * @psalm-pure
+     */
     private function assertValidTag(string $tag): void
     {
         if ($tag === '') {

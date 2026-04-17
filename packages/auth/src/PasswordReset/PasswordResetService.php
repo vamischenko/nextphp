@@ -18,6 +18,9 @@ final class PasswordResetService
     /** Default token lifetime in seconds (60 minutes). */
     private const DEFAULT_EXPIRES = 3600;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly UserProviderInterface $users,
         private readonly PasswordResetTokenStoreInterface $tokens,

@@ -10,6 +10,9 @@ use Nextphp\Console\Output;
 
 final class MakeModelCommand extends Command
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly Generator $generator)
     {
         parent::__construct('make:model', 'Create a new ORM model class');
@@ -43,6 +46,9 @@ final class MakeModelCommand extends Command
         return 0;
     }
 
+    /**
+      * @psalm-pure
+     */
     private function toSnakeCase(string $name): string
     {
         return strtolower((string) preg_replace('/[A-Z]/', '_$0', lcfirst($name)));

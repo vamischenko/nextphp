@@ -10,6 +10,9 @@ use Redis;
 
 final class CacheFactory
 {
+    /**
+     * @psalm-pure
+     */
     public static function array(): ArrayCache
     {
         return new ArrayCache();
@@ -38,12 +41,17 @@ final class CacheFactory
 
     /**
      * Create RedisCache from an already-connected Redis instance.
+     *
+     * @psalm-pure
      */
     public static function redisFromInstance(Redis $redis, string $prefix = 'nextphp:'): RedisCache
     {
         return new RedisCache($redis, $prefix);
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function memcached(
         string $host = '127.0.0.1',
         int $port = 11211,
@@ -63,6 +71,9 @@ final class CacheFactory
         return new MemcachedCache($mc, $prefix);
     }
 
+    /**
+     * @psalm-pure
+     */
     public static function database(
         PDO $pdo,
         string $table = 'cache',

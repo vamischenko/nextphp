@@ -47,11 +47,17 @@ class Builder
     /** @var string[] */
     private array $eagerLoads = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ConnectionInterface $connection,
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function table(string $table): static
     {
         $this->table = $table;
@@ -61,6 +67,7 @@ class Builder
 
     /**
      * @param string[]|string $relations
+       * @psalm-external-mutation-free
      */
     public function with(array|string $relations): static
     {
@@ -78,6 +85,9 @@ class Builder
         return $this->eagerLoads;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function withTrashed(): static
     {
         $this->withoutSoftDeleteScope = true;
@@ -85,6 +95,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function onlyTrashed(string $deletedAtColumn = 'deleted_at'): static
     {
         $this->withoutSoftDeleteScope = true;
@@ -94,6 +107,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function shouldApplySoftDeleteScope(): bool
     {
         return ! $this->withoutSoftDeleteScope;
@@ -101,6 +117,7 @@ class Builder
 
     /**
      * @param string|string[] $columns
+       * @psalm-external-mutation-free
      */
     public function select(string|array $columns = ['*']): static
     {
@@ -109,6 +126,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function addSelect(string $column): static
     {
         $this->columns[] = $column;
@@ -116,6 +136,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function distinct(): static
     {
         $this->distinct = true;
@@ -153,6 +176,7 @@ class Builder
 
     /**
      * @param mixed[] $values
+       * @psalm-external-mutation-free
      */
     public function whereIn(string $column, array $values, string $boolean = 'AND', bool $not = false): static
     {
@@ -172,12 +196,16 @@ class Builder
 
     /**
      * @param mixed[] $values
+       * @psalm-external-mutation-free
      */
     public function whereNotIn(string $column, array $values): static
     {
         return $this->whereIn($column, $values, 'AND', true);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function whereNull(string $column, string $boolean = 'AND', bool $not = false): static
     {
         $this->wheres[] = ['sql' => $column . ($not ? ' IS NOT NULL' : ' IS NULL'), 'bindings' => [], 'boolean' => $boolean];
@@ -185,6 +213,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function whereNotNull(string $column): static
     {
         return $this->whereNull($column, 'AND', true);
@@ -193,6 +224,7 @@ class Builder
     /**
      * @param mixed $min
      * @param mixed $max
+       * @psalm-external-mutation-free
      */
     public function whereBetween(string $column, mixed $min, mixed $max, string $boolean = 'AND', bool $not = false): static
     {
@@ -202,6 +234,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function whereRaw(string $sql, mixed ...$bindings): static
     {
         $this->wheres[] = ['sql' => $sql, 'bindings' => $bindings, 'boolean' => 'AND'];
@@ -225,6 +260,9 @@ class Builder
 
     // --- JOINS ---
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function join(string $table, string $first, string $operator, string $second, string $type = 'INNER'): static
     {
         $join = new JoinClause(strtoupper($type), $table);
@@ -234,11 +272,17 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function leftJoin(string $table, string $first, string $operator, string $second): static
     {
         return $this->join($table, $first, $operator, $second, 'LEFT');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function rightJoin(string $table, string $first, string $operator, string $second): static
     {
         return $this->join($table, $first, $operator, $second, 'RIGHT');
@@ -255,6 +299,9 @@ class Builder
 
     // --- ORDER / GROUP / LIMIT ---
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function orderBy(string $column, string $direction = 'ASC'): static
     {
         $this->orderBys[] = $column . ' ' . strtoupper($direction);
@@ -262,11 +309,17 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function orderByDesc(string $column): static
     {
         return $this->orderBy($column, 'DESC');
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function groupBy(string ...$columns): static
     {
         foreach ($columns as $col) {
@@ -278,6 +331,7 @@ class Builder
 
     /**
      * @param mixed $value
+       * @psalm-external-mutation-free
      */
     public function having(string $column, string $operator, mixed $value, string $boolean = 'AND'): static
     {
@@ -286,6 +340,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function havingRaw(string $sql, array $bindings = [], string $boolean = 'AND'): static
     {
         $this->havings[] = ['sql' => $sql, 'bindings' => $bindings, 'boolean' => $boolean];
@@ -293,6 +350,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function limit(int $value): static
     {
         $this->limit = $value;
@@ -300,6 +360,9 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function offset(int $value): static
     {
         $this->offset = $value;
@@ -307,11 +370,17 @@ class Builder
         return $this;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function take(int $value): static
     {
         return $this->limit($value);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function skip(int $value): static
     {
         return $this->offset($value);
@@ -452,6 +521,7 @@ class Builder
 
     /**
      * @return mixed[]
+       * @psalm-mutation-free
      */
     public function getBindings(): array
     {
@@ -486,6 +556,9 @@ class Builder
         return new Paginator($items, $total, $perPage, $page);
     }
 
+    /**
+      * @psalm-pure
+     */
     public static function raw(string $value): Expression
     {
         return new Expression($value);
@@ -493,6 +566,7 @@ class Builder
 
     /**
      * @return array{0: string, 1: mixed[]}
+       * @psalm-mutation-free
      */
     private function compileWheres(): array
     {
@@ -514,6 +588,7 @@ class Builder
 
     /**
      * @return array{0: string, 1: mixed[]}
+       * @psalm-mutation-free
      */
     private function compileHavings(): array
     {

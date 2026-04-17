@@ -12,12 +12,18 @@ use Psr\SimpleCache\CacheInterface;
 
 final class MemcachedCache implements CacheInterface
 {
+    /**
+     * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Memcached $memcached,
         private readonly string $prefix = 'nextphp:',
     ) {
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function get(string $key, mixed $default = null): mixed
     {
         $this->assertValidKey($key);
@@ -49,6 +55,9 @@ final class MemcachedCache implements CacheInterface
         );
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function delete(string $key): bool
     {
         $this->assertValidKey($key);
@@ -57,6 +66,9 @@ final class MemcachedCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function clear(): bool
     {
         return $this->memcached->flush();
@@ -124,6 +136,9 @@ final class MemcachedCache implements CacheInterface
         return true;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function has(string $key): bool
     {
         $this->assertValidKey($key);
@@ -151,6 +166,7 @@ final class MemcachedCache implements CacheInterface
      * Tags are stored as serialized arrays under a special key.
      *
      * @param string[] $tags
+       * @psalm-mutation-free
      */
     public function tag(string $key, array $tags): void
     {
@@ -169,6 +185,9 @@ final class MemcachedCache implements CacheInterface
         }
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function flushTag(string $tag): bool
     {
         $tagKey = $this->prefix . 'tag:' . $tag;
@@ -184,11 +203,17 @@ final class MemcachedCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     private function prefixed(string $key): string
     {
         return $this->prefix . $key;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

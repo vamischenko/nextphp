@@ -26,6 +26,9 @@ final class HttpKernel
     /** @var MiddlewareInterface[] */
     private array $globalMiddleware = [];
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Router $router,
         private readonly ?ContainerInterface $container = null,
@@ -34,6 +37,9 @@ final class HttpKernel
     ) {
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function addGlobalMiddleware(MiddlewareInterface $middleware): void
     {
         $this->globalMiddleware[] = $middleware;

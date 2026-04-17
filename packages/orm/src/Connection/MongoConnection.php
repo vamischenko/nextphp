@@ -59,6 +59,7 @@ class MongoConnection implements ConnectionInterface
     /**
      * @param mixed[] $bindings
      * @return array<int, array<string, mixed>>
+       * @psalm-pure
      */
     public function select(string $sql, array $bindings = []): array
     {
@@ -70,6 +71,7 @@ class MongoConnection implements ConnectionInterface
     /**
      * @param mixed[] $bindings
      * @return array<string, mixed>|null
+       * @psalm-pure
      */
     public function selectOne(string $sql, array $bindings = []): ?array
     {
@@ -80,6 +82,7 @@ class MongoConnection implements ConnectionInterface
 
     /**
      * @param mixed[] $bindings
+       * @psalm-pure
      */
     public function insert(string $sql, array $bindings = []): string|false
     {
@@ -90,6 +93,7 @@ class MongoConnection implements ConnectionInterface
 
     /**
      * @param mixed[] $bindings
+       * @psalm-pure
      */
     public function affectingStatement(string $sql, array $bindings = []): int
     {
@@ -100,6 +104,7 @@ class MongoConnection implements ConnectionInterface
 
     /**
      * @param mixed[] $bindings
+       * @psalm-pure
      */
     public function statement(string $sql, array $bindings = []): bool
     {
@@ -115,6 +120,7 @@ class MongoConnection implements ConnectionInterface
     /**
      * Start a MongoDB session and transaction.
      * Requires Replica Set or Sharded Cluster (MongoDB 4.0+).
+       * @psalm-external-mutation-free
      */
     public function beginTransaction(): void
     {
@@ -124,6 +130,9 @@ class MongoConnection implements ConnectionInterface
         $this->session->startTransaction();
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function commit(): void
     {
         if ($this->session !== null) {
@@ -132,6 +141,9 @@ class MongoConnection implements ConnectionInterface
         }
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function rollBack(): void
     {
         if ($this->session !== null) {
@@ -164,11 +176,17 @@ class MongoConnection implements ConnectionInterface
     // ConnectionInterface — Metadata
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     public function getDriverName(): string
     {
         return 'mongodb';
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function enableQueryLog(): void
     {
         $this->loggingEnabled = true;
@@ -182,6 +200,9 @@ class MongoConnection implements ConnectionInterface
         return $this->queryLog;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flushQueryLog(): void
     {
         $this->queryLog = [];
@@ -225,6 +246,7 @@ class MongoConnection implements ConnectionInterface
      * Log a MongoDB operation (for use by MongoBuilder).
      *
      * @param array<string, mixed> $entry
+       * @psalm-external-mutation-free
      */
     public function logOperation(array $entry): void
     {

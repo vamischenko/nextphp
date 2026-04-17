@@ -21,6 +21,7 @@ final class ClosureRule implements ValidationRuleInterface
 {
     /**
      * @param callable(string, mixed, array<string, mixed>): ?string $callback
+       * @psalm-mutation-free
      */
     public function __construct(private readonly mixed $callback)
     {

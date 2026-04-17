@@ -9,6 +9,9 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class RequiredRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function validate(string $field, mixed $value, array $data): ValidationError|null
     {
         if ($value === null) {

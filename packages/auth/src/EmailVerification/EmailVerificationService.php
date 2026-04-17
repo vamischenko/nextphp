@@ -12,6 +12,9 @@ namespace Nextphp\Auth\EmailVerification;
  */
 final class EmailVerificationService
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly EmailVerificationTokenStoreInterface $store,
         private readonly int $expiresInSeconds = 3600,
@@ -34,6 +37,7 @@ final class EmailVerificationService
      * Verify the token and, on success, call $markVerified.
      *
      * @param callable(string $userId): void $markVerified
+       * @psalm-mutation-free
      */
     public function verify(string $userId, string $token, callable $markVerified): bool
     {

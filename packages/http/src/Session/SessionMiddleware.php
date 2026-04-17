@@ -16,6 +16,9 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class SessionMiddleware implements MiddlewareInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly SessionInterface $session,
         private readonly string $cookieName = 'NSESSID',

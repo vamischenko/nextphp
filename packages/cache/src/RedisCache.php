@@ -12,6 +12,9 @@ use Redis;
 
 final class RedisCache implements CacheInterface
 {
+    /**
+     * @psalm-mutation-free
+     */
     public function __construct(
         private readonly Redis $redis,
         private readonly string $prefix = 'nextphp:',
@@ -175,11 +178,17 @@ final class RedisCache implements CacheInterface
         return true;
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     private function prefixed(string $key): string
     {
         return $this->prefix . $key;
     }
 
+    /**
+     * @psalm-pure
+     */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

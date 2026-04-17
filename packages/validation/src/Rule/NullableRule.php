@@ -8,6 +8,9 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class NullableRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-pure
+     */
     public function validate(string $field, mixed $value, array $data): string|null
     {
         // Nullable itself never fails — it signals that null is acceptable.

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nextphp\Routing;
 
+/**
+ * @psalm-immutable
+ */
 final class RouteCollection
 {
     /** @var Route[] */
@@ -12,6 +15,9 @@ final class RouteCollection
     /** @var array<string, Route> name => Route */
     private array $namedRoutes = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function add(Route $route): void
     {
         $this->routes[] = $route;
@@ -22,6 +28,9 @@ final class RouteCollection
         }
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function registerName(string $name, Route $route): void
     {
         $this->namedRoutes[$name] = $route;
@@ -35,6 +44,9 @@ final class RouteCollection
         return $this->routes;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getByName(string $name): ?Route
     {
         return $this->namedRoutes[$name] ?? null;

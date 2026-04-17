@@ -52,6 +52,9 @@ abstract class ModelFactory
     /** @var list<callable(TModel): void> */
     private array $afterCreating = [];
 
+    /**
+     * @psalm-mutation-free
+     */
     final public function __construct()
     {
         $this->faker = new FakerGenerator();
@@ -61,6 +64,9 @@ abstract class ModelFactory
     // Entry points
     // -------------------------------------------------------------------------
 
+    /**
+     * @psalm-pure
+     */
     public static function new(): static
     {
         return new static();
@@ -121,6 +127,9 @@ abstract class ModelFactory
      * Return the base attribute definition for a single model.
      *
      * @return array<string, mixed>
+     */
+    /**
+     * @psalm-impure
      */
     abstract public function definition(): array;
 

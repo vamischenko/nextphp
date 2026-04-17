@@ -30,6 +30,9 @@ abstract class Seeder
 {
     private ?SeederRunner $runner = null;
 
+    /**
+     * @psalm-impure
+     */
     abstract public function run(): void;
 
     /**
@@ -61,6 +64,9 @@ abstract class Seeder
     }
 
     /** @internal used by SeederRunner */
+    /**
+      * @psalm-external-mutation-free
+     */
     public function setRunner(SeederRunner $runner): void
     {
         $this->runner = $runner;

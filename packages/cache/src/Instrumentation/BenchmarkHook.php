@@ -11,6 +11,9 @@ final class BenchmarkHook implements CacheMetricsHookInterface
     /** @var array<int, array{operation: string, ms: float}> */
     private array $entries = [];
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function record(string $operation, float $milliseconds): void
     {
         $this->entries[] = ['operation' => $operation, 'ms' => $milliseconds];

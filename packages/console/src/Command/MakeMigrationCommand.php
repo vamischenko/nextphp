@@ -10,6 +10,9 @@ use Nextphp\Console\Output;
 
 final class MakeMigrationCommand extends Command
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(private readonly Generator $generator)
     {
         parent::__construct('make:migration', 'Create a new database migration');

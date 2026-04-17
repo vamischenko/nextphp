@@ -27,6 +27,9 @@ final class ClickHouseConnection implements ConnectionInterface
 
     private readonly HttpClientInterface $httpClient;
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $host,
         private readonly string $database,
@@ -38,6 +41,9 @@ final class ClickHouseConnection implements ConnectionInterface
         $this->httpClient = $httpClient ?? new CurlHttpClient();
     }
 
+    /**
+      * @psalm-pure
+     */
     public static function create(
         string $host,
         string $database,
@@ -113,17 +119,24 @@ final class ClickHouseConnection implements ConnectionInterface
     /**
      * ClickHouse transactions require v22.4+ and explicit server-side settings.
      * For most deployments this is effectively a no-op.
+       * @psalm-mutation-free
      */
     public function beginTransaction(): void
     {
         // No-op for standard ClickHouse deployments
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function commit(): void
     {
         // No-op
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function rollBack(): void
     {
         // No-op — ClickHouse does not support statement-level rollback via HTTP
@@ -144,11 +157,17 @@ final class ClickHouseConnection implements ConnectionInterface
     // ConnectionInterface — Metadata
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-pure
+     */
     public function getDriverName(): string
     {
         return 'clickhouse';
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function enableQueryLog(): void
     {
         $this->loggingEnabled = true;
@@ -162,6 +181,9 @@ final class ClickHouseConnection implements ConnectionInterface
         return $this->queryLog;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function flushQueryLog(): void
     {
         $this->queryLog = [];
@@ -210,6 +232,7 @@ final class ClickHouseConnection implements ConnectionInterface
      * ClickHouse HTTP API does not support native prepared statements.
      *
      * @param mixed[] $bindings
+       * @psalm-pure
      */
     private function interpolate(string $sql, array $bindings): string
     {
@@ -236,6 +259,7 @@ final class ClickHouseConnection implements ConnectionInterface
      * Parse JSONEachRow response — one JSON object per line.
      *
      * @return array<int, array<string, mixed>>
+       * @psalm-pure
      */
     private function parseJsonEachRow(string $response): array
     {

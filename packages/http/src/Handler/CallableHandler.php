@@ -15,6 +15,7 @@ final class CallableHandler implements RequestHandlerInterface
 
     /**
      * @param callable(ServerRequestInterface): ResponseInterface $callable
+       * @psalm-mutation-free
      */
     public function __construct(callable $callable)
     {

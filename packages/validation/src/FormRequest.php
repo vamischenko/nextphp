@@ -16,6 +16,9 @@ abstract class FormRequest
      *
      * @return array<string, string|array<int, string|ValidationRuleInterface>>
      */
+    /**
+     * @psalm-impure
+     */
     abstract public function rules(): array;
 
     /**
@@ -53,6 +56,7 @@ abstract class FormRequest
      * Access the validated result after calling validate().
      *
      * @throws \LogicException when called before validate()
+       * @psalm-mutation-free
      */
     public function validated(): ValidationResult
     {

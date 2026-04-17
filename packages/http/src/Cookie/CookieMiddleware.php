@@ -17,6 +17,9 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class CookieMiddleware implements MiddlewareInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly CookieJar $jar = new CookieJar(),
     ) {
@@ -34,6 +37,7 @@ final class CookieMiddleware implements MiddlewareInterface
 
     /**
      * @return array<string, string>
+       * @psalm-pure
      */
     private function parseCookieHeader(string $header): array
     {

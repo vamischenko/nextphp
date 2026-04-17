@@ -10,6 +10,9 @@ use Nextphp\Validation\ValidationRuleInterface;
 
 final class ExistsRule implements ValidationRuleInterface
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PresenceVerifierInterface $presence,
         private readonly string $table,

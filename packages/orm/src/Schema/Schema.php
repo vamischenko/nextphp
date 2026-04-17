@@ -9,6 +9,9 @@ use Nextphp\Orm\Connection\ConnectionInterface;
 
 final class Schema
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly ConnectionInterface $connection,
     ) {

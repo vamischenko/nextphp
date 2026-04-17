@@ -9,6 +9,9 @@ final class PolicyRegistry
     /** @var array<string, callable> */
     private array $policies = [];
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function define(string $ability, callable $policy): void
     {
         $this->policies[$ability] = $policy;

@@ -168,6 +168,9 @@ final class ServerRequest extends Request implements ServerRequestInterface
         return $this->attributes;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getAttribute(string $name, mixed $default = null): mixed
     {
         return $this->attributes[$name] ?? $default;

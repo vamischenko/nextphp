@@ -6,6 +6,9 @@ namespace Nextphp\Console\Installer;
 
 final class ProjectInstaller
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly string $templatesRoot,
     ) {

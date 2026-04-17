@@ -6,13 +6,22 @@ namespace Nextphp\Auth;
 
 use Psr\Http\Server\MiddlewareInterface;
 
+/**
+ * @psalm-immutable
+ */
 final class PolicyMiddlewareFactory
 {
+    /**
+      * @psalm-mutation-free
+     */
     public function __construct(
         private readonly PolicyRegistry $policies,
     ) {
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function __invoke(string $alias): MiddlewareInterface
     {
         if (! str_starts_with($alias, 'can:')) {

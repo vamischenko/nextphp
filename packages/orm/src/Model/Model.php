@@ -70,11 +70,17 @@ abstract class Model
     // Static connection management
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function setDefaultConnection(ConnectionInterface $connection): void
     {
         static::$defaultConnection = $connection;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function getConnection(): ConnectionInterface
     {
         if ($this->connection !== null) {
@@ -88,6 +94,9 @@ abstract class Model
         throw new \RuntimeException('No database connection configured for model ' . static::class);
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function setConnection(ConnectionInterface $connection): void
     {
         $this->connection = $connection;
@@ -97,6 +106,9 @@ abstract class Model
     // Table / key helpers
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getTable(): string
     {
         if ($this->table !== '') {
@@ -114,6 +126,9 @@ abstract class Model
         return $this->primaryKey;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getKey(): mixed
     {
         return $this->attributes[$this->primaryKey] ?? null;
@@ -123,11 +138,17 @@ abstract class Model
     // Attribute access
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-mutation-free
+     */
     public function getAttribute(string $key): mixed
     {
         return $this->attributes[$key] ?? null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function setAttribute(string $key, mixed $value): void
     {
         $this->attributes[$key] = $value;
@@ -143,6 +164,7 @@ abstract class Model
 
     /**
      * @return array<string, mixed>
+       * @psalm-mutation-free
      */
     public function getDirty(): array
     {
@@ -157,6 +179,9 @@ abstract class Model
         return $dirty;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function isDirty(string $key = ''): bool
     {
         $dirty = $this->getDirty();
@@ -197,11 +222,17 @@ abstract class Model
         return $this->attributes[$key] ?? null;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public function __set(string $key, mixed $value): void
     {
         $this->attributes[$key] = $value;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function __isset(string $key): bool
     {
         return isset($this->attributes[$key]) || isset($this->relations[$key]);
@@ -213,6 +244,7 @@ abstract class Model
 
     /**
      * @param array<string, mixed> $attributes
+       * @psalm-external-mutation-free
      */
     public function fill(array $attributes): static
     {
@@ -227,6 +259,7 @@ abstract class Model
 
     /**
      * @param array<string, mixed> $attributes
+       * @psalm-external-mutation-free
      */
     public function forceFill(array $attributes): static
     {
@@ -235,6 +268,9 @@ abstract class Model
         return $this;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     private function isFillable(string $key): bool
     {
         if ($this->fillable !== []) {
@@ -450,16 +486,25 @@ abstract class Model
         return $query;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function addGlobalScope(callable $scope): void
     {
         static::$globalScopes[static::class][] = $scope;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function preventLazyLoading(bool $state = true): void
     {
         static::$preventLazyLoading = $state;
     }
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function warnOnLazyLoading(bool $state = true): void
     {
         self::$warnOnLazyLoading = $state;
@@ -467,6 +512,7 @@ abstract class Model
 
     /**
      * @param null|callable(Model, string): void $handler
+       * @psalm-external-mutation-free
      */
     public static function setLazyLoadingWarningHandler(?callable $handler): void
     {
@@ -574,6 +620,7 @@ abstract class Model
 
     /**
      * @param array<string, class-string<Model>> $typeMap
+       * @psalm-mutation-free
      */
     protected function morphTo(
         ?string $name = null,
@@ -592,11 +639,17 @@ abstract class Model
     // Model Events
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-external-mutation-free
+     */
     public static function on(ModelEvent $event, callable $listener): void
     {
         static::$listeners[static::class . ':' . $event->value][] = $listener;
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public static function observe(object|string $observer): void
     {
         $instance = is_string($observer) ? new $observer() : $observer;
@@ -704,11 +757,17 @@ abstract class Model
     // Helpers
     // -------------------------------------------------------------------------
 
+    /**
+      * @psalm-mutation-free
+     */
     private function getForeignKeyName(): string
     {
         return $this->snakeCase((new \ReflectionClass($this))->getShortName()) . '_id';
     }
 
+    /**
+      * @psalm-pure
+     */
     private function snakeCase(string $value): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $value) ?? $value);
@@ -729,6 +788,9 @@ abstract class Model
         );
     }
 
+    /**
+      * @psalm-pure
+     */
     private function inferCallerMethod(): string
     {
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);

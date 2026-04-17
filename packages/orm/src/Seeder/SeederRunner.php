@@ -35,6 +35,7 @@ final class SeederRunner
      * Register seeders to run later with runAll().
      *
      * @param class-string<Seeder> ...$classes
+       * @psalm-external-mutation-free
      */
     public function register(string ...$classes): static
     {

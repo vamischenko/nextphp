@@ -9,6 +9,9 @@ namespace Nextphp\Orm\Pagination;
  *
  * @template T
  */
+/**
+ * @psalm-immutable
+ */
 final class Paginator
 {
     /** @var list<T> */
@@ -19,6 +22,7 @@ final class Paginator
      * @param int     $total      total number of rows (without pagination)
      * @param int     $perPage    rows per page
      * @param int     $currentPage 1-based
+       * @psalm-mutation-free
      */
     public function __construct(
         array $items,
@@ -39,6 +43,9 @@ final class Paginator
         return $this->items;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function count(): int
     {
         return count($this->items);
@@ -63,6 +70,9 @@ final class Paginator
         return $this->currentPage;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function lastPage(): int
     {
         if ($this->perPage <= 0 || $this->total === 0) {
@@ -71,26 +81,41 @@ final class Paginator
         return (int) ceil($this->total / $this->perPage);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function hasMorePages(): bool
     {
         return $this->currentPage < $this->lastPage();
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function onFirstPage(): bool
     {
         return $this->currentPage <= 1;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function previousPage(): ?int
     {
         return $this->currentPage > 1 ? $this->currentPage - 1 : null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function nextPage(): ?int
     {
         return $this->hasMorePages() ? $this->currentPage + 1 : null;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function from(): int
     {
         if ($this->total === 0) {
@@ -99,16 +124,25 @@ final class Paginator
         return ($this->currentPage - 1) * $this->perPage + 1;
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function to(): int
     {
         return min($this->currentPage * $this->perPage, $this->total);
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function isEmpty(): bool
     {
         return $this->items === [];
     }
 
+    /**
+      * @psalm-mutation-free
+     */
     public function isNotEmpty(): bool
     {
         return !$this->isEmpty();
@@ -129,6 +163,7 @@ final class Paginator
      *   has_more: bool,
      *   data: list<T>
      * }
+       * @psalm-mutation-free
      */
     public function toArray(): array
     {
@@ -144,6 +179,9 @@ final class Paginator
         ];
     }
 
+    /**
+     * @psalm-mutation-free
+     */
     public function toJson(): string
     {
         return (string) json_encode($this->toArray(), JSON_THROW_ON_ERROR);
