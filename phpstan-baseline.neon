@@ -13,10 +13,52 @@ parameters:
 			path: packages/auth/src/AuthorizePsrMiddleware.php
 
 		-
+			message: '#^Possibly impure call to function password_hash\(\) in pure method Nextphp\\Auth\\PasswordHasher\:\:hash\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/auth/src/PasswordHasher.php
+
+		-
+			message: '#^Possibly impure call to function password_verify\(\) in pure method Nextphp\\Auth\\PasswordHasher\:\:verify\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/auth/src/PasswordHasher.php
+
+		-
 			message: '#^Method Nextphp\\Cache\\ArrayCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: packages/cache/src/ArrayCache.php
+
+		-
+			message: '#^Possibly impure call to method Memcached\:\:addServer\(\) in pure method Nextphp\\Cache\\CacheFactory\:\:memcached\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/cache/src/CacheFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Memcached in pure method Nextphp\\Cache\\CacheFactory\:\:memcached\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/cache/src/CacheFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Cache\\DatabaseCache in pure method Nextphp\\Cache\\CacheFactory\:\:database\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/cache/src/CacheFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Cache\\MemcachedCache in pure method Nextphp\\Cache\\CacheFactory\:\:memcached\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/cache/src/CacheFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Cache\\RedisCache in pure method Nextphp\\Cache\\CacheFactory\:\:redisFromInstance\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/cache/src/CacheFactory.php
 
 		-
 			message: '#^Method Nextphp\\Cache\\FileCache\:\:setMultiple\(\) has parameter \$values with no value type specified in iterable type iterable\.$#'
@@ -49,10 +91,34 @@ parameters:
 			path: packages/cache/src/RedisCache.php
 
 		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\Console\\Command\\MakeModelCommand\:\:toSnakeCase\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/console/src/Command/MakeModelCommand.php
+
+		-
 			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
 			identifier: if.condNotBoolean
 			count: 2
 			path: packages/console/src/Generator/Generator.php
+
+		-
+			message: '#^Possibly impure call to function preg_match\(\) in pure method Nextphp\\Console\\Generator\\Generator\:\:guessTable\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/console/src/Generator/Generator.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Console\\Generator\\Generator\:\:toStudlyCase\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/console/src/Generator/Generator.php
+
+		-
+			message: '#^Method Nextphp\\Console\\Input\:\:parse\(\) has parameter \$argv with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/console/src/Input.php
 
 		-
 			message: '#^Method Nextphp\\Console\\Input\:\:parse\(\) return type has no value type specified in iterable type array\.$#'
@@ -67,10 +133,22 @@ parameters:
 			path: packages/console/src/Schedule/Scheduler.php
 
 		-
+			message: '#^Possibly impure call to method Fiber\<mixed,mixed,mixed,mixed\>\:\:suspend\(\) in pure method Nextphp\\Core\\Async\\FiberScheduler\:\:suspend\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/core/src/Async/FiberScheduler.php
+
+		-
 			message: '#^Method Nextphp\\Core\\Async\\Task\:\:__construct\(\) has parameter \$fiber with generic class Fiber but does not specify its types\: TStart, TResume, TReturn, TSuspend$#'
 			identifier: missingType.generics
 			count: 1
 			path: packages/core/src/Async/Task.php
+
+		-
+			message: '#^Method Nextphp\\Core\\Container\\CompilerPassInterface\:\:process\(\) has parameter \$bindings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/core/src/Container/CompilerPassInterface.php
 
 		-
 			message: '#^Method Nextphp\\Core\\Container\\Container\:\:wrapCallable\(\) should return callable\(\)\: mixed but returns array\{mixed, string\}\.$#'
@@ -133,6 +211,24 @@ parameters:
 			path: packages/events/src/EventDispatcher.php
 
 		-
+			message: '#^Possibly impure call to function preg_match\(\) in pure method Nextphp\\GraphQL\\GraphQL\:\:extractArgs\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/graphql/src/GraphQL.php
+
+		-
+			message: '#^Possibly impure call to function preg_match\(\) in pure method Nextphp\\GraphQL\\GraphQL\:\:extractField\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/graphql/src/GraphQL.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Http\\Cookie\\Cookie in pure method Nextphp\\Http\\Cookie\\Cookie\:\:expire\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/http/src/Cookie/Cookie.php
+
+		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
 			identifier: ternary.shortNotAllowed
 			count: 1
@@ -145,6 +241,18 @@ parameters:
 			path: packages/http/src/Factory/ServerRequestFactory.php
 
 		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Http\\Message\\Stream in pure method Nextphp\\Http\\Factory\\StreamFactory\:\:createStreamFromResource\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/http/src/Factory/StreamFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Http\\Message\\Uri in pure method Nextphp\\Http\\Factory\\UriFactory\:\:createUri\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/http/src/Factory/UriFactory.php
+
+		-
 			message: '#^Parameter \#1 \$function of class ReflectionFunction constructor expects Closure\|string, callable\(\)\: mixed given\.$#'
 			identifier: argument.type
 			count: 1
@@ -155,6 +263,30 @@ parameters:
 			identifier: identical.alwaysFalse
 			count: 1
 			path: packages/http/src/Kernel/HttpKernel.php
+
+		-
+			message: '#^Possibly impure call to function array_map\(\) in pure method Nextphp\\Http\\Message\\Request\:\:normalizeHeaderValue\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/http/src/Message/Request.php
+
+		-
+			message: '#^Possibly impure call to method stdClass\:\:__toString\(\) in pure method Nextphp\\Http\\Message\\Request\:\:normalizeHeaderValue\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/http/src/Message/Request.php
+
+		-
+			message: '#^Possibly impure call to function array_map\(\) in pure method Nextphp\\Http\\Message\\Response\:\:normalizeHeaderValue\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/http/src/Message/Response.php
+
+		-
+			message: '#^Possibly impure call to method stdClass\:\:__toString\(\) in pure method Nextphp\\Http\\Message\\Response\:\:normalizeHeaderValue\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/http/src/Message/Response.php
 
 		-
 			message: '#^Construct empty\(\) is not allowed\. Use more strict comparison\.$#'
@@ -247,10 +379,52 @@ parameters:
 			path: packages/http/src/Message/Stream.php
 
 		-
+			message: '#^Method Nextphp\\Http\\Session\\ArraySession\:\:all\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Session/ArraySession.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Session\\FileSession\:\:all\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Session/FileSession.php
+
+		-
+			message: '#^Method Nextphp\\Http\\Session\\SessionInterface\:\:all\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/http/src/Session/SessionInterface.php
+
+		-
+			message: '#^Method Nextphp\\Mail\\Http\\HttpClientInterface\:\:post\(\) has parameter \$headers with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/mail/src/Http/HttpClientInterface.php
+
+		-
+			message: '#^Method Nextphp\\Mail\\Http\\HttpClientInterface\:\:post\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: packages/mail/src/Http/HttpClientInterface.php
+
+		-
+			message: '#^Parameter \#2 \$headers \(array\<string, string\>\) of method Nextphp\\Mail\\Http\\StreamHttpClient\:\:post\(\) should be contravariant with parameter \$headers \(array\) of method Nextphp\\Mail\\Http\\HttpClientInterface\:\:post\(\)$#'
+			identifier: method.childParameterType
+			count: 1
+			path: packages/mail/src/Http/StreamHttpClient.php
+
+		-
 			message: '#^Property Nextphp\\Mail\\Smtp\\StreamSmtpTransport\:\:\$socket \(resource\|null\) does not accept resource\|false\.$#'
 			identifier: assign.propertyType
 			count: 1
 			path: packages/mail/src/Smtp/StreamSmtpTransport.php
+
+		-
+			message: '#^Impure call to function pathinfo\(\) in pure method Nextphp\\Migrations\\Migration\\Migrator\:\:getMigrationName\(\)\.$#'
+			identifier: impure.functionCall
+			count: 1
+			path: packages/migrations/src/Migration/Migrator.php
 
 		-
 			message: '#^Method Nextphp\\Migrations\\Migration\\Migrator\:\:resolve\(\) should return Nextphp\\Migrations\\Migration\\Migration but returns object\.$#'
@@ -269,6 +443,54 @@ parameters:
 			identifier: return.unusedType
 			count: 1
 			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure call to function json_decode\(\) in pure method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:parseJsonEachRow\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:interpolate\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:interpolate\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure call to method stdClass\:\:__toString\(\) in pure method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:interpolate\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Orm\\Connection\\ClickHouseConnection in pure method Nextphp\\Orm\\Connection\\ClickHouseConnection\:\:create\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/orm/src/Connection/ClickHouseConnection.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Orm\\Connection\\Driver\\MysqlDriver\:\:quoteIdentifier\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/Driver/MysqlDriver.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Orm\\Connection\\Driver\\PgsqlDriver\:\:quoteIdentifier\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/Driver/PgsqlDriver.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Orm\\Connection\\Driver\\SqliteDriver\:\:quoteIdentifier\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/orm/src/Connection/Driver/SqliteDriver.php
 
 		-
 			message: '#^Call to method getManager\(\) on an unknown class MongoDB\\Database\.$#'
@@ -337,8 +559,8 @@ parameters:
 			path: packages/orm/src/Connection/PdoConnection.php
 
 		-
-			message: '#^Callable callable\(array\<string, mixed\>, TModel\|null\)\: array\<string, mixed\> invoked with 1 parameter, 2 required\.$#'
-			identifier: arguments.count
+			message: '#^Method Nextphp\\Orm\\Factory\\ModelFactory\:\:definition\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
 			count: 1
 			path: packages/orm/src/Factory/ModelFactory.php
 
@@ -347,6 +569,18 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: packages/orm/src/Factory/ModelFactory.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Orm\\Factory\\ModelFactory in pure method Nextphp\\Orm\\Factory\\ModelFactory\:\:new\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/orm/src/Factory/ModelFactory.php
+
+		-
+			message: '#^Impure call to function pathinfo\(\) in pure method Nextphp\\Orm\\Migration\\Migrator\:\:getMigrationName\(\)\.$#'
+			identifier: impure.functionCall
+			count: 1
+			path: packages/orm/src/Migration/Migrator.php
 
 		-
 			message: '#^Method Nextphp\\Orm\\Migration\\Migrator\:\:resolve\(\) should return Nextphp\\Orm\\Migration\\Migration but returns object\.$#'
@@ -369,6 +603,18 @@ parameters:
 		-
 			message: '#^Expression "\$model\-\>\{\$relation\}" on a separate line does not do anything\.$#'
 			identifier: expr.resultUnused
+			count: 1
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Impure call to function debug_backtrace\(\) in pure method Nextphp\\Orm\\Model\\Model\:\:inferCallerMethod\(\)\.$#'
+			identifier: impure.functionCall
+			count: 1
+			path: packages/orm/src/Model/Model.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\Orm\\Model\\Model\:\:snakeCase\(\)\.$#'
+			identifier: possiblyImpure.functionCall
 			count: 1
 			path: packages/orm/src/Model/Model.php
 
@@ -423,6 +669,12 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$items of class Nextphp\\Orm\\Pagination\\Paginator constructor expects list\<array\<string, mixed\>\>, array\<int, array\<string, mixed\>\> given\.$#'
 			identifier: argument.type
+			count: 1
+			path: packages/orm/src/Query/Builder.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Orm\\Query\\Expression in pure method Nextphp\\Orm\\Query\\Builder\:\:raw\(\)\.$#'
+			identifier: possiblyImpure.new
 			count: 1
 			path: packages/orm/src/Query/Builder.php
 
@@ -511,16 +763,16 @@ parameters:
 			path: packages/orm/src/Query/MongoBuilder.php
 
 		-
+			message: '#^Possibly impure call to unknown method in pure method Nextphp\\Orm\\Query\\MongoBuilder\:\:documentToArray\(\)\.$#'
+			identifier: possiblyImpure.methodCall
+			count: 1
+			path: packages/orm/src/Query/MongoBuilder.php
+
+		-
 			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
 			identifier: ternary.shortNotAllowed
 			count: 1
 			path: packages/orm/src/Seeder/SeederRunner.php
-
-		-
-			message: '#^Method Nextphp\\Routing\\Attributes\\Route\:\:__construct\(\) has parameter \$can with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: packages/routing/src/Attributes/Route.php
 
 		-
 			message: '#^Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given\.$#'
@@ -535,28 +787,76 @@ parameters:
 			path: packages/routing/src/RouteGroup.php
 
 		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\Routing\\Router\:\:resourceName\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/routing/src/Router.php
+
+		-
 			message: '#^Only booleans are allowed in an if condition, int\|false given\.$#'
 			identifier: if.condNotBoolean
 			count: 1
 			path: packages/routing/src/UrlGenerator.php
 
 		-
-			message: '#^Trait Nextphp\\Testing\\Database\\DatabaseTransactions is used zero times and is not analysed\.$#'
-			identifier: trait.unused
+			message: '#^Possibly impure instantiation of class Nextphp\\Testing\\HttpTestClient in pure method Nextphp\\Testing\\TestCase\:\:client\(\)\.$#'
+			identifier: possiblyImpure.new
 			count: 1
-			path: packages/testing/src/Database/DatabaseTransactions.php
+			path: packages/testing/src/TestCase.php
 
 		-
-			message: '#^Trait Nextphp\\Testing\\Database\\RefreshDatabase is used zero times and is not analysed\.$#'
-			identifier: trait.unused
+			message: '#^Possibly impure instantiation of class Nextphp\\Testing\\KernelHttpTestClient in pure method Nextphp\\Testing\\TestCase\:\:kernelClient\(\)\.$#'
+			identifier: possiblyImpure.new
 			count: 1
-			path: packages/testing/src/Database/RefreshDatabase.php
+			path: packages/testing/src/TestCase.php
 
 		-
-			message: '#^Parameter \#1 \$callable of class Nextphp\\Http\\Handler\\CallableHandler constructor expects callable\(Psr\\Http\\Message\\ServerRequestInterface\)\: Psr\\Http\\Message\\ResponseInterface, Closure\(Nextphp\\Http\\Message\\ServerRequest\)\: Psr\\Http\\Message\\ResponseInterface given\.$#'
-			identifier: argument.type
+			message: '#^Possibly impure instantiation of class Nextphp\\Testing\\RoutingHttpTestClient in pure method Nextphp\\Testing\\TestCase\:\:routingClient\(\)\.$#'
+			identifier: possiblyImpure.new
 			count: 1
-			path: packages/testing/src/RoutingHttpTestClient.php
+			path: packages/testing/src/TestCase.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Testing\\TestResponse in pure method Nextphp\\Testing\\TestCase\:\:response\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/testing/src/TestCase.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\ArrayRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/validation/src/Rule/ArrayRule.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\BooleanRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/validation/src/Rule/BooleanRule.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\ConfirmedRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/validation/src/Rule/ConfirmedRule.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\EmailRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/validation/src/Rule/EmailRule.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\IntegerRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 1
+			path: packages/validation/src/Rule/IntegerRule.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\ValidationError in pure method Nextphp\\Validation\\Rule\\RequiredRule\:\:validate\(\)\.$#'
+			identifier: possiblyImpure.new
+			count: 3
+			path: packages/validation/src/Rule/RequiredRule.php
 
 		-
 			message: '#^Parameter \#1 \$presence of class Nextphp\\Validation\\Rule\\ExistsRule constructor expects Nextphp\\Validation\\Contracts\\PresenceVerifierInterface, Nextphp\\Validation\\Contracts\\PresenceVerifierInterface\|null given\.$#'
@@ -567,6 +867,12 @@ parameters:
 		-
 			message: '#^Parameter \#1 \$presence of class Nextphp\\Validation\\Rule\\UniqueRule constructor expects Nextphp\\Validation\\Contracts\\PresenceVerifierInterface, Nextphp\\Validation\\Contracts\\PresenceVerifierInterface\|null given\.$#'
 			identifier: argument.type
+			count: 1
+			path: packages/validation/src/Validator.php
+
+		-
+			message: '#^Possibly impure instantiation of class Nextphp\\Validation\\Validator in pure method Nextphp\\Validation\\Validator\:\:make\(\)\.$#'
+			identifier: possiblyImpure.new
 			count: 1
 			path: packages/validation/src/Validator.php
 
@@ -614,3 +920,129 @@ parameters:
 			identifier: phpDoc.parseError
 			count: 1
 			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_match_all\(\) in pure method Nextphp\\View\\Compiler\:\:parseXAttributes\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileEcho\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileFor\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileForEach\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileForElse\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileIf\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileSwitch\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileUnless\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileWhile\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace_callback\(\) in pure method Nextphp\\View\\Compiler\:\:compileComponents\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace_callback\(\) in pure method Nextphp\\View\\Compiler\:\:compileInclude\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace_callback\(\) in pure method Nextphp\\View\\Compiler\:\:compileXTags\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_replace_callback\(\) in pure method Nextphp\\View\\Compiler\:\:compileYield\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileFor\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileForEach\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileForElse\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileIf\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileSwitch\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 2
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileUnless\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function str_replace\(\) in pure method Nextphp\\View\\Compiler\:\:compileWhile\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/Compiler.php
+
+		-
+			message: '#^Possibly impure call to function preg_match_all\(\) in pure method Nextphp\\View\\ViewEngine\:\:extractSections\(\)\.$#'
+			identifier: possiblyImpure.functionCall
+			count: 1
+			path: packages/view/src/ViewEngine.php
