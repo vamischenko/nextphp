@@ -46,7 +46,7 @@ abstract class ModelFactory
 
     private int $count = 1;
 
-    /** @var list<callable(array<string,mixed>, ?TModel): array<string,mixed>> */
+    /** @var list<callable(array<string,mixed>): array<string,mixed>> */
     private array $afterMaking = [];
 
     /** @var list<callable(TModel): void> */
@@ -99,6 +99,7 @@ abstract class ModelFactory
      * Run a callback after making each model (without persisting).
      *
      * @param callable(array<string,mixed>): array<string,mixed> $callback
+     * @psalm-suppress MissingClosureParamType
      */
     public function afterMaking(callable $callback): static
     {
@@ -209,6 +210,7 @@ abstract class ModelFactory
      */
     private function buildAttributes(array $override): array
     {
+        /** @var array<string, mixed> $attrs */
         $attrs = array_merge($this->definition(), $this->stateOverrides, $override);
 
         foreach ($this->afterMaking as $callback) {

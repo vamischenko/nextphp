@@ -68,7 +68,7 @@ final class NextphpFilesystemAdapter implements FilesystemAdapter
         }
     }
 
-    public function readStream(string $location)
+    public function readStream(string $location): mixed
     {
         try {
             return $this->fs->readStream($this->prefixer->prefixPath($location));

@@ -41,17 +41,13 @@ interface FilesystemInterface
 
     /**
      * @return resource
-     */
-    /**
      * @psalm-impure
      */
-    public function readStream(string $path);
+    public function readStream(string $path): mixed;
 
     /**
      * @param resource $stream
-     */
-    /**
      * @psalm-impure
      */
-    public function writeStream(string $path, $stream): void;
+    public function writeStream(string $path, mixed $stream): void;
 }

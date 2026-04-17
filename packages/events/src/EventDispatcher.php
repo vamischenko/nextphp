@@ -21,6 +21,9 @@ final class EventDispatcher implements EventDispatcherInterface, ListenerProvide
         $this->listeners[$eventClass][] = ['priority' => $priority, 'listener' => $listener];
     }
 
+    /**
+     * @psalm-external-mutation-free
+     */
     public function addSubscriber(EventSubscriberInterface $subscriber): void
     {
         foreach ($subscriber::getSubscribedEvents() as $eventClass => $method) {

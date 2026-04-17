@@ -8,6 +8,8 @@ use Nextphp\Debugbar\Collector\CollectorInterface;
 
 /**
  * Central registry that holds all collectors and passes data to the renderer.
+ *
+ * @psalm-api
  */
 final class DebugBar
 {
@@ -46,7 +48,11 @@ final class DebugBar
     /**
      * Collect data from all registered collectors.
      *
-     * @return array<string, array<string, mixed>>
+     * @return array<string, mixed>
+     */
+    /**
+     * @return array<string, mixed>
+     * @psalm-suppress MixedReturnTypeCoercion
      */
     public function collectAll(): array
     {
@@ -55,6 +61,7 @@ final class DebugBar
             $data[$name] = $collector->collect();
         }
 
+        /** @var array<string, mixed> $data */
         return $data;
     }
 }

@@ -90,6 +90,7 @@ class Container implements ContainerInterface
         $this->singletons[$abstract] = $instance;
     }
 
+    /** @param array<string, mixed> $parameters */
     public function make(string $abstract, array $parameters = []): mixed
     {
         // Already resolved singleton / instance
@@ -122,8 +123,10 @@ class Container implements ContainerInterface
         return $instance;
     }
 
+    /** @param array<string, mixed> $parameters */
     public function call(callable|array|string $callback, array $parameters = []): mixed
     {
+        /** @psalm-suppress MixedArgumentTypeCoercion */
         return $this->resolver->resolveCallable(
             $this->wrapCallable($callback),
             $parameters,

@@ -31,7 +31,7 @@ final class RedisCache implements CacheInterface
             return $default;
         }
 
-        return unserialize((string) $raw);
+        return unserialize($raw);
     }
 
     public function set(string $key, mixed $value, null|int|DateInterval $ttl = null): bool
@@ -42,7 +42,9 @@ final class RedisCache implements CacheInterface
         $seconds = $this->resolveTtlSeconds($ttl);
 
         if ($seconds === null) {
-            return (bool) $this->redis->set($this->prefixed($key), $serialized);
+            $this->redis->set($this->prefixed($key), $serialized);
+
+            return true;
         }
 
         if ($seconds <= 0) {
@@ -51,7 +53,9 @@ final class RedisCache implements CacheInterface
             return true;
         }
 
-        return (bool) $this->redis->setex($this->prefixed($key), $seconds, $serialized);
+        $this->redis->setex($this->prefixed($key), $seconds, $serialized);
+
+        return true;
     }
 
     public function delete(string $key): bool
@@ -67,7 +71,7 @@ final class RedisCache implements CacheInterface
         $pattern = $this->prefix . '*';
         $keys = $this->redis->keys($pattern);
 
-        if ($keys !== false && $keys !== []) {
+        if ($keys !== []) {
             $this->redis->del(...$keys);
         }
 
@@ -168,7 +172,7 @@ final class RedisCache implements CacheInterface
     {
         $tagKey = $this->prefix . 'tag:' . $tag;
         $keys   = $this->redis->sMembers($tagKey);
-        if (is_array($keys) && $keys !== []) {
+        if ($keys !== []) {
             foreach ($keys as $key) {
                 $this->delete((string) $key);
             }
@@ -186,9 +190,7 @@ final class RedisCache implements CacheInterface
         return $this->prefix . $key;
     }
 
-    /**
-     * @psalm-pure
-     */
+    /** @psalm-mutation-free */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

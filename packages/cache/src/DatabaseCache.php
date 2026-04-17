@@ -222,9 +222,7 @@ final class DatabaseCache implements CacheInterface
         return (new DateTimeImmutable())->add($ttl)->getTimestamp();
     }
 
-    /**
-     * @psalm-pure
-     */
+    /** @psalm-mutation-free */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

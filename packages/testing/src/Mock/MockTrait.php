@@ -52,9 +52,7 @@ trait MockTrait
         return $this->__calls[$method][$index] ?? [];
     }
 
-    /**
-      * @psalm-mutation-free
-     */
+    /** @psalm-mutation-free */
     public function verify(): void
     {
         foreach ($this->__expectations as $perMethod) {

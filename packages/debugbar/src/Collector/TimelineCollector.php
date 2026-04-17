@@ -11,6 +11,8 @@ namespace Nextphp\Debugbar\Collector;
  *   $timeline->start('boot');
  *   // ... do work ...
  *   $timeline->stop('boot');
+ *
+ * @psalm-api
  */
 final class TimelineCollector implements CollectorInterface
 {
@@ -53,17 +55,17 @@ final class TimelineCollector implements CollectorInterface
         $now     = microtime(true);
         $entries = [];
 
-        foreach ($this->measures as $key => $m) {
+        foreach ($this->measures as $m) {
             $end      = $m['end'] ?? $now;
             $entries[] = [
-                'label'    => $m['label'],
-                'start_ms' => round(($m['start'] - $this->startedAt) * 1000, 2),
-                'duration_ms' => round(($end - $m['start']) * 1000, 2),
+                'label'       => $m['label'],
+                'start_ms'    => round(($m['start'] - $this->startedAt) * 1000.0, 2),
+                'duration_ms' => round(($end - $m['start']) * 1000.0, 2),
             ];
         }
 
         return [
-            'total_ms' => round(($now - $this->startedAt) * 1000, 2),
+            'total_ms' => round(($now - $this->startedAt) * 1000.0, 2),
             'entries'  => $entries,
         ];
     }

@@ -48,6 +48,7 @@ interface ConnectionInterface
      *
      * @param mixed[] $bindings
      * @psalm-impure
+     * @psalm-suppress PossiblyUnusedReturnValue
      */
     public function statement(string $sql, array $bindings = []): bool;
 

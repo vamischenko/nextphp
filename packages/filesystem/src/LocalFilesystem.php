@@ -66,7 +66,7 @@ final class LocalFilesystem implements FilesystemInterface
         return $this->url($resource) . '?expires=' . $expires . '&signature=' . $signature;
     }
 
-    public function readStream(string $path)
+    public function readStream(string $path): mixed
     {
         $target = $this->fullPath($path);
         $stream = fopen($target, 'rb');
@@ -77,7 +77,7 @@ final class LocalFilesystem implements FilesystemInterface
         return $stream;
     }
 
-    public function writeStream(string $path, $stream): void
+    public function writeStream(string $path, mixed $stream): void
     {
         if (! is_resource($stream)) {
             throw new \InvalidArgumentException('Stream must be a valid resource.');

@@ -6,6 +6,7 @@ namespace Nextphp\Testing\Database;
 
 use Nextphp\Orm\Connection\Connection;
 
+/** @psalm-api */
 trait RefreshDatabase
 {
     /** @param string[] $tables */

@@ -15,8 +15,6 @@ interface CollectorInterface
 {
     /**
      * Unique name used as panel tab label (e.g. "queries", "timeline").
-     */
-    /**
      * @psalm-impure
      */
     public function getName(): string;
@@ -25,8 +23,6 @@ interface CollectorInterface
      * Collected data ready for the renderer.
      *
      * @return array<string, mixed>
-     */
-    /**
      * @psalm-impure
      */
     public function collect(): array;

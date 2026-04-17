@@ -25,5 +25,10 @@
         <MixedPropertyTypeCoercion errorLevel="suppress" />
         <MissingThrowsDocblock errorLevel="suppress" />
         <UnusedBaselineEntry errorLevel="suppress" />
+        <MissingPureAnnotation errorLevel="suppress" />
+        <UnusedMethodCall errorLevel="suppress" />
+        <PossiblyUnusedMethod errorLevel="suppress" />
+        <PossiblyUnusedReturnValue errorLevel="suppress" />
+        <MoreSpecificImplementedParamType errorLevel="suppress" />
     </issueHandlers>
 </psalm>

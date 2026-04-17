@@ -72,7 +72,7 @@ final class S3Filesystem implements FilesystemInterface
         return $this->url($resource) . '?X-Expires=' . $expires . '&X-Signature=' . $sig;
     }
 
-    public function readStream(string $path)
+    public function readStream(string $path): mixed
     {
         $stream = fopen('php://temp', 'rb+');
         if ($stream === false) {
@@ -87,7 +87,7 @@ final class S3Filesystem implements FilesystemInterface
     /**
       * @psalm-external-mutation-free
      */
-    public function writeStream(string $path, $stream): void
+    public function writeStream(string $path, mixed $stream): void
     {
         if (! is_resource($stream)) {
             throw new \InvalidArgumentException('Stream must be a resource');

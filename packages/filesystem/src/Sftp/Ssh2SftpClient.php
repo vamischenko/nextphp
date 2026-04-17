@@ -40,10 +40,11 @@ final class Ssh2SftpClient implements SftpClientInterface
      */
     public function authPassword(string $user, string $password): bool
     {
-        if (!ssh2_auth_password($this->session(), $user, $password)) {
+        $session = $this->session();
+        if (!ssh2_auth_password($session, $user, $password)) {
             return false;
         }
-        $sftp = ssh2_sftp($this->session());
+        $sftp = ssh2_sftp($session);
         $this->sftp = $sftp !== false ? $sftp : null;
         return $this->sftp !== null;
     }
@@ -53,10 +54,11 @@ final class Ssh2SftpClient implements SftpClientInterface
      */
     public function authKey(string $user, string $pubKeyFile, string $privKeyFile, string $passphrase = ''): bool
     {
-        if (!ssh2_auth_pubkey_file($this->session(), $user, $pubKeyFile, $privKeyFile, $passphrase)) {
+        $session = $this->session();
+        if (!ssh2_auth_pubkey_file($session, $user, $pubKeyFile, $privKeyFile, $passphrase)) {
             return false;
         }
-        $sftp = ssh2_sftp($this->session());
+        $sftp = ssh2_sftp($session);
         $this->sftp = $sftp !== false ? $sftp : null;
         return $this->sftp !== null;
     }
@@ -110,9 +112,9 @@ final class Ssh2SftpClient implements SftpClientInterface
         return 'ssh2.sftp://' . (int) $this->sftpResource() . '/' . ltrim($path, '/');
     }
 
-    /** @return resource */
     /**
-      * @psalm-mutation-free
+     * @return resource
+     * @psalm-mutation-free
      */
     private function session(): mixed
     {
@@ -122,9 +124,9 @@ final class Ssh2SftpClient implements SftpClientInterface
         return $this->session;
     }
 
-    /** @return resource */
     /**
-      * @psalm-mutation-free
+     * @return resource
+     * @psalm-mutation-free
      */
     private function sftpResource(): mixed
     {

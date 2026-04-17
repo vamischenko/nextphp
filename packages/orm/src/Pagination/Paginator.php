@@ -8,9 +8,7 @@ namespace Nextphp\Orm\Pagination;
  * Simple offset-based paginator.
  *
  * @template T
- */
-/**
-  * @psalm-immutable
+ * @psalm-immutable
  */
 final class Paginator
 {

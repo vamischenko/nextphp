@@ -15,8 +15,6 @@ abstract class FormRequest
      * Define the validation rules for this request.
      *
      * @return array<string, string|array<int, string|ValidationRuleInterface>>
-     */
-    /**
      * @psalm-impure
      */
     abstract public function rules(): array;
@@ -30,6 +28,7 @@ abstract class FormRequest
     public function validate(array $data, ?PresenceVerifierInterface $presence = null): ValidationResult
     {
         $validator = new Validator($presence);
+        /** @psalm-suppress MixedArgumentTypeCoercion */
         $this->result = $validator->validate($data, $this->rules());
 
         if ($this->result->fails()) {
@@ -47,6 +46,7 @@ abstract class FormRequest
     public function validateSilently(array $data, ?PresenceVerifierInterface $presence = null): ValidationResult
     {
         $validator = new Validator($presence);
+        /** @psalm-suppress MixedArgumentTypeCoercion */
         $this->result = $validator->validate($data, $this->rules());
 
         return $this->result;

@@ -12,6 +12,7 @@ use Nextphp\Testing\Database\RefreshDatabase;
  * Real runtime usage happens in user test-case classes.
  *
  * @internal
+ * @psalm-api
  */
 final class DatabaseTraitsUsage
 {

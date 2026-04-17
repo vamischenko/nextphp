@@ -212,6 +212,7 @@ abstract class Model
             $relation = $this->$key();
 
             if ($relation instanceof Relations\Relation || $relation instanceof MorphTo) {
+                /** @var mixed $result */
                 $result = $relation->getResults();
                 $this->relations[$key] = $result;
 

@@ -48,8 +48,6 @@ interface ContainerInterface extends PsrContainerInterface
      * Resolve an abstract from the container with optional parameters.
      *
      * @param array<string, mixed> $parameters
-     */
-    /**
      * @psalm-impure
      */
     public function make(string $abstract, array $parameters = []): mixed;
@@ -59,8 +57,6 @@ interface ContainerInterface extends PsrContainerInterface
      *
      * @param callable|array<int, mixed>|string $callback
      * @param array<string, mixed> $parameters
-     */
-    /**
      * @psalm-impure
      */
     public function call(callable|array|string $callback, array $parameters = []): mixed;

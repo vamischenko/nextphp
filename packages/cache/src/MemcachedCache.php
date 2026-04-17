@@ -211,9 +211,7 @@ final class MemcachedCache implements CacheInterface
         return $this->prefix . $key;
     }
 
-    /**
-     * @psalm-pure
-     */
+    /** @psalm-mutation-free */
     private function assertValidKey(string $key): void
     {
         if ($key === '') {

@@ -9,6 +9,8 @@ namespace Nextphp\Debugbar\Collector;
  *
  * Example integration with ORM:
  *   $collector->addQuery($sql, $bindings, $durationMs);
+ *
+ * @psalm-api
  */
 final class QueryCollector implements CollectorInterface
 {

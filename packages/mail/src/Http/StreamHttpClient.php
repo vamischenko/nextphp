@@ -11,6 +11,10 @@ use RuntimeException;
  */
 final class StreamHttpClient implements HttpClientInterface
 {
+    /**
+     * @param array<string, string> $headers
+     * @return array{status: int, body: string}
+     */
     public function post(string $url, array $headers, string $body): array
     {
         $headerLines = [];

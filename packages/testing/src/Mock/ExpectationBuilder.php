@@ -169,7 +169,7 @@ final class ExpectationBuilder
 
     /**
      * Verify call-count expectations. Called in tearDown / verify().
-       * @psalm-mutation-free
+     * @psalm-mutation-free
      */
     public function verify(): void
     {

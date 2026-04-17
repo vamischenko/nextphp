@@ -63,7 +63,6 @@ abstract class MockProxy
 
     /**
      * Verify all registered expectations. Call this at the end of the test.
-       * @psalm-mutation-free
      */
     public function verify(): void
     {

@@ -19,7 +19,9 @@ final class HtmlRenderer
         $panels  = '';
         $first   = true;
 
+        /** @psalm-suppress MixedAssignment */
         foreach ($data as $name => $collected) {
+            /** @var array<string, mixed> $collected */
             $active  = $first ? ' nphp-active' : '';
             $label   = htmlspecialchars(ucfirst($name), ENT_QUOTES);
             $badge   = $this->badge($name, $collected);
@@ -57,7 +59,7 @@ final class HtmlRenderer
             'timeline' => $this->renderTimeline($collected),
             'memory'   => $this->renderMemory($collected),
             'request'  => $this->renderRequest($collected),
-            default    => '<pre>' . htmlspecialchars(json_encode($collected, JSON_PRETTY_PRINT) ?: '{}', ENT_QUOTES) . '</pre>',
+            default    => '<pre>' . htmlspecialchars(json_encode($collected, JSON_PRETTY_PRINT) === false ? '{}' : (string) json_encode($collected, JSON_PRETTY_PRINT), ENT_QUOTES) . '</pre>',
         };
     }
 
@@ -71,10 +73,11 @@ final class HtmlRenderer
         $total = round((float) ($data['total_ms'] ?? 0), 2);
         $html  = "<p>{$count} queries &mdash; {$total} ms total</p><ol class=\"nphp-list\">";
 
-        foreach ((array) ($data['queries'] ?? []) as $q) {
-            /** @var array{sql: string, duration_ms: float, bindings: mixed[]} $q */
-            $sql  = htmlspecialchars((string) $q['sql'], ENT_QUOTES);
-            $ms   = round((float) $q['duration_ms'], 3);
+        /** @var list<array{sql: string, duration_ms: float, bindings: mixed[]}> $queries */
+        $queries = (array) ($data['queries'] ?? []);
+        foreach ($queries as $q) {
+            $sql  = htmlspecialchars($q['sql'], ENT_QUOTES);
+            $ms   = round($q['duration_ms'], 3);
             $html .= "<li><code>{$sql}</code> <span class=\"nphp-dim\">{$ms}&nbsp;ms</span></li>";
         }
 
@@ -90,12 +93,13 @@ final class HtmlRenderer
         $total = round((float) ($data['total_ms'] ?? 0), 2);
         $html  = "<p>Total: <strong>{$total} ms</strong></p><ul class=\"nphp-list\">";
 
-        foreach ((array) ($data['entries'] ?? []) as $e) {
-            /** @var array{label: string, start_ms: float, duration_ms: float} $e */
-            $label    = htmlspecialchars((string) $e['label'], ENT_QUOTES);
-            $duration = round((float) $e['duration_ms'], 2);
-            $start    = round((float) $e['start_ms'], 2);
-            $width    = $total > 0 ? min(100, round($duration / $total * 100, 1)) : 0;
+        /** @var list<array{label: string, start_ms: float, duration_ms: float}> $entries */
+        $entries = (array) ($data['entries'] ?? []);
+        foreach ($entries as $e) {
+            $label    = htmlspecialchars($e['label'], ENT_QUOTES);
+            $duration = round($e['duration_ms'], 2);
+            $start    = round($e['start_ms'], 2);
+            $width    = $total > 0 ? min(100, round($duration / $total * 100.0, 1)) : 0;
             $html    .= "<li>{$label} <span class=\"nphp-dim\">{$start} ms + {$duration} ms</span>"
                      . "<div class=\"nphp-bar-track\"><div class=\"nphp-bar-fill\" style=\"width:{$width}%\"></div></div></li>";
         }
@@ -126,9 +130,11 @@ final class HtmlRenderer
         $uri     = htmlspecialchars((string) ($data['uri'] ?? ''), ENT_QUOTES);
         $html    = "<p><strong>{$method}</strong> {$uri}</p><ul class=\"nphp-list\">";
 
-        foreach ((array) ($data['headers'] ?? []) as $name => $value) {
-            $n     = htmlspecialchars((string) $name, ENT_QUOTES);
-            $v     = htmlspecialchars((string) $value, ENT_QUOTES);
+        /** @var array<string, string> $headers */
+        $headers = (array) ($data['headers'] ?? []);
+        foreach ($headers as $name => $value) {
+            $n     = htmlspecialchars($name, ENT_QUOTES);
+            $v     = htmlspecialchars($value, ENT_QUOTES);
             $html .= "<li><code>{$n}</code>: {$v}</li>";
         }
 

@@ -18,7 +18,9 @@ final class Input
         $arguments = [];
         $options = [];
 
-        foreach (array_slice($argv, 2) as $token) {
+        /** @var list<string> $tokens */
+        $tokens = array_slice($argv, 2);
+        foreach ($tokens as $token) {
             if (str_starts_with($token, '--')) {
                 $withoutPrefix = substr($token, 2);
                 if (str_contains($withoutPrefix, '=')) {

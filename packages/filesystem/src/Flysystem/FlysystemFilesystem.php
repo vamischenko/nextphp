@@ -69,12 +69,12 @@ final class FlysystemFilesystem implements FilesystemInterface
         throw new \RuntimeException('Signed URLs are not supported by this Flysystem operator.');
     }
 
-    public function readStream(string $path)
+    public function readStream(string $path): mixed
     {
         return $this->fs->readStream($path);
     }
 
-    public function writeStream(string $path, $stream): void
+    public function writeStream(string $path, mixed $stream): void
     {
         if (! is_resource($stream)) {
             throw new \InvalidArgumentException('Stream must be a valid resource.');

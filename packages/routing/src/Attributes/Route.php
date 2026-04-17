@@ -15,8 +15,7 @@ final class Route
     /**
      * @param string[] $methods
      * @param string[] $middleware
-     */
-    /**
+     * @param string[] $can
      * @psalm-mutation-free
      */
     public function __construct(

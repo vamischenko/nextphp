@@ -13,9 +13,7 @@ final class AuthorizePsrMiddleware implements MiddlewareInterface
 {
     /**
      * @param callable(ServerRequestInterface): array<int, mixed> $argumentsResolver
-     */
-    /**
-      * @psalm-mutation-free
+     * @psalm-mutation-free
      */
     public function __construct(
         private readonly PolicyRegistry $policies,

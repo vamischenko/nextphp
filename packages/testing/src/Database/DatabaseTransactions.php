@@ -6,6 +6,7 @@ namespace Nextphp\Testing\Database;
 
 use Nextphp\Orm\Connection\Connection;
 
+/** @psalm-api */
 trait DatabaseTransactions
 {
     protected function beginTransaction(Connection $connection): void

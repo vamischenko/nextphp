@@ -16,6 +16,8 @@ use Psr\Http\Server\RequestHandlerInterface;
  *
  * Only active when DebugBar::isEnabled() returns true.
  * Skipped for non-HTML responses (JSON, redirects, etc.).
+ *
+ * @psalm-api
  */
 final class DebugBarMiddleware implements MiddlewareInterface
 {

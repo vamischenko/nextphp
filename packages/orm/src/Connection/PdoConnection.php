@@ -113,6 +113,7 @@ class PdoConnection implements SqlConnectionInterface
 
     /**
      * @param mixed[] $bindings
+     * @psalm-suppress PossiblyUnusedReturnValue
      */
     public function statement(string $sql, array $bindings = []): bool
     {

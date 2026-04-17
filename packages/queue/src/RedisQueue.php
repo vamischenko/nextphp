@@ -61,6 +61,6 @@ final class RedisQueue implements QueueInterface
 
     public function size(): int
     {
-        return (int) $this->redis->zCard($this->key);
+        return $this->redis->zCard($this->key);
     }
 }
