@@ -5,8 +5,9 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Nextphp Team",
-            "email": "team@nextphp.dev"
+            "name": "Vladislav Mischenko",
+            "email": "vamischenko@gmail.com",
+            "homepage": "https://github.com/vamischenko"
         }
     ],
     "require": {
